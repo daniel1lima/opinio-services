@@ -12,14 +12,15 @@ app = Flask(__name__)
 @app.route('/run-script', methods=['GET'])
 #need to match above with axios call to /run-script
 def run_script():
-    # Run the Python script
-    yelp_script("Gyms", 5)
-    split_reviews()
+    # Run the Python scripts if we want
+
+    # yelp_script("Gyms", 5)
+    # split_reviews()
 
     # compute scores
     
     
-    csv_file_path = "DATA/sentiment_reviews.csv"
+    csv_file_path = "DATA/sentiment_reviews.csv" #change this to the mongodb database
 
     # Read the CSV file and convert it to a list of dictionaries
     data = []

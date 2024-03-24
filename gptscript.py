@@ -8,9 +8,9 @@ def split_reviews():
   import csv
   import pandas as pd
   from textblob import TextBlob
-  
+
   client = OpenAI(
-    api_key="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"
+    api_key="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",
   )
 
   # Create a new dataframe with the desired columns
