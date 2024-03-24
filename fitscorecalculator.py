@@ -1,5 +1,7 @@
 import pandas as pd
 
+filepath = '/Users/yasharya/FitSight-Produhacks2024/DATA/sentiment_reviews_withcount.csv'
+
 def calculate_fit_score(df):
     # Define weights for the components
     star_rating_weight = 0.35
@@ -43,6 +45,6 @@ def calculate_fit_score(df):
     return gym_aggregated[['name', 'FitScore']]
 
 
-df = pd.read_csv('/Users/yasharya/FitSight-Produhacks2024/DATA/sentiment_reviews_withcount.csv')
+df = pd.read_csv(filepath)
 fit_scores_df = calculate_fit_score(df)
 print(fit_scores_df.head())
