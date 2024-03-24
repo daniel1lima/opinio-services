@@ -28,7 +28,9 @@ def main():
 
     for phrase in review_phrases:
         sentiment_score = analyze_sentiment(phrase)
+        
         print(f"Phrase: '{phrase}'\n Sentiment Score: {sentiment_score}\n")
+
 
 if __name__ == "__main__":
     main()
