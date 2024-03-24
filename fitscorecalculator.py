@@ -11,9 +11,7 @@ if 'FitScore_y' in df.columns:
     df = df.drop(columns=['FitScore_y'])
     
 
-def calculate_fit_score():
-
-    df = pd.read_csv(filepath).reset_index()
+def calculate_fit_score(df):
     # Define weights for the components
     star_rating_weight = 0.35
     review_count_weight = 0.05
@@ -56,21 +54,23 @@ def calculate_fit_score():
     return gym_aggregated[['name', 'FitScore']]
 
 
-def calculate_all():
-    fit_scores_df = calculate_fit_score()
-    df = df.merge(fit_scores_df, on='name', how='left')
-    df_updated = pd.read_csv(filepath)
 
-    if 'FitScore_x' in df_updated.columns:
-        df_updated = df_updated.drop(columns=['FitScore_x'])
+filepath = 'DATA/sentiment_reviews_withcount.csv'
 
-    if 'review_count_rating' in df_updated.columns:
-        df_updated = df_updated.drop(columns=['review_count_rating'])
+df = pd.read_csv(filepath)
 
-        df_updated.rename(columns={'FitScore_y': 'fitscore'}, inplace=True)
+fit_scores_df = calculate_fit_score(df)
+df = df.merge(fit_scores_df, on='name', how='left')
+df_updated = pd.read_csv(filepath)
 
-                
-    df_updated.to_csv(filepath, index=False)
-    print("Updated CSV with FitScores.")
+if 'FitScore_x' in df_updated.columns:
+    df_updated = df_updated.drop(columns=['FitScore_x'])
+
+if 'review_count_rating' in df_updated.columns:
+    df_updated = df_updated.drop(columns=['review_count_rating'])
+
+             
+df_updated.to_csv(filepath, index=False)
+print("Updated CSV with FitScores.")
 
 

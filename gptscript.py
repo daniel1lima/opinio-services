@@ -10,7 +10,7 @@ def split_reviews():
   from textblob import TextBlob
 
   client = OpenAI(
-    api_key="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",
+    api_key="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",
   )
 
   # Create a new dataframe with the desired columns
