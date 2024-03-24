@@ -6,7 +6,7 @@ import pandas as pd
 
 from yelp_script import yelp_script
 from gptscript import split_reviews
-# from fitscorecalculator import calculate_all, calculate_fit_score
+from fitscorecalculator import update_fit_scores_in_csv
 from mongofeeder import push_document
 
 filepath = 'DATA/sentiment_reviews_withcount.csv'
@@ -24,7 +24,7 @@ def run_script():
     # split_reviews()
 
     # print("calculating all")
-    # calculate_all()
+    # update_fit_scores_in_csv("DATA/sentiment_reviews_withcount.csv")
 
     # print("pushing")
     # push_document("DATA/sentiment_reviews_withcount.csv", "sentiment_reviews")
