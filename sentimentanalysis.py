@@ -1,4 +1,7 @@
-from textblob import TextBlob
+#from textblob import TextBlob
+from nltk.sentiment import SentimentIntensityAnalyzer
+
+sia = SentimentIntensityAnalyzer()
 
 
 categories = {
@@ -14,7 +17,7 @@ categories = {
 def analyze_sentiment(phrase):
     """Analyze the sentiment of the phrase"""
     analysis = TextBlob(phrase)
-    return analysis.sentiment.polarity
+    return analysis.sentiment.polarity 
 
 def main():
     
@@ -27,7 +30,7 @@ def main():
     ]
 
     for phrase in review_phrases:
-        sentiment_score = analyze_sentiment(phrase)
+        sentiment_score = sia.polarity_scores(phrase)
         
         print(f"Phrase: '{phrase}'\n Sentiment Score: {sentiment_score}\n")
 

@@ -48,3 +48,5 @@ def calculate_fit_score(gym_name, average_rating, review_count, individual_revie
 
 final = calculate_fit_score(name, rating, count, reviews)
 print(final)
+
+
