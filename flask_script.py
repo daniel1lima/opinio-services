@@ -3,6 +3,7 @@ import subprocess
 import csv
 
 from yelp_script import yelp_script
+from gptscript import split_reviews
 
 
 
@@ -13,6 +14,9 @@ app = Flask(__name__)
 def run_script():
     # Run the Python script
     yelp_script("Gyms", 5)
+    split_reviews()
+
+    # compute scores
     
     
     csv_file_path = "DATA/sentiment_reviews.csv"
