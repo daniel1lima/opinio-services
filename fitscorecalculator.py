@@ -1,6 +1,6 @@
 import pandas as pd
 
-filepath = '/Users/yasharya/FitSight-Produhacks2024/DATA/sentiment_reviews_withcount.csv'
+filepath = 'DATA/sentiment_reviews_withcount.csv'
 
 def calculate_fit_score(df):
     # Define weights for the components
