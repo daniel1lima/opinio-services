@@ -1,21 +1,26 @@
 from flask import Flask, jsonify
 import subprocess
+import csv
+
+
 
 app = Flask(__name__)
 
-@app.route('/run-script')
+@app.route('/run-script', methods=['GET'])
 #need to match above with axios call to /run-script
 def run_script():
     # Run the Python script
-    subprocess.run(["python", "path/to/grabber.py"])
+    # subprocess.run(["python", "path/to/grabber.py"])
+    
+    csv_file_path = "DATA/sentiment_reviews.csv"
 
-    # Return the path to the generated JSON file
-    # Adjust the path as per your script's output
-    json_file_path = "path/to/generated.json"
-    return jsonify({"json_file_path": json_file_path})
+    # Read the CSV file and convert it to a list of dictionaries
+    data = []
+    with open(csv_file_path, 'r') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            data.append(dict(row))
 
-if __name__ == '__main__':
-    # Run the Flask app on a custom host and port
-    app.run(host='0.0.0.0', port=8080, debug = True)
+    return jsonify(data)
 
-    #change port as needed
+    
