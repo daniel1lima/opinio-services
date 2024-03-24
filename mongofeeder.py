@@ -38,7 +38,7 @@ def push_document(path, name):
                 "review_text": row['review_text'],
                 "review_count": row['review_count'],
                 "overall_rating": row['overall_rating'],
-                "fitscore": row['fitscore']
+                "fitscore": row['FitScore']
             }
             # Insert the document into the collection
             collection = db[name]
@@ -47,6 +47,6 @@ def push_document(path, name):
 
 # push_document("DATA/final_results.csv", "yelp_reviews")
 # push_document("DATA/google_reviews.csv", "google_reviews")
-# push_document("DATA/action_items.csv", "insights")
+# push_document("DATA/sentiment_reviews_withcount.csv", "sentiment_reviews")
 
 

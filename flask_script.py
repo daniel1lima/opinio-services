@@ -4,14 +4,20 @@ import csv
 from openai import OpenAI
 import pandas as pd
 
+
 from yelp_script import yelp_script
 from gptscript import split_reviews
 from fitscorecalculator import update_fit_scores_in_csv
 from mongofeeder import push_document
+from flask_cors import CORS
 
 filepath = 'DATA/sentiment_reviews_withcount.csv'
 
 app = Flask(__name__)
+cors = CORS(app)
+
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/sentiment', methods=['GET'])
 #need to match above with axios call to /run-script
