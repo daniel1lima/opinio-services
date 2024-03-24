@@ -96,7 +96,5 @@ def split_reviews():
 
       print("done job:" + str(count))
 
-  split.to_csv("DATA/sentiment_reviews.csv")
+  split.to_csv("DATA/sentiment_reviews_withcount.csv")
 
-# Call the function
-split_reviews()

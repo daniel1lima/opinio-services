@@ -1,18 +1,20 @@
-import json
-from pymongo import MongoClient
-import csv
 
-connection_string = "mongodb+srv://produhacks_user:produhacks23@produhacks24.7bfha2w.mongodb.net/?retryWrites=true&w=majority&appName=ProduHacks24"
-client = MongoClient(connection_string)
 
-db = client['Reviews']
-username = "produhacks_user"
-password = "produhacks23"
+
 
 # Define the document to be inserted
 # Read the CSV file
 
 def push_document(path, name):
+    import json
+    import csv
+    from pymongo import MongoClient
+
+    connection_string = "mongodb+srv://produhacks_user:produhacks23@produhacks24.7bfha2w.mongodb.net/?retryWrites=true&w=majority&appName=ProduHacks24"
+    client = MongoClient(connection_string)
+
+    db = client['Reviews']
+
     with open(path, 'r') as file:
         reader = csv.DictReader(file)
         # Iterate over each row in the CSV file
@@ -44,5 +46,5 @@ def push_document(path, name):
 
 # push_document("DATA/final_results.csv", "yelp_reviews")
 # push_document("DATA/google_reviews.csv", "google_reviews")
-push_document("DATA/sentiment_reviews_withcount.csv", "sentiment_reviews")
+
 
