@@ -2,6 +2,8 @@ from flask import Flask, jsonify
 import subprocess
 import csv
 
+from yelp_script import yelp_script
+
 
 
 app = Flask(__name__)
@@ -10,7 +12,8 @@ app = Flask(__name__)
 #need to match above with axios call to /run-script
 def run_script():
     # Run the Python script
-    # subprocess.run(["python", "path/to/grabber.py"])
+    yelp_script("Gyms", 5)
+    
     
     csv_file_path = "DATA/sentiment_reviews.csv"
 
