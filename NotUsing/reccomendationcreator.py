@@ -3,8 +3,8 @@ from statistics import mean
 import openai
 
 # Configuration
-csv_file_path = '/Users/yasharya/FitSight-Produhacks2024/sentiment_reviews.csv'  # Update this with your actual CSV file path
-openai.api_key = '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'  # Replace this with your actual OpenAI API key
+csv_file_path = '/Users/yasharya/FitSight-Produhacks2024/sentiment_reviews.csv'  
+openai.api_key = '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'  
 
 def read_and_process_reviews(csv_path):
     reviews_with_averages = []
