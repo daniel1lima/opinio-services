@@ -48,3 +48,7 @@ def calculate_fit_score(df):
 df = pd.read_csv(filepath)
 fit_scores_df = calculate_fit_score(df)
 print(fit_scores_df.head())
+
+df = df.merge(fit_scores_df, on='name', how='left')
+df.to_csv(filepath, index=False)
+print("Updated CSV with FitScores.")
