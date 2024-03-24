@@ -12,7 +12,7 @@ client = OpenAI(
 
 
 # Create a new dataframe with the desired columns
-split = pd.DataFrame(columns=["name", "equipment", "cleanliness", "pricing", "accessibility", "staff", "review_text"])
+split = pd.DataFrame(columns=["name", "equipment", "cleanliness", "pricing", "accessibility", "staff", "review_text", "review_count", "overall_rating"])
 count = 0
 
 with open('DATA/final_results.csv', 'r') as file:
@@ -24,6 +24,8 @@ with open('DATA/final_results.csv', 'r') as file:
       # Assign the text to a review variable
       review_text = row[3]
       review_company = row[1]
+      overall_rating = row[2]
+      review_count = row[5]
       
 
       # Perform the completion using the review variable
@@ -45,6 +47,16 @@ with open('DATA/final_results.csv', 'r') as file:
         split.loc[count, 'name'] = review_company
       except IndexError:
         split.loc[count, 'name'] = None
+
+      try:
+        split.loc[count, 'overall_rating'] = overall_rating
+      except IndexError:
+        split.loc[count, 'overall_rating'] = None
+
+      try:
+        split.loc[count, 'review_count'] = review_count
+      except IndexError:
+        split.loc[count, 'review_count'] = None
 
       try:
         equipment = output_split[0]

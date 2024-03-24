@@ -17,7 +17,7 @@ def push_document(path, name):
         reader = csv.DictReader(file)
         # Iterate over each row in the CSV file
         for row in reader:
-            
+
             # Define the document to be inserted
             # document = {
             #     "gym_name": row['gym_name'],
@@ -34,6 +34,8 @@ def push_document(path, name):
                 "accessibility": row['accessibility'],
                 "staff": row['staff'],
                 "review_text": row['review_text'],
+                "review_count": row['review_count'],
+                "overall_rating": row['overall_rating']
             }
             # Insert the document into the collection
             collection = db[name]
@@ -42,5 +44,5 @@ def push_document(path, name):
 
 # push_document("DATA/final_results.csv", "yelp_reviews")
 # push_document("DATA/google_reviews.csv", "google_reviews")
-push_document("DATA/sentiment_reviews.csv", "sentiment_reviews")
+push_document("DATA/sentiment_reviews_withcount.csv", "sentiment_reviews")
 
