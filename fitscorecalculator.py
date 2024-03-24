@@ -1,52 +1,48 @@
-name = "Golds UBC"
-rating = 4.3
-count = 436
-reviews = [
-    ("equipment", 0.8),
-    ("cleanliness", -0.5),
-    ("pricing", 0.2),
-    ("staff", 0.9),
-    ("accessibility", 0.1)
-]
+import pandas as pd
 
-def calculate_fit_score(gym_name, average_rating, review_count, individual_reviews):
- 
-    average_review_count = 600
-    category_weight = 12  
-    
-    # 1. Calculate Star Rating Contribution (30% of total score)
-    star_rating_contribution = (average_rating / 5) * 30
-    
-    # 2. Calculate Review Count Rating Contribution (10% of total score)
-    if review_count >= average_review_count:
-        review_count_rating = 5
-    else:
-        review_count_rating = 1 + ((review_count / average_review_count) * 4)
-    review_count_contribution = (review_count_rating / 5) * 10
-    
-    # 3. Process individual reviews for category scores
-    category_scores = {category: [] for category, _ in individual_reviews}
-    for category, score in individual_reviews:
-        category_scores[category].append(score)
+def calculate_fit_score(df):
+    # Define weights for the components
+    star_rating_weight = 0.35
+    review_count_weight = 0.05
+    category_weight = 0.12  
 
-    # Calculate the sum of scores for each category, transform to 0-5 scale, and find contribution
-    category_contributions = {}
-    for category, scores in category_scores.items():
-        if scores:  # Check if there are scores to avoid division by zero
-            average_score = sum(scores) / len(scores)
-            category_score = ((average_score + 1) * 2.5)  # Scale from -1-1 to 0-5
-            category_contributions[category] = (category_score / 5) * category_weight
-    
-    # 4. Combine all contributions for final FitScore
-    final_fitscore = star_rating_contribution + review_count_contribution + sum(category_contributions.values())
-    
+    # Calculate average review count rating
+    avg_review_threshold = 600
+    df['review_count_rating'] = df['review_count'].apply(lambda x: 5 if x >= avg_review_threshold else (x / avg_review_threshold) * 4 + 1)
 
-    return {
-        "gym_name": gym_name,
-        "FitScore": final_fitscore, 
-    }
+    # Aggregate the gym data
+    gym_aggregated = df.groupby('name').agg({
+        'equipment': 'mean',
+        'cleanliness': 'mean',
+        'pricing': 'mean',
+        'accessibility': 'mean',
+        'staff': 'mean',
+        'review_count_rating': 'mean',
+        'overall_rating': 'mean',
+        'review_count': 'mean'  # Just to keep the review count info
+    }).reset_index()
 
-final = calculate_fit_score(name, rating, count, reviews)
-print(final)
+    # Adjust category scores from -1 to 1 scale to 0 to 5 scale
+    categories = ['equipment', 'cleanliness', 'pricing', 'accessibility', 'staff']
+    for category in categories:
+        gym_aggregated[category] = gym_aggregated[category] * 2.5 + 2.5
+
+    # Calculate contributions to FitScore
+    gym_aggregated['star_rating_contribution'] = gym_aggregated['overall_rating'] * star_rating_weight * 20  # Scale overall_rating (1-5) to fit in 0-100 scale
+    gym_aggregated['review_count_contribution'] = gym_aggregated['review_count_rating'] * review_count_weight * 20  # Scale review count rating (1-5) to fit in 0-100 scale
+
+    # Calculate category contributions
+    for category in categories:
+        gym_aggregated[f'{category}_contribution'] = gym_aggregated[category] * category_weight * 20  # Scale category score (0-5) to fit in 0-100 scale
+
+    # Final FitScore Calculation
+    gym_aggregated['FitScore'] = gym_aggregated['star_rating_contribution'] 
+    for category in categories:
+        gym_aggregated['FitScore'] += gym_aggregated[f'{category}_contribution']
+
+    return gym_aggregated[['name', 'FitScore']]
 
 
+df = pd.read_csv('/Users/yasharya/FitSight-Produhacks2024/DATA/sentiment_reviews_withcount.csv')
+fit_scores_df = calculate_fit_score(df)
+print(fit_scores_df.head())
