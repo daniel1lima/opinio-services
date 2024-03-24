@@ -2,6 +2,15 @@ import pandas as pd
 
 filepath = '/Users/yasharya/FitSight-Produhacks2024/DATA/sentiment_reviews_withcount.csv'
 
+df = pd.read_csv(filepath)
+
+if 'FitScore_x' in df.columns:
+    df = df.drop(columns=['FitScore_x'])
+
+if 'FitScore_y' in df.columns:
+    df = df.drop(columns=['FitScore_y'])
+    
+
 def calculate_fit_score(df):
     # Define weights for the components
     star_rating_weight = 0.35
@@ -45,10 +54,19 @@ def calculate_fit_score(df):
     return gym_aggregated[['name', 'FitScore']]
 
 
-df = pd.read_csv(filepath)
-fit_scores_df = calculate_fit_score(df)
-print(fit_scores_df.head())
 
+fit_scores_df = calculate_fit_score(df)
 df = df.merge(fit_scores_df, on='name', how='left')
-df.to_csv(filepath, index=False)
+df_updated = pd.read_csv(filepath)
+
+if 'FitScore_x' in df_updated.columns:
+    df_updated = df_updated.drop(columns=['FitScore_x'])
+
+if 'review_count_rating' in df_updated.columns:
+    df_updated = df_updated.drop(columns=['review_count_rating'])
+
+             
+df_updated.to_csv(filepath, index=False)
 print("Updated CSV with FitScores.")
+
+
