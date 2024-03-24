@@ -69,7 +69,7 @@ def main():
         #remove "\n" from action_items
         action_items = action_items.replace("\n", "")
         final_df = final_df.append({"gym_name": gym_name, "action_items": action_items}, ignore_index=True)
-    final_df.to_csv('DATA/action_items.csv')
+    final_df.to_csv('/../DATA/action_items.csv')
 
 
 
