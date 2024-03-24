@@ -11,18 +11,24 @@ password = "produhacks23"
 
 # Define the document to be inserted
 # Read the CSV file
-with open('final_results.csv', 'r') as file:
-    reader = csv.DictReader(file)
-    # Iterate over each row in the CSV file
-    for row in reader:
-        # Define the document to be inserted
-        document = {
-            "gym_name": row['gym_name'],
-            "overall_rating": row['overall_rating'],
-            "review_text": row['review_text'],
-            "date": row['date'],
-        }
-        # Insert the document into the collection
-        collection = db['yelp_reviews']
-        collection.insert_one(document)
+
+def push_document(path, name):
+    with open(path, 'r') as file:
+        reader = csv.DictReader(file)
+        # Iterate over each row in the CSV file
+        for row in reader:
+            # Define the document to be inserted
+            document = {
+                "gym_name": row['gym_name'],
+                "overall_rating": row['overall_rating'],
+                "review_text": row['review_text'],
+                "date": row['date'],
+            }
+            # Insert the document into the collection
+            collection = db[name]
+            collection.insert_one(document)
+
+
+# push_document("DATA/final_results.csv", "yelp_reviews")
+push_document("DATA/google_reviews.csv", "google_reviews")
 
