@@ -1,67 +1,89 @@
-import gensim
+import pandas as pd
 from gensim import corpora, models
 import nltk
 from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-from transformers import pipeline
+from nltk.tokenize import word_tokenize, sent_tokenize
+from nltk.stem import WordNetLemmatizer
+import re
 
-def dynamic_review_categorization(reviews, num_topics=5, categories=None):
-    # Ensure nltk resources are downloaded
-    nltk.download('stopwords')
-    nltk.download('punkt')
+def analyze_reviews_from_csv(csv_path, review_column='review_text'):
 
-    # Preprocess Text: Tokenization and Removing Stop Words
+    
+
+    
+    df = pd.read_csv(csv_path)
+    reviews = df[review_column].tolist()
+
+    
+    stop_words = set(stopwords.words('english'))
+    lemmatizer = WordNetLemmatizer()
+
     def preprocess_text(texts):
-        stop_words = set(stopwords.words('english'))
         return [
-            [word for word in word_tokenize(document.lower()) if word.isalpha() and word not in stop_words]
+            [lemmatizer.lemmatize(word) for word in word_tokenize(document.lower()) if word.isalpha() and word not in stop_words]
             for document in texts
         ]
 
-    # LDA Model to Find Topics
     preprocessed_reviews = preprocess_text(reviews)
+
+    
     dictionary = corpora.Dictionary(preprocessed_reviews)
     corpus = [dictionary.doc2bow(text) for text in preprocessed_reviews]
+    num_topics = 3
     lda_model = models.LdaModel(corpus=corpus, id2word=dictionary, num_topics=num_topics, random_state=42, passes=15, iterations=100)
 
-    # Extract Keywords from Topics
-    top_keywords_per_topic = {i: [word for word, _ in lda_model.show_topic(i, topn=5)] for i in range(lda_model.num_topics)}
+    # Manual Mapping of Keywords to Categories
+    keyword_to_category = {
+        'bench': 'Equipment',
+        'food': 'Food',
+        'pasta': 'Food',
+        'reservation': 'Reservation',
+        'parking': 'Parking',
+        'server': 'Staff',
+        'staff': 'Staff'
+    }
 
-    # Zero-shot Classification to Dynamically Map Topics to Categories
-    classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
-    if not categories:
-        categories = ["food", "service", "ambiance", "location", "price", "equipment", "classes", "staff", "parking", "reservation", "cleanliness", "accessibility"]
+    def get_category_name(lda_topic_keywords, mapping):
+        for keyword in lda_topic_keywords:
+            if keyword in mapping:
+                return mapping[keyword]
+        return "Other"  # Fallback category
 
-    topic_to_category = {}
-    for topic_id, keywords in top_keywords_per_topic.items():
-        pseudo_sentence = ', '.join(keywords)
-        result = classifier(pseudo_sentence, candidate_labels=categories, hypothesis_template="This text is about {}.")
-        topic_to_category[topic_id] = result["labels"][0]
+    topic_keywords_improved = {}
+    for i in range(num_topics):
+        lda_keywords = [word for word, _ in lda_model.show_topic(i, 5)]  # Extracting top 5 keywords
+        topic_keywords_improved[i] = get_category_name(lda_keywords, keyword_to_category)
 
-    # Categorize Reviews Based on Topics
-    def categorize_reviews(lda_model, topic_to_category):
-        categorized_reviews = {category: [] for category in set(topic_to_category.values())}
-        for review in reviews:
+    # Categorizing Phrases with Improved Topic Names
+    def categorize_phrases(ldamodel, corpus, texts, topic_keywords):
+        category_phrases = {topic_keywords[i]: [] for i in range(num_topics)}
+        for review in texts:
             bow = dictionary.doc2bow(preprocess_text([review])[0])
-            topics = lda_model.get_document_topics(bow)
-            top_topic = sorted(topics, key=lambda x: x[1], reverse=True)[0][0]
-            category = topic_to_category[top_topic]
-            categorized_reviews[category].append(review)
-        return categorized_reviews
+            topics = ldamodel.get_document_topics(bow)
+            topics = sorted(topics, key=lambda x: x[1], reverse=True)
+            if topics:
+                topic_num, _ = topics[0]
+                sentences = sent_tokenize(review)
+                for sentence in sentences:
+                    clean_sentence = re.sub("[^a-zA-Z ]", "", sentence).lower()
+                    category_name = topic_keywords[topic_num]
+                    category_phrases[category_name].append(clean_sentence.capitalize())
+        return category_phrases
 
-    return categorize_reviews(lda_model, topic_to_category)
+    categorized_phrases = categorize_phrases(lda_model, corpus, reviews, topic_keywords_improved)
 
-# Example usage with your reviews dataset
-reviews = [
-    "Food was great but staff was slightly rude",
-    "Marie was a great server and Loved the pasta",
-    "Was able to get a reservation easily",
-    "No parking nearby"
-]
+    return categorized_phrases
 
-categorized_reviews = dynamic_review_categorization(reviews)
-for category, reviews in categorized_reviews.items():
-    print(f"Category: {category}")
-    for review in reviews:
-        print(f" - {review}")
+
+
+csv_path = '/Users/yasharya/FitSight-Produhacks2024/DATA/sentiment_reviews_withcount.csv'
+review_column = 'review_text'
+
+categorized_phrases_output = analyze_reviews_from_csv(csv_path, review_column)
+
+
+for category, phrases in categorized_phrases_output.items():
+    print(f"{category}:")
+    for phrase in phrases:
+        print(f" - {phrase}")
     print("\n")
