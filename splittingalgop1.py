@@ -33,5 +33,5 @@ csv_file_path = '/Users/yasharya/FitSight-Produhacks2024/DATA/sentiment_reviews_
 
 
 word_counts = load_and_count_keywords_from_csv(csv_file_path)
-for word, count in word_counts[:8]:  # Just print the top 10 for brevity
+for word, count in word_counts[:12]:  # Just print the top 10 for brevity
     print(f'{word}: {count}')
