@@ -84,6 +84,6 @@ categorized_phrases_output = analyze_reviews_from_csv(csv_path, review_column)
 
 for category, phrases in categorized_phrases_output.items():
     print(f"{category}:")
-    for phrase in phrases:
-        print(f" - {phrase}")
-    print("\n")
+    # for phrase in phrases:
+    #     print(f" - {phrase}")
+    # print("\n")
