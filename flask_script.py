@@ -22,9 +22,9 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route('/sentiment', methods=['GET'])
 #need to match above with axios call to /run-script
 def run_script():
-    # # Run the Python scripts if we want
-    # print("yelp script")
-    # yelp_script("Gyms", 5)
+    # Run the Python scripts if we want
+    print("yelp script")
+    yelp_script("Gyms", 5)
 
     # print("splitting reviews")
     # split_reviews()
@@ -32,8 +32,8 @@ def run_script():
     # print("calculating all")
     # update_fit_scores_in_csv("DATA/sentiment_reviews_withcount.csv")
 
-    # print("pushing")
-    # push_document("DATA/sentiment_reviews_withcount.csv", "sentiment_reviews")
+    print("pushing")
+    push_document("DATA/sentiment_reviews_withcount.csv", "reviews")
     
 
 
@@ -69,3 +69,5 @@ def show_items():
 
     return jsonify(data)
     
+
+# flask --app flask_script run
