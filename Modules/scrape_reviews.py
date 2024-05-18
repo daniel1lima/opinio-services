@@ -5,10 +5,11 @@ import pandas as pd
 import os
 import json
 import pprint
+from flask import jsonify
 
 # First we want to grab all relevant businesses that match the query request
 
-def yelp_script(query, page_count, business_count):
+def scrape_reviews(query, page_count, business_count):
     url = "https://yelp-reviews.p.rapidapi.com/business-search"
 
     business_query = query
@@ -145,4 +146,14 @@ def yelp_script(query, page_count, business_count):
     Results_final.to_csv("DATA/LONG_reviews_for_" + business_query + ".csv")
 
 
-yelp_script("nightclubs", 10, 7)
+    # THIS WILL END WITH A STATUS OBJECT
+    # This will be a response object to indicate the status of the api once it finalizes the operation, this will help when we want to log
+    # the performance of our runs so that we can track when our app breaks and such
+    # The rest of the scrape function is still not in the right format for this to work
+    # TODO: fix the scrape parameters and function implementation
+
+    return jsonify({"status": "success", "business_name": business_name, "business_rating": business_rating, "business_review_count": business_review_count})
+
+
+def scrape_reviews_function(request_data):
+    return scrape_reviews(request_data.get("query", None), request_data.get("pages", None), request_data.get("business_count", None))

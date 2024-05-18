@@ -1,13 +1,12 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import subprocess
 import csv
-from openai import OpenAI
 import pandas as pd
 
-
-from yelp_script import yelp_script
-from gptscript import split_reviews
-from fitscorecalculator import update_fit_scores_in_csv
+import Modules.category_splitting
+import Modules.create_embeddings
+import Modules.generate_insight
+from Modules.scrape_reviews import scrape_reviews_function
 from mongofeeder import push_document
 from flask_cors import CORS
 
@@ -19,55 +18,69 @@ cors = CORS(app)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route('/sentiment', methods=['GET'])
+
+
+
+@app.route('/status', methods=['GET'])
+def status():
+    return jsonify({'status': 'Opinio is working!'})
+
+
+
+@app.route('/scrape_reviews', methods=['POST'])
 #need to match above with axios call to /run-script
-def run_script():
-    # Run the Python scripts if we want
-    print("yelp script")
-    yelp_script("Gyms", 5)
+def api_scrape_reviews():
+    request_data = request.get_json()
+    # Process the parameters from the request here, for us this would look like
+    query = request_data.get("business_name", None)
+    # idk what we want to do exactly but im guessing since we have to run this every now and then some useful ones will be 
+    pages = request_data.get("pages", None)
+    stop_at = request_data.get("date_to_stop_at", None)
+    # etc..
 
-    # print("splitting reviews")
-    # split_reviews()
+    #All the params come here in the format that you want them
+    result = scrape_reviews_function(query, pages, stop_at)
 
-    # print("calculating all")
-    # update_fit_scores_in_csv("DATA/sentiment_reviews_withcount.csv")
+    # Check scrape reviews for how to setup the other functions, the endpoints are all ready here
 
-    print("pushing")
-    push_document("DATA/sentiment_reviews_withcount.csv", "reviews")
+    return result
+
+
+# Not sure if we need this endpoint
+
+@app.route('/category_splitting', methods=['POST'])
+#need to match above with axios call to /run-script
+def api_category_splitting():
+    request_data = request.get_json()
+
+    return result
+
+@app.route('/generate_insight', methods=['GET'])
+#need to match above with axios call to /run-script
+def api_generate_insight():
+    request_data = request.get_json()
+
+    return result
+
     
 
 
-    # compute scores
-    
-    
-    csv_file_path = "DATA/sentiment_reviews_withcount.csv" #change this to the mongodb database
+@app.route('/create_embeddings_pipeline', methods=['POST'])
+def api_create_embeddings_pipeline():
+    request_data = request.get_json()
 
-    # Read the CSV file and convert it to a list of dictionaries
-    data = []
-    with open(csv_file_path, 'r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            data.append(dict(row))
+    query = request_data.get("query", None)
 
-    return jsonify(data)
+    pages = request_data.get("pages", None)
+    stop_at = request_data.get("date_to_stop_at", None)
+    # etc..
+
+    result = create_embeddings(query, pages, stop_at)
 
 
-@app.route('/insights', methods=['GET'])
-def show_items():
 
-    # compute scores
-    
-    
-    csv_file_path = "DATA/action_items.csv" #change this to the mongodb database
+    return result
 
-    # Read the CSV file and convert it to a list of dictionaries
-    data = []
-    with open(csv_file_path, 'r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            data.append(dict(row))
-
-    return jsonify(data)
     
 
 # flask --app flask_script run
