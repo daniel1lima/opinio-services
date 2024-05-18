@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
-import subprocess
-import csv
-import pandas as pd
+# import subprocess
+# import csv
+# import pandas as pd
 
 # import Modules.category_splitting NOT WORKING BECAUSE OF line 16
 
@@ -9,18 +9,11 @@ import pandas as pd
 # import Modules.create_embeddings
 # import Modules.generate_insight
 # from Modules.scrape_reviews import scrape_reviews_function
-from mongofeeder import push_document
-from flask_cors import CORS
+# from mongofeeder import push_document
 
-
-
-filepath = 'DATA/sentiment_reviews_withcount.csv'
 
 app = Flask(__name__)
-cors = CORS(app)
 
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
-app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 
