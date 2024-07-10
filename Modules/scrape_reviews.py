@@ -5,9 +5,16 @@ import pandas as pd
 import os
 import json
 import pprint
+import time
 from flask import jsonify
+import dotenv
+from dotenv import load_dotenv
 
 # First we want to grab all relevant businesses that match the query request
+
+load_dotenv()
+openAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+
 
 def scrape_reviews(query, page_count, business_count):
     url = "https://yelp-reviews.p.rapidapi.com/business-search"
@@ -20,7 +27,7 @@ def scrape_reviews(query, page_count, business_count):
         querystring = {"query": business_query, "location": "Vancouver, BC, Canada", "start": str(i * 10), "yelp_domain": "yelp.com"}
 
         headers = {
-            "X-RapidAPI-Key": "52f0c4fb7cmsh68305c1877afa13p1710b0jsn6ea7e5079542",
+            "X-RapidAPI-Key": "52f0c4fb7cmsh68305c1877afa13p1710b0jsn6ea7e5079542", #remove from here
             "X-RapidAPI-Host": "yelp-reviews.p.rapidapi.com"
         }
 
@@ -155,5 +162,7 @@ def scrape_reviews(query, page_count, business_count):
     return jsonify({"status": "success", "business_name": business_name, "business_rating": business_rating, "business_review_count": business_review_count})
 
 
+
 def scrape_reviews_function(request_data):
     return scrape_reviews(request_data.get("query", None), request_data.get("pages", None), request_data.get("business_count", None))
+
