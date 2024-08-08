@@ -1,189 +1,109 @@
-import requests
 import json
-from pymongo import MongoClient
+import time
 import pandas as pd
-import os
-import json
-import pprint
-from flask import jsonify
-
-# First we want to grab all relevant businesses that match the query request
+import requests
+from pymongo import MongoClient
 
 
-def fetch_yelp_reviews(query: str, page_count: int, business_count: int):
-    pass
+class BrokenReviewsApi(Exception):
+    def __init__(self, message="An error occurred with the reviews API"):
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        return self.message
 
 
-def fetch_reviews(query, page_count, business_count):
-    url = "https://yelp-reviews.p.rapidapi.com/business-search"
+def get_business_reviews(business_id, n_reviews, retries=3):
+    url = "https://red-flower-business-data.p.rapidapi.com/business-reviews"
+    headers = {
+        "x-rapidapi-key": "52f0c4fb7cmsh68305c1877afa13p1710b0jsn6ea7e5079542",
+        "x-rapidapi-host": "red-flower-business-data.p.rapidapi.com",
+    }
 
-    business_query = query
+    # MongoDB setup
+    client = MongoClient("mongodb://localhost:27017/")
+    db = client["reviews_db"]
+    collection = db["reviews"]
 
-    business_final = pd.DataFrame(columns=["status", "request_id", "data"])
-    for i in range(1, business_count):
-        print("Page: " + str(i))
-        querystring = {
-            "query": business_query,
-            "location": "Vancouver, BC, Canada",
-            "start": str(i * 10),
-            "yelp_domain": "yelp.com",
-        }
+    reviews_list = []
+    page_size = 10
+    total_fetched = 0
+    page = 1
 
-        headers = {
-            "X-RapidAPI-Key": "52f0c4fb7cmsh68305c1877afa13p1710b0jsn6ea7e5079542",
-            "X-RapidAPI-Host": "yelp-reviews.p.rapidapi.com",
-        }
-
-        response = requests.get(url, headers=headers, params=querystring)
-
-        print(response.json())
-
-        # Create the DATA folder if it doesn't exist
-        if not os.path.exists("DATA"):
-            os.makedirs("DATA")
-
-        if response.json()["data"] == []:
-            print("breaking")
-            break
-
-        # Convert the JSON data to a pandas DataFrame
-        df = pd.DataFrame(response.json())
-
-        # Concatenate the DataFrame to business_final
-        business_final = pd.concat([business_final, df], ignore_index=True)
-
-        # Pretty print the JSON data
-        pprint.pprint(business_final)
-
-    # Save the Results_final DataFrame to a CSV file
-    business_final.to_csv("DATA/businesses_for_" + business_query + ".csv")
-
-    Businesses = business_final
-    BusinessIds = pd.DataFrame(
-        columns=["businessId", "link", "name", "rating", "review_count"]
-    )
-
-    for business in Businesses["data"]:
-        try:
-            business_id = business["id"]
-        except KeyError:
-            business_id = 0
-
-        try:
-            business_link = business["business_page_link"]
-        except KeyError:
-            business_link = 0
-
-        try:
-            business_name = business["name"]
-        except KeyError:
-            business_name = 0
-
-        try:
-            business_rating = business["rating"]
-        except KeyError:
-            business_rating = 0
-
-        try:
-            business_review_count = business["review_count"]
-        except KeyError:
-            business_review_count = 0
-
-        BusinessIds.loc[len(BusinessIds)] = [
-            business_id,
-            business_link,
-            business_name,
-            business_rating,
-            business_review_count,
-        ]
-
-    BusinessIds
-
-    Results_final = pd.DataFrame(
-        columns=["name", "overall_rating", "review_text", "date", "review_count"]
-    )
-
-    pages = str(page_count)
-
-    for index, row in BusinessIds.iterrows():
-        url = "https://yelp-reviews.p.rapidapi.com/business-reviews"
-
-        business_id = row["businessId"]
-        business_name = row["name"]
-        business_rating = row["rating"]
-        business_review_count = row["review_count"]
-
-        BUSINESS_ID = business_id
-
-        querystring = {
-            "business_id": BUSINESS_ID,
-            "page": "1",
-            "page_size": "10",
-            "num_pages": pages,
+    while total_fetched < n_reviews:
+        params = {
+            "business_id": business_id,
+            "page": page,
+            "page_size": page_size,
+            "num_pages": 1,
+            "sort": "BEST_MATCH",
             "language": "en",
         }
 
-        headers = {
-            "X-RapidAPI-Key": "52f0c4fb7cmsh68305c1877afa13p1710b0jsn6ea7e5079542",
-            "X-RapidAPI-Host": "yelp-reviews.p.rapidapi.com",
-        }
-
-        response = requests.get(url, headers=headers, params=querystring)
-
-        reviews_data = response.json()
-
-        if reviews_data["status"] == "ERROR":
-            print("Error occurred while fetching reviews for business:", business_name)
-            print("Error message:", reviews_data)
-            Results_final.to_csv("DATA/reviews_for_" + query + ".csv")
-            break
-
-        print(reviews_data)
-
-        reviews_data = reviews_data["data"]["reviews"]
-
-        try:
-            for review in reviews_data:
+        for attempt in range(retries):
+            response = requests.get(url, headers=headers, params=params)
+            if response.status_code == 200:
                 try:
-                    text = review["review_text"]
-                    date = review["review_datetime_utc"]
-                    Results_final.loc[len(Results_final)] = [
-                        business_name,
-                        business_rating,
-                        text,
-                        date,
-                        business_review_count,
-                    ]
-                except TypeError as e:
-                    print("Error occurred while processing review:", e)
+                    reviews_data = response.json()
+                    data = reviews_data.get("data", {})
+                    reviews = data.get("reviews", [])
+                    total_reviews = data.get("total", 0)
+                    business_name = "Unknown"
+
+                    for review in reviews:
+                        review_entry = {
+                            "business_id": business_id,
+                            "business_name": business_name,
+                            "review_id": review.get("review_id", "Unknown"),
+                            "review_date": review.get("review_datetime_utc", "Unknown"),
+                            "review_text": review.get("review_text", ""),
+                            "review_url": review.get("url", "No Url"),
+                            "rating": review.get("review_rating", 0),
+                            "total_reviews": total_reviews,
+                            "platform_id": "001",
+                        }
+                        reviews_list.append(review_entry)
+                        # Insert each review into MongoDB
+                        collection.insert_one(review_entry)
+
+                    total_fetched += len(reviews)
+                    if len(reviews) < page_size:
+                        break
+                    page += 1
                     break
-        except:
-            print("Error occurred while fetching reviews for business:", business_name)
-            print("Error message:", reviews_data)
-            continue
+                except json.JSONDecodeError as e:
+                    print(f"JSON decode error: {e}")
+                    return pd.DataFrame()
+                except KeyError as e:
+                    print(f"KeyError: {e}. Response JSON structure might have changed.")
+                    return pd.DataFrame()
+            elif response.status_code in [502, 503, 504]:
+                print(
+                    f"Server error {response.status_code}. Retrying... ({attempt + 1}/{retries})"
+                )
+                time.sleep(2**attempt)
+            else:
+                print(
+                    f"Error fetching reviews: {response.status_code} - {response.reason}"
+                )
+                return pd.DataFrame()
 
-    Results_final
-
-    Results_final.to_csv("DATA/LONG_reviews_for_" + business_query + ".csv")
-
-    # THIS WILL END WITH A STATUS OBJECT
-    # This will be a response object to indicate the status of the api once it finalizes the operation, this will help when we want to log
-    # the performance of our runs so that we can track when our app breaks and such
-    # The rest of the scrape function is still not in the right format for this to work
-    # TODO: fix the scrape parameters and function implementation
-
-    return jsonify(
-        {
-            "status": "success",
-            "business_name": business_name,
-            "business_rating": business_rating,
-            "business_review_count": business_review_count,
-        }
-    )
+    reviews_df = pd.DataFrame(reviews_list)
+    return reviews_df
 
 
-def scrape_reviews_function(request_data):
-    return fetch_reviews(
+if __name__ == "__main__":
+    BUSINESS_ID = "pearls-deluxe-burgers-san-francisco-3"
+    N_REVIEWS = 10
+
+    reviews_df = get_business_reviews(BUSINESS_ID, N_REVIEWS)
+    reviews_df.to_csv("reviews.csv")
+    print(reviews_df)
+
+
+def single_business_scrape_reviews_function(request_data):
+    return get_business_reviews(
         request_data.get("query", None),
         request_data.get("pages", None),
         request_data.get("business_count", None),

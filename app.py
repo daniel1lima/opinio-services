@@ -1,12 +1,12 @@
 from flask import Flask, jsonify, request
 import redis
-from redis import Queue
-from Modules.fetch_reviews import fetch_reviews
+
+from Modules.fetch_reviews import single_business_scrape_reviews_function
 
 app = Flask(__name__)
 
-redis_conn = redis.Redis()
-q = Queue("default", connection=redis_conn)
+# redis_conn = redis.Redis()
+# q = Queue("default", connection=redis_conn)
 
 
 @app.route("/")
