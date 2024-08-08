@@ -1,0 +1,27 @@
+version: '3'
+
+tasks:
+  install:
+    desc: "Install dependencies using Poetry"
+    cmds:
+      - "poetry install"
+
+  run:
+    desc: "Run the Flask application"
+    cmds:
+      - "poetry run flask run"
+
+  test:
+    desc: "Run tests"
+    cmds:
+      - "poetry run pytest"
+
+  lint:
+    desc: "Run linter"
+    cmds:
+      - "poetry run flake8 ."
+
+  format:
+    desc: "Format code"
+    cmds:
+      - "poetry run black ."

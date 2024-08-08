@@ -1,9 +1,6 @@
-
-
-
-
 # Define the document to be inserted
 # Read the CSV file
+
 
 def push_document(path, name):
     import json
@@ -13,9 +10,9 @@ def push_document(path, name):
     connection_string = "mongodb+srv://produhacks_user:produhacks23@produhacks24.7bfha2w.mongodb.net/?retryWrites=true&w=majority&appName=ProduHacks24"
     client = MongoClient(connection_string)
 
-    db = client['Reviews']
+    db = client["Reviews"]
 
-    with open(path, 'r') as file:
+    with open(path, "r") as file:
         reader = csv.DictReader(file)
         # Iterate over each row in the CSV file
         for row in reader:
@@ -29,16 +26,16 @@ def push_document(path, name):
             # }
 
             document = {
-                "name": row['name'],
-                "equipment": row['equipment'],
-                "cleanliness": row['cleanliness'],
-                "pricing": row['pricing'],
-                "accessibility": row['accessibility'],
-                "staff": row['staff'],
-                "review_text": row['review_text'],
-                "review_count": row['review_count'],
-                "overall_rating": row['overall_rating'],
-                "fitscore": row['FitScore']
+                "name": row["name"],
+                "equipment": row["equipment"],
+                "cleanliness": row["cleanliness"],
+                "pricing": row["pricing"],
+                "accessibility": row["accessibility"],
+                "staff": row["staff"],
+                "review_text": row["review_text"],
+                "review_count": row["review_count"],
+                "overall_rating": row["overall_rating"],
+                "fitscore": row["FitScore"],
             }
             # Insert the document into the collection
             collection = db[name]
@@ -48,5 +45,3 @@ def push_document(path, name):
 # push_document("DATA/final_results.csv", "yelp_reviews")
 # push_document("DATA/google_reviews.csv", "google_reviews")
 # push_document("DATA/sentiment_reviews_withcount.csv", "sentiment_reviews")
-
-
