@@ -2,9 +2,20 @@ from Modules.logger_setup import setup_logger
 import json
 from typing import List, Tuple
 from pydantic import BaseModel, field_validator
+import warnings
 
 # Set up logger
 logger = setup_logger()
+
+# Suppress specific warnings from transformers library
+warnings.filterwarnings(
+    "ignore",
+    message="A parameter name that contains `beta` will be renamed internally to `bias`.",
+)
+warnings.filterwarnings(
+    "ignore",
+    message="A parameter name that contains `gamma` will be renamed internally to `weight`.",
+)
 
 import nltk
 import torch
@@ -229,8 +240,10 @@ def analyze_reviews(reviews: List[str]) -> Tuple[pd.DataFrame, pd.DataFrame]:
         }
     )
 
-    # Drop the 'bert_embeddings' column before returning the DataFrame
-    df.drop(columns=["bert_embeddings"], inplace=True)
+    # Drop the 'bert_embeddings', 'processed_sentences', and 'Sentences' columns before returning the DataFrame
+    df.drop(
+        columns=["bert_embeddings", "processed_sentences", "Sentences"], inplace=True
+    )
 
     logger.info("Review analysis completed")
     return df, df_summaries

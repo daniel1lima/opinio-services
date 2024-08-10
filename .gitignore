@@ -1,1 +1,11 @@
 .env
+*.pyc
+.vscode
+
+/__pycache__
+*.cache
+*.tmp
+*.swp
+*.swo
+Modules/__pycache__/logger_setup.cpython-312.pyc
+.vscode

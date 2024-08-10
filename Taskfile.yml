@@ -9,7 +9,7 @@ tasks:
   run:
     desc: "Run the Flask application"
     cmds:
-      - "poetry run flask run"
+      - "poetry run python application.py"
 
   test:
     desc: "Run tests"
