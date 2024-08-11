@@ -3,6 +3,7 @@ import json
 from typing import List, Tuple
 from pydantic import BaseModel, field_validator
 import warnings
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Set up logger
 logger = setup_logger()
@@ -80,22 +81,21 @@ def _preprocess_text(texts):
     return preprocessed_texts
 
 
-def _get_bert_embeddings(sentences):
-    logger.info("Getting BERT embeddings")
-    inputs = tokenizer(
-        sentences, return_tensors="pt", padding=True, truncation=True, max_length=512
-    )
-    with torch.no_grad():
-        outputs = model(**inputs)
-    embeddings = outputs.last_hidden_state.mean(dim=1).numpy()
-    logger.info("BERT embeddings obtained")
-    return embeddings
+def _get_tfidf_embeddings(sentences, vectorizer=None):
+    logger.info("Getting TF-IDF embeddings")
+    if vectorizer is None:
+        vectorizer = TfidfVectorizer()
+        embeddings = vectorizer.fit_transform(sentences).toarray()
+    else:
+        embeddings = vectorizer.transform(sentences).toarray()
+    logger.info("TF-IDF embeddings obtained")
+    return embeddings, vectorizer
 
 
 def _calculate_center(df):
     logger.info("Calculating cluster centers")
     centers = (
-        df.groupby("Cluster")["bert_embeddings"]
+        df.groupby("Cluster")["tfidf_embeddings"]
         .apply(lambda x: np.mean(np.vstack(x), axis=0))
         .to_dict()
     )
@@ -107,7 +107,9 @@ def _find_closest_sentence(df, centers):
     logger.info("Finding closest sentences to cluster centers")
     closest_sentences = {}
     for cluster, center in centers.items():
-        cluster_embeddings = np.vstack(df[df["Cluster"] == cluster]["Vector"].values)
+        cluster_embeddings = np.vstack(
+            df[df["Cluster"] == cluster]["tfidf_embeddings"].values
+        )
         distances = np.linalg.norm(cluster_embeddings - center, axis=1)
         closest_index = np.argmin(distances)
         closest_sentences[cluster] = df[df["Cluster"] == cluster]["Sentences"].values[
@@ -169,9 +171,12 @@ def analyze_reviews(reviews: List[str]) -> Tuple[pd.DataFrame, pd.DataFrame]:
     df = pd.DataFrame(reviews, columns=["Sentences"])
     df["processed_sentences"] = processed_reviews
     label_texts = [" ".join([label, "review is"]) for label in labels]
-    embeddings = _get_bert_embeddings(processed_reviews)
-    label_embeddings = _get_bert_embeddings(label_texts)
-    df["bert_embeddings"] = embeddings.tolist()
+
+    # Use the same TF-IDF vectorizer for both reviews and label texts
+    embeddings, vectorizer = _get_tfidf_embeddings(processed_reviews)
+    label_embeddings, _ = _get_tfidf_embeddings(label_texts, vectorizer)
+
+    df["tfidf_embeddings"] = list(embeddings)  # Ensure embeddings are added as a list
     clusterer = HDBSCAN(
         min_cluster_size=2,
         min_samples=2,
@@ -240,9 +245,9 @@ def analyze_reviews(reviews: List[str]) -> Tuple[pd.DataFrame, pd.DataFrame]:
         }
     )
 
-    # Drop the 'bert_embeddings', 'processed_sentences', and 'Sentences' columns before returning the DataFrame
+    # Drop the 'tfidf_embeddings', 'processed_sentences', and 'Sentences' columns before returning the DataFrame
     df.drop(
-        columns=["bert_embeddings", "processed_sentences", "Sentences"], inplace=True
+        columns=["tfidf_embeddings", "processed_sentences", "Sentences"], inplace=True
     )
 
     logger.info("Review analysis completed")
