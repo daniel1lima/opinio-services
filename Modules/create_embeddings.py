@@ -9,17 +9,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 logger = setup_logger()
 
 # Suppress specific warnings from transformers library
-warnings.filterwarnings(
-    "ignore",
-    message="A parameter name that contains `beta` will be renamed internally to `bias`.",
-)
-warnings.filterwarnings(
-    "ignore",
-    message="A parameter name that contains `gamma` will be renamed internally to `weight`.",
-)
 
 import nltk
-import torch
 import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -29,12 +20,8 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from collections import Counter, defaultdict
 from textblob import TextBlob
-from transformers import BertTokenizer, BertModel
-import os
 
-# Initialize BERT model and tokenizer
-tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-model = BertModel.from_pretrained("bert-base-uncased")
+import os
 
 # Download NLTK resources if needed
 nltk.download("punkt")
@@ -73,7 +60,9 @@ def _preprocess_text(texts):
         [
             word
             for word in word_tokenize(document.lower())
-            if word.isalpha() and word not in stop_words
+            if word.isalpha()
+            and word not in stop_words
+            and word not in additional_stopwords
         ]
         for document in texts
     ]
@@ -84,7 +73,7 @@ def _preprocess_text(texts):
 def _get_tfidf_embeddings(sentences, vectorizer=None):
     logger.info("Getting TF-IDF embeddings")
     if vectorizer is None:
-        vectorizer = TfidfVectorizer()
+        vectorizer = TfidfVectorizer(max_df=0.85, min_df=2, ngram_range=(1, 2))
         embeddings = vectorizer.fit_transform(sentences).toarray()
     else:
         embeddings = vectorizer.transform(sentences).toarray()
@@ -157,14 +146,14 @@ def analyze_reviews(reviews: List[str]) -> Tuple[pd.DataFrame, pd.DataFrame]:
     preprocessed_reviews = _preprocess_text(reviews)
     dictionary = corpora.Dictionary(preprocessed_reviews)
     corpus = [dictionary.doc2bow(text) for text in preprocessed_reviews]
-    num_topics = 5
+    num_topics = 10  # Increase the number of topics
     lda_model = models.LdaModel(
         corpus=corpus,
         id2word=dictionary,
         num_topics=num_topics,
         random_state=42,
-        passes=15,
-        iterations=100,
+        passes=20,  # Increase passes
+        iterations=150,  # Increase iterations
     )
     labels = _get_combined_categories(lda_model, num_topics)
     processed_reviews = [" ".join(text) for text in preprocessed_reviews]
@@ -187,7 +176,7 @@ def analyze_reviews(reviews: List[str]) -> Tuple[pd.DataFrame, pd.DataFrame]:
     clusterer.fit(embeddings)
     df["Cluster"] = clusterer.labels_
     centers = _calculate_center(df)
-    threshold = 0.62
+    threshold = 0.5  # Lower the threshold to allow more categories
     assigned_labels = {}
     for cluster_id, centroid in centers.items():
         similarities = cosine_similarity([centroid], label_embeddings)[0]
@@ -260,10 +249,12 @@ if __name__ == "__main__":
         "The staff at this gym are incredibly friendly and helpful. They always go the extra mile to make sure I have a great workout experience.",
         "The equipment is top-notch and well-maintained. They have a wide variety of machines for all my training needs.",
         "The gym is always clean and well-organized. It's a pleasure to work out in such a pleasant environment.",
-        "The staff could be a bit more attentive, but the equipment is good overall.",
-        "This gym is a bit dirty at times, but the staff is friendly and the classes are great.",
+        "The equipment sucks!",
+        "The staff is amazing!",
     ]
     df, df_summaries = analyze_reviews(reviews)
+
+    df.to_csv("df.csv")
 
     print(df_summaries)
     print(df)
