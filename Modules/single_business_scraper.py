@@ -85,4 +85,5 @@ if __name__ == "__main__":
     store_to_mongodb(reviews_df, "yelp_reviews_db", "reviews")
 
 def single_business_scrape_reviews_function(request_data):
-    return get_business_reviews(request_data.get("query", None), request_data.get("pages", None), request_data.get("business_count", None))
+    return get_business_reviews(request_data.get("query", 
+                                                 None), request_data.get("pages", None), request_data.get("business_count", None))
