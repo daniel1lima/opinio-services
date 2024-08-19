@@ -1,0 +1,11 @@
+2024-08-18 22:27:32,290 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-18 22:27:32,300 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-18 22:27:32,461 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2024 22:27:32] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-18 22:27:44,277 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-18 22:27:44,309 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2024 22:27:44] "POST /add_connection HTTP/1.1" 200 -
+2024-08-18 22:27:54,934 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-18 22:27:54,934 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-18 22:27:54,988 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2024 22:27:54] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-18 22:27:54,988 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2024 22:27:54] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-18 22:28:26,494 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/analyze.py', reloading
+2024-08-18 22:28:26,494 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/analyze.py', reloading

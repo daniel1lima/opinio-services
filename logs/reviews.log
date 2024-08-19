@@ -1,0 +1,23 @@
+2024-08-18 19:53:38,293 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2024 19:53:38] "POST /reviews HTTP/1.1" 200 -
+2024-08-18 19:54:13,984 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2024 19:54:13] "POST /reviews HTTP/1.1" 200 -
+2024-08-18 19:54:13,984 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2024 19:54:13] "POST /reviews HTTP/1.1" 200 -
+2024-08-18 19:54:45,925 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2024 19:54:45] "POST /reviews HTTP/1.1" 200 -
+2024-08-18 19:54:45,925 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2024 19:54:45] "POST /reviews HTTP/1.1" 200 -
+2024-08-18 19:54:45,925 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2024 19:54:45] "POST /reviews HTTP/1.1" 200 -
+2024-08-18 19:54:53,780 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-18 19:54:53,780 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-18 19:54:53,780 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-18 19:54:56,830 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2024 19:54:56] "[31m[1mPOST /reviews HTTP/1.1[0m" 400 -
+2024-08-18 19:55:02,394 - root - INFO - An error occured while processing user data
+2024-08-18 19:55:02,394 - root - INFO - An error occured while processing user data
+2024-08-18 19:55:02,395 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2024 19:55:02] "[31m[1mPOST /reviews HTTP/1.1[0m" 400 -
+2024-08-18 19:55:02,395 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2024 19:55:02] "[31m[1mPOST /reviews HTTP/1.1[0m" 400 -
+2024-08-18 19:56:57,542 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-18 19:56:57,542 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-18 19:57:03,226 - root - INFO - An error occured while processing user data
+2024-08-18 19:57:03,226 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2024 19:57:03] "[31m[1mPOST /reviews HTTP/1.1[0m" 400 -
+2024-08-18 19:57:20,725 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-18 19:57:28,967 - root - INFO - Fetching reviews with connector data:["yelp"]
+2024-08-18 19:57:28,967 - root - INFO - An error occured while processing user data
+2024-08-18 19:57:28,968 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2024 19:57:28] "[31m[1mPOST /reviews HTTP/1.1[0m" 400 -
+2024-08-18 19:59:05,663 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading

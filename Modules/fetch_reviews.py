@@ -6,10 +6,10 @@ from flask import jsonify
 import pandas as pd
 import requests
 import numpy as np
-from Modules.logger_setup import setup_logger
+from modules.logger_setup import setup_logger
 from pydantic import BaseModel, Field, ValidationError
 from datetime import datetime
-from Modules.create_embeddings import analyze_reviews
+from modules.create_embeddings import analyze_reviews
 
 logger = setup_logger()
 
@@ -134,7 +134,18 @@ INDUSTRY_MAP = {
 }
 
 
-def fetch_and_analyze_reviews(query, business_id, n_reviews, industry):
+def fetch_and_analyze_yelp_reviews(business_id, n_reviews, industry):
+    """Fetches and generates relevant categories for reviews
+
+    params:
+    business_id: str - A business ID specific to the desired company to fetch reviews from
+    n_reviews:  int - Number of reviews to fetch (outdated)
+    industry: str - industry code, specific to opinio.
+
+
+
+
+    """
     logger.info(
         f"Fetching and analyzing reviews for business_id: {business_id}, industry: {industry}"
     )
@@ -169,9 +180,9 @@ def fetch_and_analyze_reviews(query, business_id, n_reviews, industry):
     return {"status": 200, "data": reviews_list}
 
 
-def fetch_reviews_function(query, business_id, n_reviews, industry):
-    return fetch_and_analyze_reviews(query, business_id, n_reviews, industry)
+def fetch_reviews_function(business_id, n_reviews, industry):
+    return fetch_and_analyze_yelp_reviews(business_id, n_reviews, industry)
 
 
 if __name__ == "__main__":
-    fetch_and_analyze_reviews("", "pearls-deluxe-burgers-san-francisco-3", 10, "")
+    fetch_and_analyze_yelp_reviews("pearls-deluxe-burgers-san-francisco-3", 10, "")

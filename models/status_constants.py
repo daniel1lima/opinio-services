@@ -1,0 +1,5 @@
+class status_constants:
+    STATUS_FAILED = "FAILED"
+    STATUS_SUCCESS = "SUCCESS"
+    STATUS_PENDING = "PENDING"
+    STATUS_WORKING = "WORKING"

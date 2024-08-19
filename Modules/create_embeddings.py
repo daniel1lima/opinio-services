@@ -1,4 +1,4 @@
-from Modules.logger_setup import setup_logger
+from modules.logger_setup import setup_logger
 import json
 from typing import List, Tuple
 from pydantic import BaseModel, field_validator
