@@ -21,7 +21,7 @@ class YelpConnector:
         self.company_id = config["company_id"]
         self.job_id = config["job_id"]
         self.logger = setup_logger("yelp_connector.log")
-        self.job = JobModel.get(self.job_id)
+        self.job = JobModel.get(self.company_id)
 
     def fetch_historical_reviews(self, n_reviews: int = 500) -> List[ReviewEntry]:
         """
@@ -90,6 +90,8 @@ class YelpConnector:
             f"Fetching reviews for business_id: {self.business_id}, company_id: {self.company_id}, last_sync: {last_sync_dt}, n_reviews: {n_reviews}, start_offset: {start_offset}"
         )
 
+        fetch_completed = True  # Flag to track if fetch process completed successfully
+
         try:
             while total_fetched < n_reviews:
                 params = self._build_request_params(self.business_id, page, page_size)
@@ -98,9 +100,10 @@ class YelpConnector:
                 )
 
                 if not response:
-                    self.logger.warning(
-                        f"Failed to fetch page {page}. Returning {len(reviews_list)} reviews processed so far."
+                    self.logger.error(
+                        f"Failed to fetch page {page} after {max_retries} attempts. Stopping fetch."
                     )
+                    fetch_completed = False
                     break
 
                 new_reviews = self._process_response(
@@ -134,14 +137,43 @@ class YelpConnector:
             if reviews_list:
                 latest_review_date = max(review.review_date for review in reviews_list)
                 self._update_last_sync(latest_review_date)
-                self.job.update_status(
-                    JobStatus.COMPLETED.value,
-                    total_reviews_fetched=len(reviews_list),
-                    last_sync=latest_review_date,
-                )
+
+                if fetch_completed:
+                    self.job.update_status(
+                        JobStatus.COMPLETED.value,
+                        total_reviews_fetched=len(reviews_list),
+                        last_sync=latest_review_date,
+                    )
+                else:
+                    self.job.update_status(
+                        JobStatus.FAILED.value,
+                        total_reviews_fetched=len(reviews_list),
+                        last_sync=latest_review_date,
+                        error_message="Fetch process interrupted due to API failures.",
+                    )
+                    publish_job_status(
+                        self.company_id,
+                        {
+                            "job_id": self.job_id,
+                            "status": JobStatus.FAILED.value,
+                            "total_reviews_fetched": len(reviews_list),
+                            "last_sync": latest_review_date,
+                            "error_message": "Fetch process interrupted due to API failures.",
+                        },
+                    )
             else:
+                self.logger.warning("No reviews found or all requests failed.")
                 self.job.update_status(
-                    JobStatus.COMPLETED.value, total_reviews_fetched=0
+                    JobStatus.FAILED.value,
+                    error_message="No reviews found or all requests failed.",
+                )
+                publish_job_status(
+                    self.company_id,
+                    {
+                        "job_id": self.job_id,
+                        "status": JobStatus.FAILED.value,
+                        "error_message": "No reviews found or all requests failed.",
+                    },
                 )
 
             return reviews_list
@@ -247,6 +279,18 @@ class YelpConnector:
                 if attempt == max_retries - 1:
                     self.logger.error(
                         f"Failed to fetch reviews after {max_retries} attempts."
+                    )
+                    self.job.update_status(
+                        JobStatus.FAILED.value,
+                        error_message=f"Failed to fetch reviews after {max_retries} attempts: {str(e)}",
+                    )
+                    publish_job_status(
+                        self.company_id,
+                        {
+                            "job_id": self.job_id,
+                            "status": JobStatus.FAILED.value,
+                            "error_message": f"Failed to fetch reviews after {max_retries} attempts: {str(e)}",
+                        },
                     )
                     return None
                 time.sleep(backoff)

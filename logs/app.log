@@ -22263,3 +22263,283 @@ Name: named_labels, dtype: object
 2024-08-20 13:53:15,473 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 13:53:15] "[35m[1mPOST /reviews HTTP/1.1[0m" 202 -
 2024-08-20 13:56:36,035 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/models/models.py', reloading
 2024-08-20 13:56:36,035 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/models/models.py', reloading
+2024-08-20 19:44:01,183 - pynamodb.settings - INFO - Override settings for pynamo not available /etc/pynamodb/global_default_settings.py
+2024-08-20 19:44:01,184 - pynamodb.settings - INFO - Using Default settings value
+2024-08-20 19:44:01,202 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 19:44:01,202 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 19:44:01,218 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 19:44:01,218 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 19:45:30,384 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-20 19:45:30,384 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-20 19:45:33,204 - pynamodb.settings - INFO - Override settings for pynamo not available /etc/pynamodb/global_default_settings.py
+2024-08-20 19:45:33,204 - pynamodb.settings - INFO - Using Default settings value
+2024-08-20 19:45:33,224 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 19:45:33,224 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 19:45:33,242 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 19:45:33,242 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 19:46:00,320 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-20 19:46:00,320 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-20 19:46:02,993 - pynamodb.settings - INFO - Override settings for pynamo not available /etc/pynamodb/global_default_settings.py
+2024-08-20 19:46:02,993 - pynamodb.settings - INFO - Using Default settings value
+2024-08-20 19:46:03,011 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 19:46:03,011 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 19:46:03,024 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 19:46:03,024 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 19:46:21,760 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/worker_tasks.py', reloading
+2024-08-20 19:46:21,760 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/worker_tasks.py', reloading
+2024-08-20 19:46:24,033 - pynamodb.settings - INFO - Override settings for pynamo not available /etc/pynamodb/global_default_settings.py
+2024-08-20 19:46:24,034 - pynamodb.settings - INFO - Using Default settings value
+2024-08-20 19:49:42,110 - pynamodb.settings - INFO - Override settings for pynamo not available /etc/pynamodb/global_default_settings.py
+2024-08-20 19:49:42,111 - pynamodb.settings - INFO - Using Default settings value
+2024-08-20 19:49:54,248 - pynamodb.settings - INFO - Override settings for pynamo not available /etc/pynamodb/global_default_settings.py
+2024-08-20 19:49:54,248 - pynamodb.settings - INFO - Using Default settings value
+2024-08-20 19:49:54,455 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.68.105:5000
+2024-08-20 19:49:54,455 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.68.105:5000
+2024-08-20 19:49:54,455 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-20 19:49:54,455 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-20 19:49:54,458 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 19:49:54,458 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 19:49:55,832 - pynamodb.settings - INFO - Override settings for pynamo not available /etc/pynamodb/global_default_settings.py
+2024-08-20 19:49:55,832 - pynamodb.settings - INFO - Using Default settings value
+2024-08-20 19:49:55,842 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 19:49:55,842 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 19:49:55,859 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 19:49:55,859 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 19:50:06,055 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:06] "OPTIONS /remove_connection HTTP/1.1" 200 -
+2024-08-20 19:50:06,055 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:06] "OPTIONS /remove_connection HTTP/1.1" 200 -
+2024-08-20 19:50:06,059 - root - INFO - Removing connection: {"company_id": "google", "type": "Yelp"}
+2024-08-20 19:50:06,059 - root - INFO - Removing connection: {"company_id": "google", "type": "Yelp"}
+2024-08-20 19:50:06,068 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 19:50:06,068 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 19:50:06,241 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:06] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-20 19:50:06,241 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:06] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-20 19:50:07,697 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:07] "OPTIONS /add_connection HTTP/1.1" 200 -
+2024-08-20 19:50:07,697 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:07] "OPTIONS /add_connection HTTP/1.1" 200 -
+2024-08-20 19:50:07,699 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "last_sync": "", "company_id": "google"}
+2024-08-20 19:50:07,699 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "last_sync": "", "company_id": "google"}
+2024-08-20 19:50:07,739 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:07] "POST /add_connection HTTP/1.1" 200 -
+2024-08-20 19:50:07,739 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:07] "POST /add_connection HTTP/1.1" 200 -
+2024-08-20 19:50:07,747 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:07] "OPTIONS /reviews HTTP/1.1" 200 -
+2024-08-20 19:50:07,747 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:07] "OPTIONS /reviews HTTP/1.1" 200 -
+2024-08-20 19:50:07,754 - root - INFO - Fetching reviews with connector data: ["Yelp"]
+2024-08-20 19:50:07,754 - root - INFO - Fetching reviews with connector data: ["Yelp"]
+2024-08-20 19:50:07,763 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 19:50:07,763 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 19:50:07,991 - root - ERROR - An error occurred while processing user data: Item does not exist
+Traceback (most recent call last):
+  File "/Users/daniel/opinio-services/application.py", line 144, in sync_reviews_wrapper
+    job = initial_onboarding(connector, company_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daniel/opinio-services/connectors/worker_tasks.py", line 29, in initial_onboarding
+    connector = ConnectorFactory(
+                ^^^^^^^^^^^^^^^^^
+  File "/Users/daniel/opinio-services/connectors/factory.py", line 15, in __init__
+    self.connector_instance = self.create_connector_instance()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daniel/opinio-services/connectors/factory.py", line 25, in create_connector_instance
+    return connector_classes.get(self.type)(config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daniel/opinio-services/connectors/yelp.py", line 24, in __init__
+    self.job = JobModel.get(self.job_id)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daniel/Library/Caches/pypoetry/virtualenvs/opinio-services-Sk_57f8U-py3.11/lib/python3.11/site-packages/pynamodb/models.py", line 555, in get
+    raise cls.DoesNotExist()
+models.models.JobModel.DoesNotExist: Item does not exist
+2024-08-20 19:50:07,991 - root - ERROR - An error occurred while processing user data: Item does not exist
+Traceback (most recent call last):
+  File "/Users/daniel/opinio-services/application.py", line 144, in sync_reviews_wrapper
+    job = initial_onboarding(connector, company_id)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daniel/opinio-services/connectors/worker_tasks.py", line 29, in initial_onboarding
+    connector = ConnectorFactory(
+                ^^^^^^^^^^^^^^^^^
+  File "/Users/daniel/opinio-services/connectors/factory.py", line 15, in __init__
+    self.connector_instance = self.create_connector_instance()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daniel/opinio-services/connectors/factory.py", line 25, in create_connector_instance
+    return connector_classes.get(self.type)(config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daniel/opinio-services/connectors/yelp.py", line 24, in __init__
+    self.job = JobModel.get(self.job_id)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daniel/Library/Caches/pypoetry/virtualenvs/opinio-services-Sk_57f8U-py3.11/lib/python3.11/site-packages/pynamodb/models.py", line 555, in get
+    raise cls.DoesNotExist()
+models.models.JobModel.DoesNotExist: Item does not exist
+2024-08-20 19:50:07,996 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:07] "[31m[1mPOST /reviews HTTP/1.1[0m" 400 -
+2024-08-20 19:50:07,996 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:07] "[31m[1mPOST /reviews HTTP/1.1[0m" 400 -
+2024-08-20 19:50:32,827 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/yelp.py', reloading
+2024-08-20 19:50:32,827 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/yelp.py', reloading
+2024-08-20 19:50:33,182 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 19:50:33,182 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 19:50:35,565 - pynamodb.settings - INFO - Override settings for pynamo not available /etc/pynamodb/global_default_settings.py
+2024-08-20 19:50:35,565 - pynamodb.settings - INFO - Using Default settings value
+2024-08-20 19:50:35,586 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 19:50:35,586 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 19:50:35,600 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 19:50:35,600 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 19:50:38,648 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:38] "OPTIONS /remove_connection HTTP/1.1" 200 -
+2024-08-20 19:50:38,648 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:38] "OPTIONS /remove_connection HTTP/1.1" 200 -
+2024-08-20 19:50:38,657 - root - INFO - Removing connection: {"company_id": "google", "type": "Yelp"}
+2024-08-20 19:50:38,657 - root - INFO - Removing connection: {"company_id": "google", "type": "Yelp"}
+2024-08-20 19:50:38,675 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 19:50:38,675 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 19:50:38,812 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:38] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-20 19:50:38,812 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:38] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-20 19:50:40,563 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:40] "OPTIONS /add_connection HTTP/1.1" 200 -
+2024-08-20 19:50:40,563 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:40] "OPTIONS /add_connection HTTP/1.1" 200 -
+2024-08-20 19:50:40,567 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "last_sync": "", "company_id": "google"}
+2024-08-20 19:50:40,567 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "last_sync": "", "company_id": "google"}
+2024-08-20 19:50:40,608 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:40] "POST /add_connection HTTP/1.1" 200 -
+2024-08-20 19:50:40,608 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:40] "POST /add_connection HTTP/1.1" 200 -
+2024-08-20 19:50:40,629 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:40] "OPTIONS /reviews HTTP/1.1" 200 -
+2024-08-20 19:50:40,629 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:50:40] "OPTIONS /reviews HTTP/1.1" 200 -
+2024-08-20 19:50:40,639 - root - INFO - Fetching reviews with connector data: ["Yelp"]
+2024-08-20 19:50:40,639 - root - INFO - Fetching reviews with connector data: ["Yelp"]
+2024-08-20 19:50:40,650 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 19:50:40,650 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 19:50:40,810 - root - INFO - Starting initial onboarding for config MapAttribute(business_id='asd'), fetching 10 reviews
+2024-08-20 19:50:40,810 - root - INFO - Starting initial onboarding for config MapAttribute(business_id='asd'), fetching 10 reviews
+2024-08-20 19:50:40,823 - root - INFO - No last sync date provided, fetching all reviews.
+2024-08-20 19:50:40,823 - root - INFO - No last sync date provided, fetching all reviews.
+2024-08-20 19:50:40,823 - root - INFO - Fetching reviews for business_id: asd, company_id: google, last_sync: None, n_reviews: 10, start_offset: 0
+2024-08-20 19:50:40,823 - root - INFO - Fetching reviews for business_id: asd, company_id: google, last_sync: None, n_reviews: 10, start_offset: 0
+2024-08-20 19:50:40,824 - root - INFO - Fetching page 1 (attempt 1/5)
+2024-08-20 19:50:40,824 - root - INFO - Fetching page 1 (attempt 1/5)
+2024-08-20 19:50:43,107 - root - WARNING - response: <Response [400]>
+2024-08-20 19:50:43,107 - root - WARNING - response: <Response [400]>
+2024-08-20 19:50:43,108 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 1.00 seconds... (attempt 1/5)
+2024-08-20 19:50:43,108 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 1.00 seconds... (attempt 1/5)
+2024-08-20 19:50:44,113 - root - INFO - Fetching page 1 (attempt 2/5)
+2024-08-20 19:50:44,113 - root - INFO - Fetching page 1 (attempt 2/5)
+2024-08-20 19:50:44,790 - root - WARNING - response: <Response [400]>
+2024-08-20 19:50:44,790 - root - WARNING - response: <Response [400]>
+2024-08-20 19:50:44,790 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 2.00 seconds... (attempt 2/5)
+2024-08-20 19:50:44,790 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 2.00 seconds... (attempt 2/5)
+2024-08-20 19:50:46,795 - root - INFO - Fetching page 1 (attempt 3/5)
+2024-08-20 19:50:46,795 - root - INFO - Fetching page 1 (attempt 3/5)
+2024-08-20 19:50:47,717 - root - WARNING - response: <Response [400]>
+2024-08-20 19:50:47,717 - root - WARNING - response: <Response [400]>
+2024-08-20 19:50:47,718 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 4.00 seconds... (attempt 3/5)
+2024-08-20 19:50:47,718 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 4.00 seconds... (attempt 3/5)
+2024-08-20 19:50:51,721 - root - INFO - Fetching page 1 (attempt 4/5)
+2024-08-20 19:50:51,721 - root - INFO - Fetching page 1 (attempt 4/5)
+2024-08-20 19:50:52,259 - root - WARNING - response: <Response [400]>
+2024-08-20 19:50:52,259 - root - WARNING - response: <Response [400]>
+2024-08-20 19:50:52,259 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 8.00 seconds... (attempt 4/5)
+2024-08-20 19:50:52,259 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 8.00 seconds... (attempt 4/5)
+2024-08-20 19:51:00,264 - root - INFO - Fetching page 1 (attempt 5/5)
+2024-08-20 19:51:00,264 - root - INFO - Fetching page 1 (attempt 5/5)
+2024-08-20 19:51:01,641 - root - WARNING - response: <Response [400]>
+2024-08-20 19:51:01,641 - root - WARNING - response: <Response [400]>
+2024-08-20 19:51:01,642 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 16.00 seconds... (attempt 5/5)
+2024-08-20 19:51:01,642 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 16.00 seconds... (attempt 5/5)
+2024-08-20 19:51:01,642 - root - ERROR - Failed to fetch reviews after 5 attempts.
+2024-08-20 19:51:01,642 - root - ERROR - Failed to fetch reviews after 5 attempts.
+2024-08-20 19:51:01,669 - root - ERROR - Error fetching reviews: name 'publish_job_status' is not defined
+2024-08-20 19:51:01,669 - root - ERROR - Error fetching reviews: name 'publish_job_status' is not defined
+2024-08-20 19:51:01,688 - root - INFO - Initial onboarding completed for YelpConnector
+2024-08-20 19:51:01,688 - root - INFO - Initial onboarding completed for YelpConnector
+2024-08-20 19:51:01,698 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:51:01] "[35m[1mPOST /reviews HTTP/1.1[0m" 202 -
+2024-08-20 19:51:01,698 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:51:01] "[35m[1mPOST /reviews HTTP/1.1[0m" 202 -
+2024-08-20 19:51:18,341 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:51:18] "GET /company_connections?company_id=google HTTP/1.1" 200 -
+2024-08-20 19:51:18,341 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:51:18] "GET /company_connections?company_id=google HTTP/1.1" 200 -
+2024-08-20 19:51:18,366 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:51:18] "GET /company_connections?company_id=google HTTP/1.1" 200 -
+2024-08-20 19:51:18,366 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:51:18] "GET /company_connections?company_id=google HTTP/1.1" 200 -
+2024-08-20 19:51:18,379 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:51:18] "GET /job_status_webhook?company_id=google HTTP/1.1" 200 -
+2024-08-20 19:51:18,379 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:51:18] "GET /job_status_webhook?company_id=google HTTP/1.1" 200 -
+2024-08-20 19:51:51,754 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-20 19:51:51,754 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-20 19:51:52,110 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 19:51:52,110 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 19:51:55,363 - pynamodb.settings - INFO - Override settings for pynamo not available /etc/pynamodb/global_default_settings.py
+2024-08-20 19:51:55,363 - pynamodb.settings - INFO - Using Default settings value
+2024-08-20 19:51:55,381 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 19:51:55,381 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 19:51:55,399 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 19:51:55,399 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 19:51:55,724 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 19:51:55,724 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 19:51:55,793 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 19:51:55,793 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 19:51:56,039 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:51:56] "GET /company_connections?company_id=google HTTP/1.1" 200 -
+2024-08-20 19:51:56,039 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:51:56] "GET /company_connections?company_id=google HTTP/1.1" 200 -
+2024-08-20 19:51:56,044 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:51:56] "GET /job_status_webhook?company_id=google HTTP/1.1" 200 -
+2024-08-20 19:51:56,044 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:51:56] "GET /job_status_webhook?company_id=google HTTP/1.1" 200 -
+2024-08-20 19:51:56,051 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:51:56] "GET /company_connections?company_id=google HTTP/1.1" 200 -
+2024-08-20 19:51:56,051 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:51:56] "GET /company_connections?company_id=google HTTP/1.1" 200 -
+2024-08-20 19:52:01,754 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:52:01] "OPTIONS /remove_connection HTTP/1.1" 200 -
+2024-08-20 19:52:01,754 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:52:01] "OPTIONS /remove_connection HTTP/1.1" 200 -
+2024-08-20 19:52:01,760 - root - INFO - Removing connection: {"company_id": "google", "type": "Yelp"}
+2024-08-20 19:52:01,760 - root - INFO - Removing connection: {"company_id": "google", "type": "Yelp"}
+2024-08-20 19:52:01,785 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:52:01] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-20 19:52:01,785 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:52:01] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-20 19:52:04,018 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:52:04] "OPTIONS /add_connection HTTP/1.1" 200 -
+2024-08-20 19:52:04,018 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:52:04] "OPTIONS /add_connection HTTP/1.1" 200 -
+2024-08-20 19:52:04,022 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "last_sync": "", "company_id": "google"}
+2024-08-20 19:52:04,022 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "last_sync": "", "company_id": "google"}
+2024-08-20 19:52:04,042 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:52:04] "POST /add_connection HTTP/1.1" 200 -
+2024-08-20 19:52:04,042 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:52:04] "POST /add_connection HTTP/1.1" 200 -
+2024-08-20 19:52:04,053 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:52:04] "OPTIONS /reviews HTTP/1.1" 200 -
+2024-08-20 19:52:04,053 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:52:04] "OPTIONS /reviews HTTP/1.1" 200 -
+2024-08-20 19:52:04,064 - root - INFO - Fetching reviews with connector data: ["Yelp"]
+2024-08-20 19:52:04,064 - root - INFO - Fetching reviews with connector data: ["Yelp"]
+2024-08-20 19:52:04,104 - root - INFO - Starting initial onboarding for config MapAttribute(business_id='asd'), fetching 10 reviews
+2024-08-20 19:52:04,104 - root - INFO - Starting initial onboarding for config MapAttribute(business_id='asd'), fetching 10 reviews
+2024-08-20 19:52:04,135 - root - INFO - No last sync date provided, fetching all reviews.
+2024-08-20 19:52:04,135 - root - INFO - No last sync date provided, fetching all reviews.
+2024-08-20 19:52:04,135 - root - INFO - Fetching reviews for business_id: asd, company_id: google, last_sync: None, n_reviews: 10, start_offset: 0
+2024-08-20 19:52:04,135 - root - INFO - Fetching reviews for business_id: asd, company_id: google, last_sync: None, n_reviews: 10, start_offset: 0
+2024-08-20 19:52:04,135 - root - INFO - Fetching page 1 (attempt 1/5)
+2024-08-20 19:52:04,135 - root - INFO - Fetching page 1 (attempt 1/5)
+2024-08-20 19:52:05,409 - root - WARNING - response: <Response [400]>
+2024-08-20 19:52:05,409 - root - WARNING - response: <Response [400]>
+2024-08-20 19:52:05,416 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 1.00 seconds... (attempt 1/5)
+2024-08-20 19:52:05,416 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 1.00 seconds... (attempt 1/5)
+2024-08-20 19:52:06,420 - root - INFO - Fetching page 1 (attempt 2/5)
+2024-08-20 19:52:06,420 - root - INFO - Fetching page 1 (attempt 2/5)
+2024-08-20 19:52:08,205 - root - WARNING - response: <Response [400]>
+2024-08-20 19:52:08,205 - root - WARNING - response: <Response [400]>
+2024-08-20 19:52:08,206 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 2.00 seconds... (attempt 2/5)
+2024-08-20 19:52:08,206 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 2.00 seconds... (attempt 2/5)
+2024-08-20 19:52:10,212 - root - INFO - Fetching page 1 (attempt 3/5)
+2024-08-20 19:52:10,212 - root - INFO - Fetching page 1 (attempt 3/5)
+2024-08-20 19:52:11,168 - root - WARNING - response: <Response [400]>
+2024-08-20 19:52:11,168 - root - WARNING - response: <Response [400]>
+2024-08-20 19:52:11,169 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 4.00 seconds... (attempt 3/5)
+2024-08-20 19:52:11,169 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 4.00 seconds... (attempt 3/5)
+2024-08-20 19:52:15,172 - root - INFO - Fetching page 1 (attempt 4/5)
+2024-08-20 19:52:15,172 - root - INFO - Fetching page 1 (attempt 4/5)
+2024-08-20 19:52:16,060 - root - WARNING - response: <Response [400]>
+2024-08-20 19:52:16,060 - root - WARNING - response: <Response [400]>
+2024-08-20 19:52:16,060 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 8.00 seconds... (attempt 4/5)
+2024-08-20 19:52:16,060 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 8.00 seconds... (attempt 4/5)
+2024-08-20 19:52:24,065 - root - INFO - Fetching page 1 (attempt 5/5)
+2024-08-20 19:52:24,065 - root - INFO - Fetching page 1 (attempt 5/5)
+2024-08-20 19:52:25,532 - root - WARNING - response: <Response [400]>
+2024-08-20 19:52:25,532 - root - WARNING - response: <Response [400]>
+2024-08-20 19:52:25,534 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 16.00 seconds... (attempt 5/5)
+2024-08-20 19:52:25,534 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=asd&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying in 16.00 seconds... (attempt 5/5)
+2024-08-20 19:52:25,534 - root - ERROR - Failed to fetch reviews after 5 attempts.
+2024-08-20 19:52:25,534 - root - ERROR - Failed to fetch reviews after 5 attempts.
+2024-08-20 19:52:25,572 - root - ERROR - Error fetching reviews: name 'publish_job_status' is not defined
+2024-08-20 19:52:25,572 - root - ERROR - Error fetching reviews: name 'publish_job_status' is not defined
+2024-08-20 19:52:25,586 - root - INFO - Initial onboarding completed for YelpConnector
+2024-08-20 19:52:25,586 - root - INFO - Initial onboarding completed for YelpConnector
+2024-08-20 19:52:25,598 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:52:25] "[35m[1mPOST /reviews HTTP/1.1[0m" 202 -
+2024-08-20 19:52:25,598 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 19:52:25] "[35m[1mPOST /reviews HTTP/1.1[0m" 202 -
+2024-08-20 19:52:43,413 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/worker_tasks.py', reloading
+2024-08-20 19:52:43,413 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/worker_tasks.py', reloading
+2024-08-20 19:52:43,829 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 19:52:43,829 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 19:52:46,718 - pynamodb.settings - INFO - Override settings for pynamo not available /etc/pynamodb/global_default_settings.py
+2024-08-20 19:52:46,718 - pynamodb.settings - INFO - Using Default settings value
+2024-08-20 19:52:46,739 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 19:52:46,739 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 19:52:46,751 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 19:52:46,751 - werkzeug - INFO -  * Debugger PIN: 262-513-823

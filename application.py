@@ -1,14 +1,16 @@
 import json
 import os
+import time
 import uuid
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Response
 import redis
 from rq import Queue
+from connectors.publish import publish_job_status
 from connectors.worker_tasks import initial_onboarding, poll_new_reviews, resume_fetch
 
 from modules.fetch_reviews import fetch_and_analyze_yelp_reviews, fetch_reviews
 from connectors.factory import ConnectorFactory
-from models.models import UserModel, ConnectionModel, CompanyModel
+from models.models import UserModel, ConnectionModel, CompanyModel, JobModel
 from modules.logger_setup import setup_logger
 
 from models.status_constants import status_constants
@@ -20,6 +22,7 @@ CORS(app)
 
 redis_conn = redis.Redis()
 q = Queue("default", connection=redis_conn)
+pubsub = redis_conn.pubsub()
 
 
 @app.route("/")
@@ -96,7 +99,7 @@ def remove_connection():
         company = CompanyModel.get_company_by_id(company_id)
         result = company.remove_connector(
             connector_type
-        )  # Call the remove_connector method
+        )  # Call the remove_connector methodc
 
         return jsonify(result), 200
 
@@ -122,6 +125,16 @@ def sync_reviews_wrapper():
 
     try:
         company = CompanyModel.get_company_by_id(company_id)
+        if company is None:
+            return (
+                jsonify(
+                    {
+                        "status": status_constants.STATUS_FAILED,
+                        "message": f"Company with ID {company_id} does not exist",
+                    }
+                ),
+                404,
+            )
     except Exception as e:
         logger.error(f"Failed to fetch company by ID: {e}")
         return jsonify({"status": "error", "message": "Failed to fetch company"}), 500
@@ -152,11 +165,150 @@ def sync_reviews_wrapper():
         return jsonify({"status": "Jobs are in progress", "data": jobs}), 202
 
     except Exception as e:
-        logger.error(f"An error occurred while processing user data: {str(e)}")
+        logger.error(
+            f"An error occurred while processing user data: {str(e)}", exc_info=True
+        )
         return (
             jsonify({"status": status_constants.STATUS_FAILED, "message": str(e)}),
             400,
         )
+
+
+@app.route("/company_connections", methods=["GET"])
+def get_company_connections():
+    company_id = request.args.get("company_id")
+
+    if not company_id:
+        return jsonify({"status": "error", "message": "Company ID is required"}), 400
+
+    try:
+        company = CompanyModel.get_company_by_id(company_id)
+
+        if company is None:
+            return (
+                jsonify(
+                    {
+                        "status": "error",
+                        "message": f"Company with ID {company_id} not found",
+                    }
+                ),
+                404,
+            )
+
+        if company.connectors is None:
+            return (
+                jsonify(
+                    {
+                        "status": "error",
+                        "message": f"Company with ID {company_id} has no connections",
+                    }
+                ),
+                404,
+            )
+
+        def serialize_config(config):
+            return {
+                k: v.serialize() if hasattr(v, "serialize") else v
+                for k, v in config.attribute_values.items()
+            }
+
+        connections = [
+            {
+                "type": connector.type,
+                "config": serialize_config(connector.config),
+                "last_sync": connector.last_sync,
+            }
+            for connector in company.connectors
+        ]
+
+        return (
+            jsonify(
+                {
+                    "status": "success",
+                    "company_id": company_id,
+                    "connections": connections,
+                }
+            ),
+            200,
+        )
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
+@app.route("/job_status_webhook", methods=["GET"])
+def job_status_webhook():
+    company_id = request.args.get("company_id")
+
+    if not company_id:
+        return jsonify({"status": "error", "message": "Company ID is required"}), 400
+
+    def event_stream():
+        channel = f"job_status:{company_id}"
+        pubsub.subscribe(channel)
+
+        # Send the initial job status
+        most_recent_job = JobModel.get_most_recent_job(company_id)
+        job_data = {
+            "job_id": most_recent_job.job_id,
+            "company_id": most_recent_job.company_id,
+            "connector_type": most_recent_job.connector_type,
+            "status": most_recent_job.status,
+            "total_reviews_fetched": most_recent_job.total_reviews_fetched,
+            "last_sync": most_recent_job.last_sync,
+            "error_message": most_recent_job.error_message,
+            "created_at": most_recent_job.created_at,
+            "updated_at": most_recent_job.updated_at,
+        }
+        publish_job_status(company_id, job_data)
+
+        try:
+            for message in pubsub.listen():
+                if message["type"] == "message":
+                    yield f"data: {message['data'].decode('utf-8')}\n\n"
+        finally:
+            pubsub.unsubscribe(channel)
+
+    return Response(event_stream(), content_type="text/event-stream")
+
+
+@app.route("/most_recent_job", methods=["GET"])
+def get_most_recent_job():
+    company_id = request.args.get("company_id")
+
+    if not company_id:
+        return jsonify({"status": "error", "message": "Company ID is required"}), 400
+
+    try:
+        job = JobModel.get_most_recent_job(company_id)
+
+        if job is None:
+            return (
+                jsonify(
+                    {
+                        "status": "error",
+                        "message": f"No jobs found for company with ID {company_id}",
+                    }
+                ),
+                404,
+            )
+
+        job_data = {
+            "job_id": job.job_id,
+            "company_id": job.company_id,
+            "connector_type": job.connector_type,
+            "status": job.status,
+            "total_reviews_fetched": job.total_reviews_fetched,
+            "last_sync": job.last_sync,
+            "error_message": job.error_message,
+            "created_at": job.created_at,
+            "updated_at": job.updated_at,
+        }
+
+        return jsonify({"status": "success", "job": job_data}), 200
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 
 if __name__ == "__main__":

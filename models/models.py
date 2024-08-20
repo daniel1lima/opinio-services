@@ -29,10 +29,10 @@ class JobModel(Model):
         region = "us-west-2"
         host = "http://localhost:8000"
 
-    job_id = UnicodeAttribute(hash_key=True)
-    company_id = UnicodeAttribute()
+    job_id = UnicodeAttribute()
+    company_id = UnicodeAttribute(hash_key=True)
     connector_type = UnicodeAttribute()
-    status = UnicodeAttribute(default=JobStatus.PENDING.value)
+    status = UnicodeAttribute()
     total_reviews_fetched = NumberAttribute(default=0)
     last_sync = UnicodeAttribute(null=True)
     error_message = UnicodeAttribute(null=True)
@@ -46,6 +46,7 @@ class JobModel(Model):
             job_id=job_id,
             company_id=company_id,
             connector_type=connector_type,
+            status=JobStatus.PENDING.value,
             created_at=now,
             updated_at=now,
         )
@@ -55,7 +56,10 @@ class JobModel(Model):
     def update_status(
         self, status, total_reviews_fetched=None, last_sync=None, error_message=None
     ):
-        self.status = status
+        if isinstance(status, JobStatus):
+            self.status = status.value
+        else:
+            self.status = status
         if total_reviews_fetched is not None:
             self.total_reviews_fetched = total_reviews_fetched
         if last_sync is not None:
@@ -83,6 +87,13 @@ class JobModel(Model):
             }
         except Exception as e:
             return {"status": "error", "message": f"Failed to wipe jobs: {e}"}
+
+    @classmethod
+    def get_most_recent_job(cls, company_id):
+        try:
+            return next(iter(cls.query(company_id, scan_index_forward=False, limit=1)))
+        except StopIteration:
+            return None
 
 
 class ConnectorModel(MapAttribute):
@@ -269,4 +280,7 @@ if __name__ == "__main__":
     # print(list(CompanyModel.fetch_all_companies()))
     print(list(JobModel.fetch_all_jobs()))
     # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
+    # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
     # print(ReviewModel.wipe_reviews())
+    # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
+    # print("JobModel table created successfully.")
