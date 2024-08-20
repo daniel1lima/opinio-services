@@ -5,10 +5,8 @@ from pydantic import BaseModel, field_validator
 import warnings
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-# Set up logger
-logger = setup_logger()
-
-# Suppress specific warnings from transformers library
+# Set up logger specifically for embeddings
+logger = setup_logger(log_file="embeddings.log")
 
 import nltk
 import pandas as pd
@@ -54,46 +52,38 @@ class ReviewInput(BaseModel):
 
 
 def _preprocess_text(texts):
-    logger.info("Preprocessing text")
-    stop_words = set(stopwords.words("english"))
     preprocessed_texts = [
         [
             word
             for word in word_tokenize(document.lower())
             if word.isalpha()
-            and word not in stop_words
+            and word not in stopwords.words("english")
             and word not in additional_stopwords
         ]
         for document in texts
     ]
-    logger.info("Text preprocessing completed")
     return preprocessed_texts
 
 
 def _get_tfidf_embeddings(sentences, vectorizer=None):
-    logger.info("Getting TF-IDF embeddings")
     if vectorizer is None:
         vectorizer = TfidfVectorizer(max_df=0.85, min_df=2, ngram_range=(1, 2))
         embeddings = vectorizer.fit_transform(sentences).toarray()
     else:
         embeddings = vectorizer.transform(sentences).toarray()
-    logger.info("TF-IDF embeddings obtained")
     return embeddings, vectorizer
 
 
 def _calculate_center(df):
-    logger.info("Calculating cluster centers")
     centers = (
         df.groupby("Cluster")["tfidf_embeddings"]
         .apply(lambda x: np.mean(np.vstack(x), axis=0))
         .to_dict()
     )
-    logger.info("Cluster centers calculated")
     return centers
 
 
 def _find_closest_sentence(df, centers):
-    logger.info("Finding closest sentences to cluster centers")
     closest_sentences = {}
     for cluster, center in centers.items():
         cluster_embeddings = np.vstack(
@@ -104,12 +94,10 @@ def _find_closest_sentence(df, centers):
         closest_sentences[cluster] = df[df["Cluster"] == cluster]["Sentences"].values[
             closest_index
         ]
-    logger.info("Closest sentences found")
     return closest_sentences
 
 
 def _get_combined_categories(ldamodel, num_topics, num_keywords=5):
-    logger.info("Getting combined categories from LDA model")
     all_keywords = []
     for i in range(num_topics):
         topic_terms = ldamodel.show_topic(i)
@@ -123,7 +111,6 @@ def _get_combined_categories(ldamodel, num_topics, num_keywords=5):
     most_common_keywords = [
         word for word, count in Counter(filtered_keywords).most_common(num_keywords)
     ]
-    logger.info("Combined categories obtained")
     return most_common_keywords
 
 
@@ -186,15 +173,7 @@ def analyze_reviews(reviews: List[str]) -> Tuple[dict, dict]:
         if not assigned_labels[cluster_id]:
             assigned_labels[cluster_id] = [np.argmax(similarities)]
 
-    # Debugging: Log assigned labels and label tracker dictionary
-    logger.info(f"Assigned labels: {assigned_labels}")
-
-    logger.info(f"Label tracker dictionary: {labels}")
-
     df["assigned_label"] = df["Cluster"].map(assigned_labels)
-
-    # Debugging: Log assigned labels in DataFrame
-    logger.info(f"Assigned labels in DataFrame: {df['assigned_label']}")
 
     # Create a dictionary to map indices to labels
     label_dict = {i: label for i, label in enumerate(labels)}
@@ -203,14 +182,6 @@ def analyze_reviews(reviews: List[str]) -> Tuple[dict, dict]:
     df["named_labels"] = df["assigned_label"].apply(
         lambda x: [label_dict[num] for num in x] if isinstance(x, list) else []
     )
-
-    # Debugging: Log named labels in DataFrame
-    logger.info(f"Named labels in DataFrame: {df['named_labels']}")
-
-    # Check for NaN values in 'assigned_label' and log them
-    nan_assigned_labels = df[df["assigned_label"].isna()]
-    if not nan_assigned_labels.empty:
-        logger.warning(f"NaN values found in 'assigned_label': {nan_assigned_labels}")
 
     sentiments = [TextBlob(review).sentiment[0] * 2.5 + 2.5 for review in reviews]
     polarities = [TextBlob(review).sentiment[1] * 2.5 + 2.5 for review in reviews]

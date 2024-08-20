@@ -2,21 +2,30 @@ from connectors.factory import ConnectorFactory
 from modules.logger_setup import setup_logger
 from connectors.analyze import Analyzer
 
+logger = setup_logger("worker_task.log")
 
-def start_fetch(connectors):
-    for c in connectors:
-        logger = setup_logger("worker_task.log")
-        print(c)
-        connector = ConnectorFactory(c)
-        connector = (
-            connector.create_connector_instance()
-        )  # Initialize connector with factory
 
-        # Store job_id in jobs list
+def initial_onboarding(connector_config):
+    connector = ConnectorFactory(connector_config).create_connector_instance()
+    analyzer = Analyzer(connector)
+    result = analyzer.initial_onboarding(connector_config.config, n_reviews=10)
+    logger.info(f"Initial onboarding completed for {connector.__class__.__name__}")
+    return result
 
-        # q.enqueue(connector.fetch_new_reviews, job_id=job_id)
-        analyze = Analyzer(connector)
 
-        analyze.analyze_reviews(c.config, c.last_sync)
+def poll_new_reviews(connector_config):
+    connector = ConnectorFactory(connector_config).create_connector_instance()
+    analyzer = Analyzer(connector)
+    result = analyzer.poll_new_reviews(
+        connector_config.config, connector_config.last_sync
+    )
+    logger.info(f"Polled new reviews for {connector.__class__.__name__}")
+    return result
 
-        logger.info(f"Enqueued {connector.__class__.__name__}")
+
+def resume_fetch(connector_config):
+    connector = ConnectorFactory(connector_config).create_connector_instance()
+    analyzer = Analyzer(connector)
+    result = analyzer.resume_fetch(connector_config.config)
+    logger.info(f"Resumed fetch for {connector.__class__.__name__}")
+    return result

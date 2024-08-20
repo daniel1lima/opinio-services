@@ -4730,3 +4730,897 @@ Name: named_labels, dtype: object
 2024-08-20 12:11:47,425 - root - INFO - Enqueued YelpConnector
 2024-08-20 12:11:47,429 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 12:11:47] "[35m[1mPOST /reviews HTTP/1.1[0m" 202 -
 2024-08-20 12:18:09,265 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/yelp.py', reloading
+2024-08-20 12:26:46,066 - root - INFO - Starting analysis for config MapAttribute(business_id='pearls-deluxe-burgers-san-francisco-3') and last_sync
+2024-08-20 12:26:46,067 - root - INFO - No last sync date provided, fetching all reviews.
+2024-08-20 12:26:46,067 - root - INFO - Fetching reviews for business_id: pearls-deluxe-burgers-san-francisco-3, last_sync: None, n_reviews: inf
+2024-08-20 12:26:46,068 - root - INFO - Fetching page 1 (attempt 1)
+2024-08-20 12:26:51,627 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=pearls-deluxe-burgers-san-francisco-3&page=1&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying... (1/3)
+2024-08-20 12:26:52,633 - root - INFO - Fetching page 1 (attempt 2)
+2024-08-20 12:26:56,549 - root - WARNING - Skipping invalid review: 1 validation error for ReviewEntry
+review_date
+  Input should be a valid string [type=string_type, input_value=datetime.datetime(2024, 8...o=datetime.timezone.utc), input_type=datetime]
+    For further information visit https://errors.pydantic.dev/2.8/v/string_type
+2024-08-20 12:26:56,550 - root - WARNING - Skipping invalid review: 1 validation error for ReviewEntry
+review_date
+  Input should be a valid string [type=string_type, input_value=datetime.datetime(2024, 8...o=datetime.timezone.utc), input_type=datetime]
+    For further information visit https://errors.pydantic.dev/2.8/v/string_type
+2024-08-20 12:26:56,550 - root - WARNING - Skipping invalid review: 1 validation error for ReviewEntry
+review_date
+  Input should be a valid string [type=string_type, input_value=datetime.datetime(2024, 8...o=datetime.timezone.utc), input_type=datetime]
+    For further information visit https://errors.pydantic.dev/2.8/v/string_type
+2024-08-20 12:26:56,550 - root - WARNING - Skipping invalid review: 1 validation error for ReviewEntry
+review_date
+  Input should be a valid string [type=string_type, input_value=datetime.datetime(2024, 7...o=datetime.timezone.utc), input_type=datetime]
+    For further information visit https://errors.pydantic.dev/2.8/v/string_type
+2024-08-20 12:26:56,550 - root - ERROR - Error fetching new reviews: slice indices must be integers or None or have an __index__ method
+2024-08-20 12:26:56,550 - root - INFO - Enqueued YelpConnector
+2024-08-20 12:26:56,551 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 12:26:56] "[35m[1mPOST /reviews HTTP/1.1[0m" 202 -
+2024-08-20 12:28:35,676 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/yelp.py', reloading
+2024-08-20 12:28:39,499 - root - INFO - Starting analysis for config MapAttribute(business_id='pearls-deluxe-burgers-san-francisco-3') and last_sync
+2024-08-20 12:28:39,500 - root - INFO - No last sync date provided, fetching all reviews.
+2024-08-20 12:28:39,500 - root - INFO - Fetching reviews for business_id: pearls-deluxe-burgers-san-francisco-3, last_sync: None, n_reviews: inf
+2024-08-20 12:28:39,500 - root - INFO - Fetching page 1 (attempt 1)
+2024-08-20 12:28:43,466 - root - INFO - Fetched 4 new reviews, total fetched: 4
+2024-08-20 12:28:43,466 - root - INFO - Fetching page 2 (attempt 1)
+2024-08-20 12:28:48,843 - root - INFO - Fetched 4 new reviews, total fetched: 8
+2024-08-20 12:28:48,844 - root - INFO - Fetching page 3 (attempt 1)
+2024-08-20 12:28:51,644 - root - INFO - Fetched 4 new reviews, total fetched: 12
+2024-08-20 12:28:51,644 - root - INFO - Fetching page 4 (attempt 1)
+2024-08-20 12:28:55,431 - root - INFO - Fetched 4 new reviews, total fetched: 16
+2024-08-20 12:28:55,432 - root - INFO - Fetching page 5 (attempt 1)
+2024-08-20 12:28:58,521 - root - INFO - Fetched 4 new reviews, total fetched: 20
+2024-08-20 12:28:58,521 - root - INFO - Fetching page 6 (attempt 1)
+2024-08-20 12:29:03,094 - root - INFO - Fetched 4 new reviews, total fetched: 24
+2024-08-20 12:29:03,096 - root - INFO - Fetching page 7 (attempt 1)
+2024-08-20 12:29:07,312 - root - INFO - Fetched 4 new reviews, total fetched: 28
+2024-08-20 12:29:07,313 - root - INFO - Fetching page 8 (attempt 1)
+2024-08-20 12:29:11,507 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=pearls-deluxe-burgers-san-francisco-3&page=8&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying... (1/3)
+2024-08-20 12:29:12,515 - root - INFO - Fetching page 8 (attempt 2)
+2024-08-20 12:29:14,260 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=pearls-deluxe-burgers-san-francisco-3&page=8&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying... (2/3)
+2024-08-20 12:29:16,263 - root - INFO - Fetching page 8 (attempt 3)
+2024-08-20 12:29:18,688 - root - WARNING - Request failed: 400 Client Error: Bad Request for url: https://red-flower-business-data.p.rapidapi.com/business-reviews?business_id=pearls-deluxe-burgers-san-francisco-3&page=8&page_size=4&num_pages=1&sort=NEWEST&language=en. Retrying... (3/3)
+2024-08-20 12:29:18,689 - root - ERROR - Failed to fetch reviews after 3 attempts.
+2024-08-20 12:29:18,690 - root - ERROR - Error fetching new reviews: slice indices must be integers or None or have an __index__ method
+2024-08-20 12:29:18,690 - root - INFO - Enqueued YelpConnector
+2024-08-20 12:29:18,691 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 12:29:18] "[35m[1mPOST /reviews HTTP/1.1[0m" 202 -
+2024-08-20 12:33:37,632 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/yelp.py', reloading
+2024-08-20 12:34:37,113 - root - INFO - Starting analysis for config MapAttribute(business_id='pearls-deluxe-burgers-san-francisco-3') and last_sync
+2024-08-20 12:34:37,113 - root - INFO - No last sync date provided, fetching all reviews.
+2024-08-20 12:34:37,114 - root - INFO - Fetching reviews for business_id: pearls-deluxe-burgers-san-francisco-3, last_sync: None, n_reviews: 4
+2024-08-20 12:34:37,114 - root - INFO - Fetching page 1 (attempt 1/5)
+2024-08-20 12:34:41,214 - root - WARNING - response: <Response [200]>
+2024-08-20 12:34:41,215 - root - INFO - Fetched 4 new reviews, total fetched: 4
+2024-08-20 12:34:41,215 - root - INFO - Starting review analysis
+2024-08-20 12:34:41,215 - root - INFO - Preprocessing text
+2024-08-20 12:34:41,324 - root - INFO - Text preprocessing completed
+2024-08-20 12:34:41,324 - gensim.corpora.dictionary - INFO - adding document #0 to Dictionary<0 unique tokens: []>
+2024-08-20 12:34:41,324 - gensim.corpora.dictionary - INFO - built Dictionary<99 unique tokens: ['back', 'burgers', 'definitely', 'fries', 'options']...> from 4 documents (total 123 corpus positions)
+2024-08-20 12:34:41,347 - gensim.utils - INFO - Dictionary lifecycle event {'msg': "built Dictionary<99 unique tokens: ['back', 'burgers', 'definitely', 'fries', 'options']...> from 4 documents (total 123 corpus positions)", 'datetime': '2024-08-20T12:34:41.324724', 'gensim': '4.3.3', 'python': '3.11.4 (main, Jun 20 2023, 17:23:00) [Clang 14.0.3 (clang-1403.0.22.14.1)]', 'platform': 'macOS-14.0-arm64-arm-64bit', 'event': 'created'}
+2024-08-20 12:34:41,348 - gensim.models.ldamodel - INFO - using symmetric alpha at 0.1
+2024-08-20 12:34:41,348 - gensim.models.ldamodel - INFO - using symmetric eta at 0.1
+2024-08-20 12:34:41,349 - gensim.models.ldamodel - INFO - using serial LDA version on this node
+2024-08-20 12:34:41,350 - gensim.models.ldamodel - INFO - running online (multi-pass) LDA training, 10 topics, 20 passes over the supplied corpus of 4 documents, updating model once every 4 documents, evaluating perplexity every 4 documents, iterating 150x with a convergence threshold of 0.001000
+2024-08-20 12:34:41,354 - gensim.models.ldamodel - INFO - -14.217 per-word bound, 19047.6 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,354 - gensim.models.ldamodel - INFO - PROGRESS: pass 0, at document #4/4
+2024-08-20 12:34:41,356 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.070*"burger" + 0.029*"sauce" + 0.029*"flavor" + 0.029*"usually" + 0.029*"meat" + 0.015*"clean" + 0.015*"needed" + 0.015*"tomato" + 0.015*"impressive" + 0.015*"dining"
+2024-08-20 12:34:41,357 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.042*"service" + 0.039*"burgers" + 0.036*"joint" + 0.032*"fries" + 0.031*"rings" + 0.029*"burger" + 0.029*"onion" + 0.020*"notch" + 0.020*"ordered" + 0.020*"top"
+2024-08-20 12:34:41,357 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.010*"burgers" + 0.010*"burger" + 0.010*"back" + 0.010*"plenty" + 0.010*"service" + 0.010*"definitely" + 0.010*"fries" + 0.010*"specialty" + 0.010*"quick" + 0.010*"onion"
+2024-08-20 12:34:41,357 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.010*"burgers" + 0.010*"back" + 0.010*"service" + 0.010*"fries" + 0.010*"definitely" + 0.010*"quick" + 0.010*"burger" + 0.010*"plenty" + 0.010*"joint" + 0.010*"rings"
+2024-08-20 12:34:41,357 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.010*"burger" + 0.010*"burgers" + 0.010*"back" + 0.010*"definitely" + 0.010*"plenty" + 0.010*"fries" + 0.010*"service" + 0.010*"onion" + 0.010*"quick" + 0.010*"specialty"
+2024-08-20 12:34:41,357 - gensim.models.ldamodel - INFO - topic diff=6.844673, rho=1.000000
+2024-08-20 12:34:41,357 - gensim.models.ldamodel - INFO - -5.827 per-word bound, 56.8 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,358 - gensim.models.ldamodel - INFO - PROGRESS: pass 1, at document #4/4
+2024-08-20 12:34:41,358 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.067*"burger" + 0.063*"joint" + 0.046*"much" + 0.044*"service" + 0.025*"standard" + 0.025*"onion" + 0.024*"want" + 0.024*"structured" + 0.024*"overall" + 0.024*"crispy"
+2024-08-20 12:34:41,358 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.049*"burgers" + 0.037*"service" + 0.032*"fries" + 0.031*"rings" + 0.030*"onion" + 0.025*"notch" + 0.025*"ordered" + 0.025*"miss" + 0.025*"top" + 0.025*"question"
+2024-08-20 12:34:41,358 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.010*"burger" + 0.010*"burgers" + 0.010*"back" + 0.010*"definitely" + 0.010*"plenty" + 0.010*"service" + 0.010*"fries" + 0.010*"onion" + 0.010*"quick" + 0.010*"specialty"
+2024-08-20 12:34:41,359 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.010*"burgers" + 0.010*"back" + 0.010*"service" + 0.010*"fries" + 0.010*"definitely" + 0.010*"quick" + 0.010*"burger" + 0.010*"plenty" + 0.010*"joint" + 0.010*"rings"
+2024-08-20 12:34:41,359 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.010*"burgers" + 0.010*"burger" + 0.010*"service" + 0.010*"back" + 0.010*"specialty" + 0.010*"quick" + 0.010*"plenty" + 0.010*"joint" + 0.010*"fries" + 0.010*"definitely"
+2024-08-20 12:34:41,359 - gensim.models.ldamodel - INFO - topic diff=0.097238, rho=0.577350
+2024-08-20 12:34:41,359 - gensim.models.ldamodel - INFO - -5.636 per-word bound, 49.7 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,360 - gensim.models.ldamodel - INFO - PROGRESS: pass 2, at document #4/4
+2024-08-20 12:34:41,360 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.054*"burgers" + 0.035*"service" + 0.032*"fries" + 0.031*"rings" + 0.031*"onion" + 0.028*"notch" + 0.028*"ordered" + 0.028*"miss" + 0.028*"top" + 0.028*"question"
+2024-08-20 12:34:41,361 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.010*"burgers" + 0.010*"burger" + 0.010*"service" + 0.010*"back" + 0.010*"plenty" + 0.010*"specialty" + 0.010*"fries" + 0.010*"quick" + 0.010*"definitely" + 0.010*"rings"
+2024-08-20 12:34:41,361 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.070*"burger" + 0.029*"sauce" + 0.029*"flavor" + 0.029*"usually" + 0.029*"meat" + 0.015*"clean" + 0.015*"needed" + 0.015*"top" + 0.015*"tomato" + 0.015*"impressive"
+2024-08-20 12:34:41,361 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.010*"burgers" + 0.010*"service" + 0.010*"burger" + 0.010*"plenty" + 0.010*"back" + 0.010*"fries" + 0.010*"quick" + 0.010*"specialty" + 0.010*"options" + 0.010*"joint"
+2024-08-20 12:34:41,361 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.068*"burger" + 0.066*"joint" + 0.046*"much" + 0.045*"service" + 0.025*"standard" + 0.025*"onion" + 0.024*"want" + 0.024*"structured" + 0.024*"overall" + 0.024*"crispy"
+2024-08-20 12:34:41,361 - gensim.models.ldamodel - INFO - topic diff=0.058552, rho=0.500000
+2024-08-20 12:34:41,362 - gensim.models.ldamodel - INFO - -5.568 per-word bound, 47.4 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,362 - gensim.models.ldamodel - INFO - PROGRESS: pass 3, at document #4/4
+2024-08-20 12:34:41,362 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.056*"burgers" + 0.033*"service" + 0.032*"fries" + 0.031*"rings" + 0.031*"onion" + 0.030*"notch" + 0.030*"ordered" + 0.030*"miss" + 0.030*"top" + 0.030*"question"
+2024-08-20 12:34:41,362 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.010*"burgers" + 0.010*"burger" + 0.010*"service" + 0.010*"back" + 0.010*"specialty" + 0.010*"plenty" + 0.010*"fries" + 0.010*"quick" + 0.010*"definitely" + 0.010*"rings"
+2024-08-20 12:34:41,362 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.010*"burgers" + 0.010*"service" + 0.010*"burger" + 0.010*"plenty" + 0.010*"back" + 0.010*"specialty" + 0.010*"fries" + 0.010*"quick" + 0.010*"options" + 0.010*"definitely"
+2024-08-20 12:34:41,362 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.010*"service" + 0.010*"burgers" + 0.010*"burger" + 0.010*"back" + 0.010*"fries" + 0.010*"specialty" + 0.010*"plenty" + 0.010*"quick" + 0.010*"definitely" + 0.010*"rings"
+2024-08-20 12:34:41,362 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.069*"burger" + 0.068*"joint" + 0.047*"much" + 0.046*"service" + 0.025*"standard" + 0.025*"onion" + 0.024*"want" + 0.024*"structured" + 0.024*"overall" + 0.024*"crispy"
+2024-08-20 12:34:41,362 - gensim.models.ldamodel - INFO - topic diff=0.044896, rho=0.447214
+2024-08-20 12:34:41,363 - gensim.models.ldamodel - INFO - -5.536 per-word bound, 46.4 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,363 - gensim.models.ldamodel - INFO - PROGRESS: pass 4, at document #4/4
+2024-08-20 12:34:41,363 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.010*"burgers" + 0.010*"burger" + 0.010*"service" + 0.010*"back" + 0.010*"fries" + 0.010*"plenty" + 0.010*"specialty" + 0.010*"quick" + 0.010*"definitely" + 0.010*"rings"
+2024-08-20 12:34:41,363 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.010*"burger" + 0.010*"burgers" + 0.010*"back" + 0.010*"definitely" + 0.010*"plenty" + 0.010*"fries" + 0.010*"onion" + 0.010*"service" + 0.010*"quick" + 0.010*"specialty"
+2024-08-20 12:34:41,363 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.058*"burgers" + 0.033*"service" + 0.032*"fries" + 0.031*"rings" + 0.031*"onion" + 0.030*"notch" + 0.030*"ordered" + 0.030*"question" + 0.030*"miss" + 0.030*"top"
+2024-08-20 12:34:41,363 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.010*"burgers" + 0.010*"service" + 0.010*"burger" + 0.010*"plenty" + 0.010*"back" + 0.010*"specialty" + 0.010*"options" + 0.010*"quick" + 0.010*"fries" + 0.010*"joint"
+2024-08-20 12:34:41,363 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.010*"service" + 0.010*"back" + 0.010*"burgers" + 0.010*"fries" + 0.010*"definitely" + 0.010*"quick" + 0.010*"plenty" + 0.010*"burger" + 0.010*"joint" + 0.010*"rings"
+2024-08-20 12:34:41,364 - gensim.models.ldamodel - INFO - topic diff=0.033955, rho=0.408248
+2024-08-20 12:34:41,364 - gensim.models.ldamodel - INFO - -5.521 per-word bound, 45.9 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,364 - gensim.models.ldamodel - INFO - PROGRESS: pass 5, at document #4/4
+2024-08-20 12:34:41,364 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.059*"burgers" + 0.032*"service" + 0.032*"fries" + 0.031*"rings" + 0.031*"onion" + 0.031*"notch" + 0.031*"ordered" + 0.031*"question" + 0.031*"miss" + 0.031*"top"
+2024-08-20 12:34:41,365 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.070*"burger" + 0.029*"sauce" + 0.029*"flavor" + 0.029*"meat" + 0.029*"usually" + 0.015*"clean" + 0.015*"ended" + 0.015*"impressive" + 0.015*"top" + 0.015*"dining"
+2024-08-20 12:34:41,365 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.010*"burgers" + 0.010*"burger" + 0.010*"service" + 0.010*"back" + 0.010*"specialty" + 0.010*"quick" + 0.010*"joint" + 0.010*"plenty" + 0.010*"fries" + 0.010*"definitely"
+2024-08-20 12:34:41,365 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.069*"burger" + 0.069*"joint" + 0.047*"much" + 0.046*"service" + 0.025*"standard" + 0.025*"onion" + 0.024*"want" + 0.024*"structured" + 0.024*"overall" + 0.024*"crispy"
+2024-08-20 12:34:41,365 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.010*"burgers" + 0.010*"burger" + 0.010*"back" + 0.010*"service" + 0.010*"plenty" + 0.010*"definitely" + 0.010*"fries" + 0.010*"specialty" + 0.010*"onion" + 0.010*"quick"
+2024-08-20 12:34:41,365 - gensim.models.ldamodel - INFO - topic diff=0.024660, rho=0.377964
+2024-08-20 12:34:41,366 - gensim.models.ldamodel - INFO - -5.514 per-word bound, 45.7 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,366 - gensim.models.ldamodel - INFO - PROGRESS: pass 6, at document #4/4
+2024-08-20 12:34:41,366 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.069*"burger" + 0.069*"joint" + 0.047*"much" + 0.047*"service" + 0.025*"standard" + 0.025*"onion" + 0.024*"want" + 0.024*"structured" + 0.024*"overall" + 0.024*"crispy"
+2024-08-20 12:34:41,366 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.010*"burgers" + 0.010*"burger" + 0.010*"service" + 0.010*"back" + 0.010*"fries" + 0.010*"plenty" + 0.010*"specialty" + 0.010*"quick" + 0.010*"definitely" + 0.010*"clear"
+2024-08-20 12:34:41,366 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.059*"burgers" + 0.032*"service" + 0.032*"fries" + 0.031*"rings" + 0.031*"onion" + 0.031*"notch" + 0.031*"ordered" + 0.031*"top" + 0.031*"miss" + 0.031*"question"
+2024-08-20 12:34:41,366 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.010*"burger" + 0.010*"burgers" + 0.010*"back" + 0.010*"service" + 0.010*"onion" + 0.010*"plenty" + 0.010*"fries" + 0.010*"definitely" + 0.010*"quick" + 0.010*"rings"
+2024-08-20 12:34:41,366 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.070*"burger" + 0.029*"sauce" + 0.029*"meat" + 0.029*"usually" + 0.029*"flavor" + 0.015*"clean" + 0.015*"dining" + 0.015*"ended" + 0.015*"impressive" + 0.015*"appreciated"
+2024-08-20 12:34:41,366 - gensim.models.ldamodel - INFO - topic diff=0.017397, rho=0.353553
+2024-08-20 12:34:41,367 - gensim.models.ldamodel - INFO - -5.510 per-word bound, 45.6 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,367 - gensim.models.ldamodel - INFO - PROGRESS: pass 7, at document #4/4
+2024-08-20 12:34:41,367 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.010*"burgers" + 0.010*"service" + 0.010*"burger" + 0.010*"back" + 0.010*"joint" + 0.010*"specialty" + 0.010*"quick" + 0.010*"plenty" + 0.010*"fries" + 0.010*"definitely"
+2024-08-20 12:34:41,368 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.069*"burger" + 0.069*"joint" + 0.047*"much" + 0.047*"service" + 0.025*"standard" + 0.025*"onion" + 0.024*"want" + 0.024*"structured" + 0.024*"overall" + 0.024*"crispy"
+2024-08-20 12:34:41,368 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.060*"burgers" + 0.032*"service" + 0.032*"fries" + 0.032*"rings" + 0.031*"onion" + 0.031*"top" + 0.031*"miss" + 0.031*"ordered" + 0.031*"notch" + 0.031*"question"
+2024-08-20 12:34:41,368 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.070*"burger" + 0.029*"sauce" + 0.029*"meat" + 0.029*"usually" + 0.029*"flavor" + 0.015*"clean" + 0.015*"dining" + 0.015*"ended" + 0.015*"impressive" + 0.015*"appreciated"
+2024-08-20 12:34:41,368 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.010*"burger" + 0.010*"burgers" + 0.010*"service" + 0.010*"back" + 0.010*"onion" + 0.010*"quick" + 0.010*"plenty" + 0.010*"fries" + 0.010*"definitely" + 0.010*"specialty"
+2024-08-20 12:34:41,368 - gensim.models.ldamodel - INFO - topic diff=0.012092, rho=0.333333
+2024-08-20 12:34:41,368 - gensim.models.ldamodel - INFO - -5.509 per-word bound, 45.5 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,368 - gensim.models.ldamodel - INFO - PROGRESS: pass 8, at document #4/4
+2024-08-20 12:34:41,369 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.010*"burgers" + 0.010*"burger" + 0.010*"back" + 0.010*"service" + 0.010*"plenty" + 0.010*"definitely" + 0.010*"fries" + 0.010*"rings" + 0.010*"much" + 0.010*"staff"
+2024-08-20 12:34:41,369 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.010*"burgers" + 0.010*"service" + 0.010*"burger" + 0.010*"plenty" + 0.010*"back" + 0.010*"specialty" + 0.010*"quick" + 0.010*"options" + 0.010*"fries" + 0.010*"onion"
+2024-08-20 12:34:41,369 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.070*"burger" + 0.029*"sauce" + 0.029*"usually" + 0.029*"flavor" + 0.029*"meat" + 0.015*"dining" + 0.015*"impressive" + 0.015*"hamburger" + 0.015*"felt" + 0.015*"everything"
+2024-08-20 12:34:41,369 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.010*"service" + 0.010*"burgers" + 0.010*"back" + 0.010*"fries" + 0.010*"burger" + 0.010*"specialty" + 0.010*"plenty" + 0.010*"quick" + 0.010*"rings" + 0.010*"never"
+2024-08-20 12:34:41,369 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.010*"burger" + 0.010*"burgers" + 0.010*"service" + 0.010*"back" + 0.010*"specialty" + 0.010*"quick" + 0.010*"plenty" + 0.010*"fries" + 0.010*"staff" + 0.010*"onion"
+2024-08-20 12:34:41,369 - gensim.models.ldamodel - INFO - topic diff=0.008367, rho=0.316228
+2024-08-20 12:34:41,370 - gensim.models.ldamodel - INFO - -5.508 per-word bound, 45.5 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,370 - gensim.models.ldamodel - INFO - PROGRESS: pass 9, at document #4/4
+2024-08-20 12:34:41,370 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.010*"service" + 0.010*"burgers" + 0.010*"burger" + 0.010*"back" + 0.010*"specialty" + 0.010*"quick" + 0.010*"plenty" + 0.010*"options" + 0.010*"definitely" + 0.010*"joint"
+2024-08-20 12:34:41,370 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.010*"burgers" + 0.010*"plenty" + 0.010*"definitely" + 0.010*"fries" + 0.010*"burger" + 0.010*"back" + 0.010*"quick" + 0.010*"service" + 0.010*"specialty" + 0.010*"joint"
+2024-08-20 12:34:41,370 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.010*"burger" + 0.010*"burgers" + 0.010*"service" + 0.010*"back" + 0.010*"specialty" + 0.010*"quick" + 0.010*"rings" + 0.010*"definitely" + 0.010*"fries" + 0.010*"plenty"
+2024-08-20 12:34:41,370 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.060*"burgers" + 0.032*"service" + 0.032*"fries" + 0.032*"rings" + 0.031*"onion" + 0.031*"top" + 0.031*"notch" + 0.031*"miss" + 0.031*"ordered" + 0.031*"phone"
+2024-08-20 12:34:41,370 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.070*"burger" + 0.029*"sauce" + 0.029*"usually" + 0.029*"flavor" + 0.029*"meat" + 0.015*"dining" + 0.015*"impressive" + 0.015*"hamburger" + 0.015*"felt" + 0.015*"everything"
+2024-08-20 12:34:41,370 - gensim.models.ldamodel - INFO - topic diff=0.005803, rho=0.301511
+2024-08-20 12:34:41,371 - gensim.models.ldamodel - INFO - -5.507 per-word bound, 45.5 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,371 - gensim.models.ldamodel - INFO - PROGRESS: pass 10, at document #4/4
+2024-08-20 12:34:41,371 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.010*"back" + 0.010*"burger" + 0.010*"burgers" + 0.010*"definitely" + 0.010*"fries" + 0.010*"specialty" + 0.010*"rings" + 0.010*"onion" + 0.010*"service" + 0.010*"plenty"
+2024-08-20 12:34:41,371 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.070*"burger" + 0.029*"sauce" + 0.029*"flavor" + 0.029*"meat" + 0.029*"usually" + 0.015*"impressive" + 0.015*"given" + 0.015*"hamburger" + 0.015*"ketchup" + 0.015*"including"
+2024-08-20 12:34:41,371 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.069*"burger" + 0.069*"joint" + 0.047*"much" + 0.047*"service" + 0.025*"standard" + 0.025*"onion" + 0.024*"want" + 0.024*"structured" + 0.024*"overall" + 0.024*"crispy"
+2024-08-20 12:34:41,372 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.060*"burgers" + 0.032*"service" + 0.032*"fries" + 0.032*"rings" + 0.031*"onion" + 0.031*"top" + 0.031*"notch" + 0.031*"online" + 0.031*"ordered" + 0.031*"question"
+2024-08-20 12:34:41,372 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.010*"service" + 0.010*"back" + 0.010*"fries" + 0.010*"burgers" + 0.010*"joint" + 0.010*"quick" + 0.010*"burger" + 0.010*"definitely" + 0.010*"plenty" + 0.010*"staff"
+2024-08-20 12:34:41,372 - gensim.models.ldamodel - INFO - topic diff=0.004051, rho=0.288675
+2024-08-20 12:34:41,372 - gensim.models.ldamodel - INFO - -5.507 per-word bound, 45.5 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,373 - gensim.models.ldamodel - INFO - PROGRESS: pass 11, at document #4/4
+2024-08-20 12:34:41,373 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.010*"service" + 0.010*"burger" + 0.010*"back" + 0.010*"burgers" + 0.010*"definitely" + 0.010*"fries" + 0.010*"clear" + 0.010*"options" + 0.010*"rings" + 0.010*"quick"
+2024-08-20 12:34:41,373 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.069*"burger" + 0.069*"joint" + 0.047*"much" + 0.047*"service" + 0.025*"standard" + 0.025*"onion" + 0.024*"want" + 0.024*"structured" + 0.024*"overall" + 0.024*"crispy"
+2024-08-20 12:34:41,373 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.010*"service" + 0.010*"burgers" + 0.010*"back" + 0.010*"burger" + 0.010*"plenty" + 0.010*"onion" + 0.010*"joint" + 0.010*"quick" + 0.010*"definitely" + 0.010*"fries"
+2024-08-20 12:34:41,373 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.010*"burger" + 0.010*"definitely" + 0.010*"back" + 0.010*"burgers" + 0.010*"joint" + 0.010*"called" + 0.010*"onion" + 0.010*"rings" + 0.010*"specialty" + 0.010*"options"
+2024-08-20 12:34:41,373 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.070*"burger" + 0.029*"flavor" + 0.029*"sauce" + 0.029*"meat" + 0.029*"usually" + 0.015*"impressive" + 0.015*"given" + 0.015*"hamburger" + 0.015*"ketchup" + 0.015*"including"
+2024-08-20 12:34:41,373 - gensim.models.ldamodel - INFO - topic diff=0.002853, rho=0.277350
+2024-08-20 12:34:41,374 - gensim.models.ldamodel - INFO - -5.507 per-word bound, 45.5 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,374 - gensim.models.ldamodel - INFO - PROGRESS: pass 12, at document #4/4
+2024-08-20 12:34:41,374 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.060*"burgers" + 0.032*"service" + 0.032*"fries" + 0.032*"rings" + 0.032*"onion" + 0.031*"top" + 0.031*"never" + 0.031*"phone" + 0.031*"notch" + 0.031*"nice"
+2024-08-20 12:34:41,374 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.010*"service" + 0.010*"quick" + 0.010*"plenty" + 0.010*"burger" + 0.010*"back" + 0.010*"specialty" + 0.010*"fries" + 0.010*"burgers" + 0.010*"usually" + 0.010*"staff"
+2024-08-20 12:34:41,374 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.010*"service" + 0.010*"plenty" + 0.010*"burgers" + 0.010*"burger" + 0.010*"back" + 0.010*"definitely" + 0.010*"fries" + 0.010*"fast" + 0.010*"needed" + 0.010*"top"
+2024-08-20 12:34:41,374 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.010*"burgers" + 0.010*"service" + 0.010*"plenty" + 0.010*"burger" + 0.010*"fries" + 0.010*"options" + 0.010*"back" + 0.010*"quick" + 0.010*"specialty" + 0.010*"joint"
+2024-08-20 12:34:41,374 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.069*"burger" + 0.069*"joint" + 0.047*"much" + 0.047*"service" + 0.025*"standard" + 0.024*"onion" + 0.024*"want" + 0.024*"structured" + 0.024*"overall" + 0.024*"crispy"
+2024-08-20 12:34:41,374 - gensim.models.ldamodel - INFO - topic diff=0.002030, rho=0.267261
+2024-08-20 12:34:41,375 - gensim.models.ldamodel - INFO - -5.507 per-word bound, 45.5 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,375 - gensim.models.ldamodel - INFO - PROGRESS: pass 13, at document #4/4
+2024-08-20 12:34:41,375 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.010*"service" + 0.010*"burgers" + 0.010*"back" + 0.010*"top" + 0.010*"online" + 0.010*"phone" + 0.010*"rings" + 0.010*"question" + 0.010*"staff" + 0.010*"joint"
+2024-08-20 12:34:41,375 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.069*"burger" + 0.069*"joint" + 0.047*"much" + 0.047*"service" + 0.025*"standard" + 0.024*"onion" + 0.024*"want" + 0.024*"structured" + 0.024*"overall" + 0.024*"crispy"
+2024-08-20 12:34:41,375 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.010*"burgers" + 0.010*"service" + 0.010*"burger" + 0.010*"ordered" + 0.010*"phone" + 0.010*"question" + 0.010*"rings" + 0.010*"top" + 0.010*"staff" + 0.010*"back"
+2024-08-20 12:34:41,375 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.060*"burgers" + 0.032*"service" + 0.032*"fries" + 0.032*"rings" + 0.032*"onion" + 0.031*"top" + 0.031*"never" + 0.031*"phone" + 0.031*"notch" + 0.031*"nice"
+2024-08-20 12:34:41,375 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.010*"service" + 0.010*"burger" + 0.010*"back" + 0.010*"burgers" + 0.010*"staff" + 0.010*"top" + 0.010*"phone" + 0.010*"order" + 0.010*"firm" + 0.010*"online"
+2024-08-20 12:34:41,375 - gensim.models.ldamodel - INFO - topic diff=0.001459, rho=0.258199
+2024-08-20 12:34:41,376 - gensim.models.ldamodel - INFO - -5.507 per-word bound, 45.5 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,376 - gensim.models.ldamodel - INFO - PROGRESS: pass 14, at document #4/4
+2024-08-20 12:34:41,376 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.010*"milkshakes" + 0.010*"never" + 0.010*"burgers" + 0.010*"staff" + 0.010*"rings" + 0.010*"joint" + 0.010*"online" + 0.010*"onion" + 0.010*"nice" + 0.010*"much"
+2024-08-20 12:34:41,376 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.069*"burger" + 0.069*"joint" + 0.047*"much" + 0.047*"service" + 0.025*"standard" + 0.024*"onion" + 0.024*"want" + 0.024*"structured" + 0.024*"overall" + 0.024*"crispy"
+2024-08-20 12:34:41,376 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.010*"much" + 0.010*"nice" + 0.010*"burger" + 0.010*"top" + 0.010*"staff" + 0.010*"rings" + 0.010*"joint" + 0.010*"online" + 0.010*"onion" + 0.010*"never"
+2024-08-20 12:34:41,377 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.010*"milkshakes" + 0.010*"back" + 0.010*"burgers" + 0.010*"top" + 0.010*"staff" + 0.010*"rings" + 0.010*"phone" + 0.010*"onion" + 0.010*"nice" + 0.010*"never"
+2024-08-20 12:34:41,377 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.010*"burgers" + 0.010*"clear" + 0.010*"miss" + 0.010*"top" + 0.010*"rings" + 0.010*"question" + 0.010*"onion" + 0.010*"never" + 0.010*"milkshakes" + 0.010*"burger"
+2024-08-20 12:34:41,377 - gensim.models.ldamodel - INFO - topic diff=0.001059, rho=0.250000
+2024-08-20 12:34:41,377 - gensim.models.ldamodel - INFO - -5.507 per-word bound, 45.5 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,377 - gensim.models.ldamodel - INFO - PROGRESS: pass 15, at document #4/4
+2024-08-20 12:34:41,378 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.069*"burger" + 0.069*"joint" + 0.047*"much" + 0.047*"service" + 0.025*"standard" + 0.024*"onion" + 0.024*"want" + 0.024*"structured" + 0.024*"overall" + 0.024*"crispy"
+2024-08-20 12:34:41,378 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.010*"service" + 0.010*"quick" + 0.010*"burgers" + 0.010*"burger" + 0.010*"onion" + 0.010*"specialty" + 0.010*"back" + 0.010*"fries" + 0.010*"options" + 0.010*"definitely"
+2024-08-20 12:34:41,378 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.060*"burgers" + 0.032*"service" + 0.032*"fries" + 0.032*"rings" + 0.032*"onion" + 0.031*"milkshakes" + 0.031*"phone" + 0.031*"notch" + 0.031*"nice" + 0.031*"never"
+2024-08-20 12:34:41,378 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.010*"rings" + 0.010*"service" + 0.010*"burgers" + 0.010*"clear" + 0.010*"specialty" + 0.010*"back" + 0.010*"quick" + 0.010*"definitely" + 0.010*"fries" + 0.010*"plenty"
+2024-08-20 12:34:41,378 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.010*"rings" + 0.010*"service" + 0.010*"burgers" + 0.010*"back" + 0.010*"joint" + 0.010*"specialty" + 0.010*"onion" + 0.010*"fries" + 0.010*"burger" + 0.010*"definitely"
+2024-08-20 12:34:41,378 - gensim.models.ldamodel - INFO - topic diff=0.000777, rho=0.242536
+2024-08-20 12:34:41,378 - gensim.models.ldamodel - INFO - -5.507 per-word bound, 45.5 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,379 - gensim.models.ldamodel - INFO - PROGRESS: pass 16, at document #4/4
+2024-08-20 12:34:41,379 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.010*"specialty" + 0.010*"plenty" + 0.010*"service" + 0.010*"burgers" + 0.010*"back" + 0.010*"definitely" + 0.010*"burger" + 0.010*"fries" + 0.010*"including" + 0.010*"impressive"
+2024-08-20 12:34:41,379 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.060*"burgers" + 0.032*"service" + 0.032*"fries" + 0.032*"rings" + 0.032*"onion" + 0.031*"top" + 0.031*"never" + 0.031*"phone" + 0.031*"notch" + 0.031*"nice"
+2024-08-20 12:34:41,379 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.010*"specialty" + 0.010*"plenty" + 0.010*"service" + 0.010*"quick" + 0.010*"back" + 0.010*"burger" + 0.010*"burgers" + 0.010*"fries" + 0.010*"including" + 0.010*"impressive"
+2024-08-20 12:34:41,379 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.070*"burger" + 0.029*"flavor" + 0.029*"sauce" + 0.029*"meat" + 0.029*"usually" + 0.015*"impressive" + 0.015*"given" + 0.015*"hamburger" + 0.015*"ketchup" + 0.015*"including"
+2024-08-20 12:34:41,379 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.010*"burgers" + 0.010*"plenty" + 0.010*"service" + 0.010*"quick" + 0.010*"back" + 0.010*"definitely" + 0.010*"burger" + 0.010*"fries" + 0.010*"including" + 0.010*"impressive"
+2024-08-20 12:34:41,379 - gensim.models.ldamodel - INFO - topic diff=0.000575, rho=0.235702
+2024-08-20 12:34:41,380 - gensim.models.ldamodel - INFO - -5.507 per-word bound, 45.5 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,380 - gensim.models.ldamodel - INFO - PROGRESS: pass 17, at document #4/4
+2024-08-20 12:34:41,380 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.010*"service" + 0.010*"definitely" + 0.010*"fries" + 0.010*"plenty" + 0.010*"burgers" + 0.010*"burger" + 0.010*"back" + 0.010*"including" + 0.010*"hamburger" + 0.010*"impressive"
+2024-08-20 12:34:41,380 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.060*"burgers" + 0.032*"service" + 0.032*"fries" + 0.032*"rings" + 0.032*"onion" + 0.032*"milkshakes" + 0.032*"phone" + 0.032*"notch" + 0.032*"nice" + 0.032*"never"
+2024-08-20 12:34:41,380 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.010*"service" + 0.010*"definitely" + 0.010*"fries" + 0.010*"burgers" + 0.010*"back" + 0.010*"including" + 0.010*"given" + 0.010*"hamburger" + 0.010*"impressive" + 0.010*"flavor"
+2024-08-20 12:34:41,380 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.069*"burger" + 0.069*"joint" + 0.047*"much" + 0.047*"service" + 0.024*"standard" + 0.024*"onion" + 0.024*"want" + 0.024*"structured" + 0.024*"overall" + 0.024*"crispy"
+2024-08-20 12:34:41,380 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.010*"service" + 0.010*"burgers" + 0.010*"back" + 0.010*"quick" + 0.010*"burger" + 0.010*"specialty" + 0.010*"including" + 0.010*"hamburger" + 0.010*"impressive" + 0.010*"fresh"
+2024-08-20 12:34:41,380 - gensim.models.ldamodel - INFO - topic diff=0.000430, rho=0.229416
+2024-08-20 12:34:41,381 - gensim.models.ldamodel - INFO - -5.507 per-word bound, 45.5 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,381 - gensim.models.ldamodel - INFO - PROGRESS: pass 18, at document #4/4
+2024-08-20 12:34:41,381 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.010*"service" + 0.010*"burgers" + 0.010*"flavor" + 0.010*"fresh" + 0.010*"given" + 0.010*"hamburger" + 0.010*"felt" + 0.010*"lettuce" + 0.010*"ketchup" + 0.010*"ended"
+2024-08-20 12:34:41,381 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.070*"burger" + 0.029*"flavor" + 0.029*"sauce" + 0.029*"meat" + 0.029*"usually" + 0.015*"impressive" + 0.015*"given" + 0.015*"hamburger" + 0.015*"ketchup" + 0.015*"including"
+2024-08-20 12:34:41,381 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.010*"service" + 0.010*"including" + 0.010*"fresh" + 0.010*"given" + 0.010*"hamburger" + 0.010*"felt" + 0.010*"impressive" + 0.010*"lettuce" + 0.010*"lack" + 0.010*"ended"
+2024-08-20 12:34:41,382 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.010*"service" + 0.010*"burgers" + 0.010*"back" + 0.010*"flavor" + 0.010*"fresh" + 0.010*"given" + 0.010*"hamburger" + 0.010*"felt" + 0.010*"lettuce" + 0.010*"lack"
+2024-08-20 12:34:41,382 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.010*"burgers" + 0.010*"hamburger" + 0.010*"flavor" + 0.010*"fresh" + 0.010*"given" + 0.010*"felt" + 0.010*"impressive" + 0.010*"lettuce" + 0.010*"lack" + 0.010*"ended"
+2024-08-20 12:34:41,382 - gensim.models.ldamodel - INFO - topic diff=0.000324, rho=0.223607
+2024-08-20 12:34:41,382 - gensim.models.ldamodel - INFO - -5.507 per-word bound, 45.5 perplexity estimate based on a held-out corpus of 4 documents with 123 words
+2024-08-20 12:34:41,382 - gensim.models.ldamodel - INFO - PROGRESS: pass 19, at document #4/4
+2024-08-20 12:34:41,382 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.060*"burgers" + 0.032*"service" + 0.032*"fries" + 0.032*"rings" + 0.032*"onion" + 0.032*"top" + 0.032*"never" + 0.032*"phone" + 0.032*"notch" + 0.032*"nice"
+2024-08-20 12:34:41,382 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.070*"burger" + 0.029*"flavor" + 0.029*"sauce" + 0.029*"meat" + 0.029*"usually" + 0.015*"impressive" + 0.015*"given" + 0.015*"hamburger" + 0.015*"ketchup" + 0.015*"including"
+2024-08-20 12:34:41,383 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.010*"burgers" + 0.010*"hamburger" + 0.010*"flavor" + 0.010*"fresh" + 0.010*"given" + 0.010*"felt" + 0.010*"impressive" + 0.010*"lettuce" + 0.010*"lack" + 0.010*"ended"
+2024-08-20 12:34:41,383 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.069*"burger" + 0.069*"joint" + 0.047*"much" + 0.047*"service" + 0.024*"standard" + 0.024*"onion" + 0.024*"want" + 0.024*"structured" + 0.024*"overall" + 0.024*"crispy"
+2024-08-20 12:34:41,383 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.010*"impressive" + 0.010*"including" + 0.010*"fresh" + 0.010*"given" + 0.010*"hamburger" + 0.010*"felt" + 0.010*"lettuce" + 0.010*"lack" + 0.010*"ended" + 0.010*"ketchup"
+2024-08-20 12:34:41,383 - gensim.models.ldamodel - INFO - topic diff=0.000246, rho=0.218218
+2024-08-20 12:34:41,383 - gensim.utils - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=99, num_topics=10, decay=0.5, chunksize=2000> in 0.03s', 'datetime': '2024-08-20T12:34:41.383322', 'gensim': '4.3.3', 'python': '3.11.4 (main, Jun 20 2023, 17:23:00) [Clang 14.0.3 (clang-1403.0.22.14.1)]', 'platform': 'macOS-14.0-arm64-arm-64bit', 'event': 'created'}
+2024-08-20 12:34:41,383 - root - INFO - Getting combined categories from LDA model
+2024-08-20 12:34:41,383 - root - INFO - Combined categories obtained
+2024-08-20 12:34:41,389 - root - INFO - Getting TF-IDF embeddings
+2024-08-20 12:34:41,393 - root - INFO - TF-IDF embeddings obtained
+2024-08-20 12:34:41,393 - root - INFO - Getting TF-IDF embeddings
+2024-08-20 12:34:41,394 - root - INFO - TF-IDF embeddings obtained
+2024-08-20 12:34:41,400 - root - INFO - Calculating cluster centers
+2024-08-20 12:34:41,404 - root - INFO - Cluster centers calculated
+2024-08-20 12:34:41,405 - root - INFO - Assigned labels: {-1: [0]}
+2024-08-20 12:34:41,405 - root - INFO - Label tracker dictionary: ['impressive', 'given', 'hamburger', 'including', 'fresh']
+2024-08-20 12:34:41,407 - root - INFO - Assigned labels in DataFrame: 0    [0]
+1    [0]
+2    [0]
+3    [0]
+Name: assigned_label, dtype: object
+2024-08-20 12:34:41,408 - root - INFO - Named labels in DataFrame: 0    [impressive]
+1    [impressive]
+2    [impressive]
+3    [impressive]
+Name: named_labels, dtype: object
+2024-08-20 12:34:41,436 - root - INFO - Review analysis completed
+2024-08-20 12:34:41,446 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 12:34:41,578 - root - INFO - Analysis and saving to DynamoDB completed.
+2024-08-20 12:34:41,578 - root - INFO - Enqueued YelpConnector
+2024-08-20 12:34:41,578 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 12:34:41] "[35m[1mPOST /reviews HTTP/1.1[0m" 202 -
+2024-08-20 12:36:26,067 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/modules/create_embeddings.py', reloading
+2024-08-20 12:57:11,927 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.68.105:5000
+2024-08-20 12:57:11,928 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-20 12:57:11,929 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 12:57:13,460 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 12:57:13,477 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 12:57:20,053 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 12:57:20,150 - root - INFO - Fetching reviews with connector data: ["Yelp"]
+2024-08-20 12:57:20,157 - root - ERROR - An error occurred while processing user data: Error 61 connecting to localhost:6379. Connection refused.
+2024-08-20 12:57:20,157 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 12:57:20] "[31m[1mPOST /reviews HTTP/1.1[0m" 400 -
+2024-08-20 12:57:29,737 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 12:57:29] "GET / HTTP/1.1" 200 -
+2024-08-20 12:57:35,101 - root - INFO - Fetching reviews with connector data: ["Yelp"]
+2024-08-20 12:57:35,104 - root - ERROR - An error occurred while processing user data: Error 61 connecting to localhost:6379. Connection refused.
+2024-08-20 12:57:35,104 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 12:57:35] "[31m[1mPOST /reviews HTTP/1.1[0m" 400 -
+2024-08-20 12:57:36,269 - root - INFO - Fetching reviews with connector data: ["Yelp"]
+2024-08-20 12:57:36,270 - root - ERROR - An error occurred while processing user data: Error 61 connecting to localhost:6379. Connection refused.
+2024-08-20 12:57:36,271 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 12:57:36] "[31m[1mPOST /reviews HTTP/1.1[0m" 400 -
+2024-08-20 12:57:46,386 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.68.105:5000
+2024-08-20 12:57:46,386 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-20 12:57:46,386 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 12:57:47,950 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 12:57:47,962 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 12:57:51,096 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 12:57:51,254 - root - INFO - Fetching reviews with connector data: ["Yelp"]
+2024-08-20 12:57:51,257 - root - ERROR - An error occurred while processing user data: Error 61 connecting to localhost:6379. Connection refused.
+2024-08-20 12:57:51,258 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 12:57:51] "[31m[1mPOST /reviews HTTP/1.1[0m" 400 -
+2024-08-20 12:58:07,227 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 12:58:07] "GET / HTTP/1.1" 200 -
+2024-08-20 12:58:10,293 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 12:58:10] "GET /status HTTP/1.1" 200 -
+2024-08-20 12:58:48,094 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-20 12:58:48,390 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 12:58:50,751 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 12:58:50,765 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 12:59:01,264 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-20 12:59:01,525 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 12:59:03,711 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 12:59:03,725 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 12:59:04,812 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-20 12:59:05,069 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 12:59:07,424 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 12:59:07,449 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 12:59:07,496 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 12:59:07,650 - root - INFO - Fetching reviews with connector data: ["Yelp"]
+2024-08-20 12:59:07,651 - root - INFO - Starting initial onboarding for config MapAttribute(business_id='pearls-deluxe-burgers-san-francisco-3'), fetching 10 reviews
+2024-08-20 12:59:07,651 - root - INFO - No last sync date provided, fetching all reviews.
+2024-08-20 12:59:07,652 - root - INFO - Fetching reviews for business_id: pearls-deluxe-burgers-san-francisco-3, last_sync: None, n_reviews: 10, start_offset: 0
+2024-08-20 12:59:07,652 - root - INFO - Fetching page 1 (attempt 1/5)
+2024-08-20 12:59:11,943 - root - WARNING - response: <Response [200]>
+2024-08-20 12:59:11,944 - root - INFO - Fetched 4 new reviews, total fetched: 4
+2024-08-20 12:59:11,945 - root - INFO - Fetching page 2 (attempt 1/5)
+2024-08-20 12:59:16,270 - root - WARNING - response: <Response [200]>
+2024-08-20 12:59:16,273 - root - INFO - Fetched 4 new reviews, total fetched: 8
+2024-08-20 12:59:16,274 - root - INFO - Fetching page 3 (attempt 1/5)
+2024-08-20 12:59:21,192 - root - WARNING - response: <Response [200]>
+2024-08-20 12:59:21,194 - root - INFO - Fetched 4 new reviews, total fetched: 12
+2024-08-20 12:59:21,195 - root - INFO - Starting review analysis
+2024-08-20 12:59:21,429 - gensim.corpora.dictionary - INFO - adding document #0 to Dictionary<0 unique tokens: []>
+2024-08-20 12:59:21,430 - gensim.corpora.dictionary - INFO - built Dictionary<213 unique tokens: ['back', 'burgers', 'definitely', 'fries', 'options']...> from 10 documents (total 303 corpus positions)
+2024-08-20 12:59:21,459 - gensim.utils - INFO - Dictionary lifecycle event {'msg': "built Dictionary<213 unique tokens: ['back', 'burgers', 'definitely', 'fries', 'options']...> from 10 documents (total 303 corpus positions)", 'datetime': '2024-08-20T12:59:21.430332', 'gensim': '4.3.3', 'python': '3.11.4 (main, Jun 20 2023, 17:23:00) [Clang 14.0.3 (clang-1403.0.22.14.1)]', 'platform': 'macOS-14.0-arm64-arm-64bit', 'event': 'created'}
+2024-08-20 12:59:21,460 - gensim.models.ldamodel - INFO - using symmetric alpha at 0.1
+2024-08-20 12:59:21,460 - gensim.models.ldamodel - INFO - using symmetric eta at 0.1
+2024-08-20 12:59:21,461 - gensim.models.ldamodel - INFO - using serial LDA version on this node
+2024-08-20 12:59:21,463 - gensim.models.ldamodel - INFO - running online (multi-pass) LDA training, 10 topics, 20 passes over the supplied corpus of 10 documents, updating model once every 10 documents, evaluating perplexity every 10 documents, iterating 150x with a convergence threshold of 0.001000
+2024-08-20 12:59:21,471 - gensim.models.ldamodel - INFO - -13.852 per-word bound, 14782.6 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,471 - gensim.models.ldamodel - INFO - PROGRESS: pass 0, at document #10/10
+2024-08-20 12:59:21,477 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"burger" + 0.005*"options" + 0.005*"service" + 0.005*"phat" + 0.005*"home" + 0.005*"staff" + 0.005*"fries" + 0.005*"approved"
+2024-08-20 12:59:21,477 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.032*"burger" + 0.026*"best" + 0.026*"milkshakes" + 0.021*"friendly" + 0.019*"bbq" + 0.017*"milkshake" + 0.016*"oreo" + 0.015*"fries" + 0.015*"garlic" + 0.014*"pies"
+2024-08-20 12:59:21,477 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.058*"burger" + 0.026*"sauce" + 0.023*"usually" + 0.023*"meat" + 0.023*"flavor" + 0.014*"tables" + 0.014*"dining" + 0.012*"mayo" + 0.012*"sesame" + 0.012*"preferred"
+2024-08-20 12:59:21,477 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"called" + 0.024*"milkshakes" + 0.024*"staff" + 0.024*"online" + 0.024*"never" + 0.024*"phone" + 0.024*"miss" + 0.024*"ordered" + 0.024*"quick"
+2024-08-20 12:59:21,477 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"service" + 0.005*"bob" + 0.005*"rings" + 0.005*"definitely" + 0.005*"home" + 0.005*"fries" + 0.005*"specialty"
+2024-08-20 12:59:21,477 - gensim.models.ldamodel - INFO - topic diff=7.066205, rho=1.000000
+2024-08-20 12:59:21,479 - gensim.models.ldamodel - INFO - -6.134 per-word bound, 70.2 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,479 - gensim.models.ldamodel - INFO - PROGRESS: pass 1, at document #10/10
+2024-08-20 12:59:21,480 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"called" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"online" + 0.024*"never" + 0.024*"phone" + 0.024*"miss" + 0.024*"ordered" + 0.024*"quick"
+2024-08-20 12:59:21,480 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.032*"burger" + 0.023*"best" + 0.023*"milkshakes" + 0.021*"friendly" + 0.021*"bbq" + 0.020*"milkshake" + 0.020*"oreo" + 0.019*"fries" + 0.019*"garlic" + 0.012*"pies"
+2024-08-20 12:59:21,480 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"friendly" + 0.021*"lease" + 0.021*"overall" + 0.021*"vibe" + 0.021*"cooked" + 0.021*"mercy" + 0.021*"prices" + 0.021*"burgers" + 0.021*"come"
+2024-08-20 12:59:21,480 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"burger" + 0.005*"options" + 0.005*"service" + 0.005*"phat" + 0.005*"home" + 0.005*"staff" + 0.005*"fries" + 0.005*"approved"
+2024-08-20 12:59:21,480 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"service" + 0.005*"bob" + 0.005*"rings" + 0.005*"definitely" + 0.005*"home" + 0.005*"fries" + 0.005*"specialty"
+2024-08-20 12:59:21,480 - gensim.models.ldamodel - INFO - topic diff=0.128157, rho=0.577350
+2024-08-20 12:59:21,482 - gensim.models.ldamodel - INFO - -6.013 per-word bound, 64.6 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,482 - gensim.models.ldamodel - INFO - PROGRESS: pass 2, at document #10/10
+2024-08-20 12:59:21,483 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"called" + 0.024*"milkshakes" + 0.024*"online" + 0.024*"never" + 0.024*"phone" + 0.024*"miss" + 0.024*"ordered" + 0.024*"quick"
+2024-08-20 12:59:21,483 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"friendly" + 0.021*"lease" + 0.021*"vibe" + 0.021*"burgers" + 0.021*"overall" + 0.021*"cooked" + 0.021*"mercy" + 0.021*"prices" + 0.021*"come"
+2024-08-20 12:59:21,483 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"fries" + 0.005*"options" + 0.005*"home" + 0.005*"definitely" + 0.005*"service" + 0.005*"onion" + 0.005*"phat"
+2024-08-20 12:59:21,483 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.049*"burger" + 0.047*"meat" + 0.032*"patty" + 0.032*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.017*"onions" + 0.017*"without" + 0.017*"taste" + 0.017*"hungry"
+2024-08-20 12:59:21,483 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"service" + 0.005*"bob" + 0.005*"rings" + 0.005*"definitely" + 0.005*"home" + 0.005*"fries" + 0.005*"specialty"
+2024-08-20 12:59:21,483 - gensim.models.ldamodel - INFO - topic diff=0.081420, rho=0.500000
+2024-08-20 12:59:21,484 - gensim.models.ldamodel - INFO - -5.970 per-word bound, 62.7 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,484 - gensim.models.ldamodel - INFO - PROGRESS: pass 3, at document #10/10
+2024-08-20 12:59:21,485 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"called" + 0.024*"online" + 0.024*"never" + 0.024*"phone" + 0.024*"miss" + 0.024*"ordered" + 0.024*"quick"
+2024-08-20 12:59:21,485 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.049*"burger" + 0.048*"meat" + 0.033*"patty" + 0.032*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.017*"onions" + 0.017*"without" + 0.017*"taste" + 0.017*"hungry"
+2024-08-20 12:59:21,485 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"fries" + 0.005*"options" + 0.005*"home" + 0.005*"definitely" + 0.005*"service" + 0.005*"onion" + 0.005*"phat"
+2024-08-20 12:59:21,485 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"joint" + 0.055*"burger" + 0.037*"service" + 0.037*"much" + 0.020*"phat" + 0.020*"bob" + 0.020*"fries" + 0.020*"ppl" + 0.020*"mean" + 0.020*"got"
+2024-08-20 12:59:21,486 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"friendly" + 0.021*"burgers" + 0.021*"vibe" + 0.021*"home" + 0.021*"lease" + 0.021*"overall" + 0.021*"cooked" + 0.021*"mercy" + 0.021*"prices"
+2024-08-20 12:59:21,486 - gensim.models.ldamodel - INFO - topic diff=0.054047, rho=0.447214
+2024-08-20 12:59:21,487 - gensim.models.ldamodel - INFO - -5.953 per-word bound, 61.9 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,487 - gensim.models.ldamodel - INFO - PROGRESS: pass 4, at document #10/10
+2024-08-20 12:59:21,488 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"fries" + 0.005*"options" + 0.005*"home" + 0.005*"definitely" + 0.005*"service" + 0.005*"onion" + 0.005*"phat"
+2024-08-20 12:59:21,488 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"friendly" + 0.021*"vibe" + 0.021*"lease" + 0.021*"overall" + 0.021*"cooked" + 0.021*"mercy" + 0.021*"tables"
+2024-08-20 12:59:21,489 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 12:59:21,489 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.049*"burger" + 0.049*"meat" + 0.033*"patty" + 0.033*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.017*"onions" + 0.017*"without" + 0.017*"taste" + 0.017*"hungry"
+2024-08-20 12:59:21,489 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"burger" + 0.005*"options" + 0.005*"service" + 0.005*"phat" + 0.005*"home" + 0.005*"staff" + 0.005*"fries" + 0.005*"approved"
+2024-08-20 12:59:21,489 - gensim.models.ldamodel - INFO - topic diff=0.035468, rho=0.408248
+2024-08-20 12:59:21,490 - gensim.models.ldamodel - INFO - -5.946 per-word bound, 61.6 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,490 - gensim.models.ldamodel - INFO - PROGRESS: pass 5, at document #10/10
+2024-08-20 12:59:21,491 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"burger" + 0.005*"options" + 0.005*"service" + 0.005*"phat" + 0.005*"home" + 0.005*"staff" + 0.005*"fries" + 0.005*"approved"
+2024-08-20 12:59:21,491 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 12:59:21,491 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"called" + 0.024*"never" + 0.024*"online" + 0.024*"miss" + 0.024*"phone" + 0.024*"ordered" + 0.024*"clear"
+2024-08-20 12:59:21,492 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.050*"burger" + 0.049*"meat" + 0.033*"patty" + 0.033*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.017*"onions" + 0.017*"without" + 0.017*"taste" + 0.017*"hungry"
+2024-08-20 12:59:21,492 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"mayo" + 0.013*"add" + 0.013*"preferred"
+2024-08-20 12:59:21,492 - gensim.models.ldamodel - INFO - topic diff=0.023059, rho=0.377964
+2024-08-20 12:59:21,493 - gensim.models.ldamodel - INFO - -5.943 per-word bound, 61.5 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,494 - gensim.models.ldamodel - INFO - PROGRESS: pass 6, at document #10/10
+2024-08-20 12:59:21,494 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.050*"burger" + 0.049*"meat" + 0.033*"patty" + 0.033*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.018*"onions" + 0.018*"without" + 0.018*"taste" + 0.018*"hungry"
+2024-08-20 12:59:21,494 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"burger" + 0.055*"joint" + 0.037*"service" + 0.037*"much" + 0.020*"phat" + 0.020*"bob" + 0.020*"fries" + 0.020*"onion" + 0.020*"ppl" + 0.020*"mean"
+2024-08-20 12:59:21,495 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 12:59:21,495 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"friendly" + 0.021*"vibe" + 0.021*"tables" + 0.021*"lease" + 0.021*"cooked" + 0.021*"overall" + 0.021*"prices"
+2024-08-20 12:59:21,495 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"milkshakes" + 0.005*"burger" + 0.005*"burgers" + 0.005*"fries" + 0.005*"options" + 0.005*"home" + 0.005*"service" + 0.005*"definitely" + 0.005*"onion" + 0.005*"bob"
+2024-08-20 12:59:21,495 - gensim.models.ldamodel - INFO - topic diff=0.014994, rho=0.353553
+2024-08-20 12:59:21,496 - gensim.models.ldamodel - INFO - -5.942 per-word bound, 61.5 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,496 - gensim.models.ldamodel - INFO - PROGRESS: pass 7, at document #10/10
+2024-08-20 12:59:21,497 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"called" + 0.024*"online" + 0.024*"never" + 0.024*"phone" + 0.024*"miss" + 0.024*"ordered" + 0.024*"notch"
+2024-08-20 12:59:21,497 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"service" + 0.005*"bob" + 0.005*"home" + 0.005*"rings" + 0.005*"fries" + 0.005*"definitely" + 0.005*"back"
+2024-08-20 12:59:21,497 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"burger" + 0.055*"joint" + 0.037*"service" + 0.037*"much" + 0.020*"phat" + 0.020*"bob" + 0.020*"fries" + 0.020*"onion" + 0.020*"got" + 0.020*"ppl"
+2024-08-20 12:59:21,497 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"burger" + 0.005*"phat" + 0.005*"service" + 0.005*"options" + 0.005*"fries" + 0.005*"staff" + 0.005*"home" + 0.005*"rings"
+2024-08-20 12:59:21,497 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 12:59:21,498 - gensim.models.ldamodel - INFO - topic diff=0.009826, rho=0.333333
+2024-08-20 12:59:21,499 - gensim.models.ldamodel - INFO - -5.941 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,499 - gensim.models.ldamodel - INFO - PROGRESS: pass 8, at document #10/10
+2024-08-20 12:59:21,499 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"fresh" + 0.013*"mayo" + 0.013*"pearl"
+2024-08-20 12:59:21,499 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"fries" + 0.005*"options" + 0.005*"home" + 0.005*"definitely" + 0.005*"service" + 0.005*"onion" + 0.005*"staff"
+2024-08-20 12:59:21,500 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 12:59:21,500 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"called" + 0.024*"phone" + 0.024*"online" + 0.024*"never" + 0.024*"miss" + 0.024*"ordered" + 0.024*"notch"
+2024-08-20 12:59:21,500 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"phat" + 0.005*"options" + 0.005*"burger" + 0.005*"service" + 0.005*"approved" + 0.005*"staff" + 0.005*"home" + 0.005*"fries"
+2024-08-20 12:59:21,500 - gensim.models.ldamodel - INFO - topic diff=0.006519, rho=0.316228
+2024-08-20 12:59:21,501 - gensim.models.ldamodel - INFO - -5.941 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,501 - gensim.models.ldamodel - INFO - PROGRESS: pass 9, at document #10/10
+2024-08-20 12:59:21,501 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"fries" + 0.005*"home" + 0.005*"definitely" + 0.005*"phat" + 0.005*"service" + 0.005*"bob" + 0.005*"options"
+2024-08-20 12:59:21,501 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"burger" + 0.055*"joint" + 0.037*"service" + 0.037*"much" + 0.020*"phat" + 0.020*"bob" + 0.020*"fries" + 0.020*"onion" + 0.020*"rings" + 0.020*"need"
+2024-08-20 12:59:21,502 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.050*"burger" + 0.050*"meat" + 0.034*"patty" + 0.034*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.018*"onions" + 0.018*"without" + 0.018*"taste" + 0.018*"hungry"
+2024-08-20 12:59:21,502 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 12:59:21,502 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"burger" + 0.005*"options" + 0.005*"rings" + 0.005*"service" + 0.005*"home" + 0.005*"phat" + 0.005*"onion" + 0.005*"staff"
+2024-08-20 12:59:21,502 - gensim.models.ldamodel - INFO - topic diff=0.004389, rho=0.301511
+2024-08-20 12:59:21,504 - gensim.models.ldamodel - INFO - -5.941 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,504 - gensim.models.ldamodel - INFO - PROGRESS: pass 10, at document #10/10
+2024-08-20 12:59:21,505 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.032*"burger" + 0.022*"best" + 0.022*"milkshakes" + 0.022*"friendly" + 0.022*"bbq" + 0.022*"milkshake" + 0.022*"oreo" + 0.022*"fries" + 0.022*"garlic" + 0.011*"makes"
+2024-08-20 12:59:21,505 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"burger" + 0.055*"joint" + 0.037*"service" + 0.037*"much" + 0.020*"phat" + 0.020*"bob" + 0.020*"fries" + 0.020*"onion" + 0.020*"rings" + 0.020*"aight"
+2024-08-20 12:59:21,505 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"tables" + 0.021*"friendly" + 0.021*"vibe" + 0.021*"overall" + 0.021*"clean" + 0.021*"pearls" + 0.021*"mercy"
+2024-08-20 12:59:21,505 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 12:59:21,505 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"milkshakes" + 0.005*"burger" + 0.005*"burgers" + 0.005*"service" + 0.005*"onion" + 0.005*"home" + 0.005*"options" + 0.005*"definitely" + 0.005*"fries" + 0.005*"phat"
+2024-08-20 12:59:21,505 - gensim.models.ldamodel - INFO - topic diff=0.002999, rho=0.288675
+2024-08-20 12:59:21,506 - gensim.models.ldamodel - INFO - -5.941 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,506 - gensim.models.ldamodel - INFO - PROGRESS: pass 11, at document #10/10
+2024-08-20 12:59:21,507 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"fries" + 0.005*"home" + 0.005*"onion" + 0.005*"phat" + 0.005*"service" + 0.005*"options" + 0.005*"definitely"
+2024-08-20 12:59:21,507 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"burger" + 0.055*"joint" + 0.037*"service" + 0.037*"much" + 0.020*"bob" + 0.020*"phat" + 0.020*"fries" + 0.020*"onion" + 0.020*"rings" + 0.020*"need"
+2024-08-20 12:59:21,507 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"fresh" + 0.013*"pearl" + 0.013*"top"
+2024-08-20 12:59:21,507 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"tables" + 0.021*"friendly" + 0.021*"vibe" + 0.021*"overall" + 0.021*"clean" + 0.021*"mercy" + 0.021*"prices"
+2024-08-20 12:59:21,507 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.050*"burger" + 0.050*"meat" + 0.034*"patty" + 0.034*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.018*"onions" + 0.018*"without" + 0.018*"taste" + 0.018*"hungry"
+2024-08-20 12:59:21,507 - gensim.models.ldamodel - INFO - topic diff=0.002081, rho=0.277350
+2024-08-20 12:59:21,508 - gensim.models.ldamodel - INFO - -5.940 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,508 - gensim.models.ldamodel - INFO - PROGRESS: pass 12, at document #10/10
+2024-08-20 12:59:21,509 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"fries" + 0.005*"milkshakes" + 0.005*"phat" + 0.005*"onion" + 0.005*"friendly" + 0.005*"salted" + 0.005*"meat" + 0.005*"rings"
+2024-08-20 12:59:21,509 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.032*"burger" + 0.022*"best" + 0.022*"milkshakes" + 0.022*"friendly" + 0.022*"bbq" + 0.022*"milkshake" + 0.022*"oreo" + 0.022*"fries" + 0.022*"garlic" + 0.011*"also"
+2024-08-20 12:59:21,509 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"friendly" + 0.021*"tables" + 0.021*"vibe" + 0.021*"clean" + 0.021*"overall" + 0.021*"mercy" + 0.021*"started"
+2024-08-20 12:59:21,509 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"fresh" + 0.013*"pearl" + 0.013*"top"
+2024-08-20 12:59:21,509 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.050*"burger" + 0.050*"meat" + 0.034*"patty" + 0.034*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.018*"onions" + 0.018*"without" + 0.018*"taste" + 0.018*"hungry"
+2024-08-20 12:59:21,509 - gensim.models.ldamodel - INFO - topic diff=0.001464, rho=0.267261
+2024-08-20 12:59:21,511 - gensim.models.ldamodel - INFO - -5.940 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,511 - gensim.models.ldamodel - INFO - PROGRESS: pass 13, at document #10/10
+2024-08-20 12:59:21,512 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.032*"burger" + 0.022*"best" + 0.022*"milkshakes" + 0.022*"friendly" + 0.022*"bbq" + 0.022*"milkshake" + 0.022*"oreo" + 0.022*"fries" + 0.022*"garlic" + 0.011*"also"
+2024-08-20 12:59:21,512 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"burger" + 0.005*"staff" + 0.005*"approved" + 0.005*"home" + 0.005*"milkshakes" + 0.005*"phat" + 0.005*"service" + 0.005*"fries" + 0.005*"options"
+2024-08-20 12:59:21,512 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"pearl" + 0.013*"fresh" + 0.013*"top"
+2024-08-20 12:59:21,512 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"online" + 0.024*"miss" + 0.024*"clear" + 0.024*"called" + 0.024*"never" + 0.024*"notch" + 0.024*"phone"
+2024-08-20 12:59:21,512 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"burgers" + 0.005*"home" + 0.005*"burger" + 0.005*"service" + 0.005*"milkshakes" + 0.005*"definitely" + 0.005*"fries" + 0.005*"options" + 0.005*"oreo" + 0.005*"local"
+2024-08-20 12:59:21,512 - gensim.models.ldamodel - INFO - topic diff=0.001044, rho=0.258199
+2024-08-20 12:59:21,513 - gensim.models.ldamodel - INFO - -5.940 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,513 - gensim.models.ldamodel - INFO - PROGRESS: pass 14, at document #10/10
+2024-08-20 12:59:21,514 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"many" + 0.005*"local" + 0.005*"new" + 0.005*"milkshake" + 0.005*"places" + 0.005*"lots" + 0.005*"generous"
+2024-08-20 12:59:21,514 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"friendly" + 0.021*"tables" + 0.021*"vibe" + 0.021*"clean" + 0.021*"th" + 0.021*"holy" + 0.021*"mercy"
+2024-08-20 12:59:21,514 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.032*"burger" + 0.022*"best" + 0.022*"milkshakes" + 0.022*"friendly" + 0.022*"bbq" + 0.022*"milkshake" + 0.022*"oreo" + 0.022*"fries" + 0.022*"garlic" + 0.011*"also"
+2024-08-20 12:59:21,514 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"fresh" + 0.013*"pearl" + 0.013*"top"
+2024-08-20 12:59:21,515 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"online" + 0.024*"miss" + 0.024*"clear" + 0.024*"called" + 0.024*"never" + 0.024*"notch" + 0.024*"phone"
+2024-08-20 12:59:21,515 - gensim.models.ldamodel - INFO - topic diff=0.000754, rho=0.250000
+2024-08-20 12:59:21,516 - gensim.models.ldamodel - INFO - -5.940 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,516 - gensim.models.ldamodel - INFO - PROGRESS: pass 15, at document #10/10
+2024-08-20 12:59:21,517 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"lots" + 0.005*"local" + 0.005*"new" + 0.005*"milkshake" + 0.005*"many" + 0.005*"places" + 0.005*"lot" + 0.005*"generous" + 0.005*"highly" + 0.005*"portions"
+2024-08-20 12:59:21,517 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 12:59:21,517 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"burger" + 0.055*"joint" + 0.037*"service" + 0.037*"much" + 0.020*"bob" + 0.020*"phat" + 0.020*"fries" + 0.020*"rings" + 0.020*"onion" + 0.020*"need"
+2024-08-20 12:59:21,517 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"friendly" + 0.021*"tables" + 0.021*"vibe" + 0.021*"clean" + 0.021*"overall" + 0.021*"prices" + 0.021*"pearls"
+2024-08-20 12:59:21,517 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.032*"burger" + 0.022*"best" + 0.022*"milkshakes" + 0.022*"friendly" + 0.022*"bbq" + 0.022*"milkshake" + 0.022*"oreo" + 0.022*"fries" + 0.022*"garlic" + 0.011*"also"
+2024-08-20 12:59:21,517 - gensim.models.ldamodel - INFO - topic diff=0.000551, rho=0.242536
+2024-08-20 12:59:21,518 - gensim.models.ldamodel - INFO - -5.940 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,518 - gensim.models.ldamodel - INFO - PROGRESS: pass 16, at document #10/10
+2024-08-20 12:59:21,519 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"lots" + 0.005*"local" + 0.005*"new" + 0.005*"milkshake" + 0.005*"many" + 0.005*"places" + 0.005*"lot" + 0.005*"generous" + 0.005*"highly" + 0.005*"portions"
+2024-08-20 12:59:21,519 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"question" + 0.024*"phone" + 0.024*"online" + 0.024*"notch" + 0.024*"nice" + 0.024*"never" + 0.024*"miss"
+2024-08-20 12:59:21,519 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"tables" + 0.021*"friendly" + 0.021*"vibe" + 0.021*"overall" + 0.021*"clean" + 0.021*"prices" + 0.021*"perfection"
+2024-08-20 12:59:21,519 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 12:59:21,519 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"burger" + 0.055*"joint" + 0.037*"service" + 0.037*"much" + 0.020*"bob" + 0.020*"phat" + 0.020*"fries" + 0.020*"rings" + 0.020*"onion" + 0.020*"need"
+2024-08-20 12:59:21,519 - gensim.models.ldamodel - INFO - topic diff=0.000406, rho=0.235702
+2024-08-20 12:59:21,520 - gensim.models.ldamodel - INFO - -5.940 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,520 - gensim.models.ldamodel - INFO - PROGRESS: pass 17, at document #10/10
+2024-08-20 12:59:21,521 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"pearl" + 0.013*"fresh" + 0.013*"top"
+2024-08-20 12:59:21,521 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"lots" + 0.005*"local" + 0.005*"new" + 0.005*"milkshake" + 0.005*"many" + 0.005*"places" + 0.005*"lot" + 0.005*"generous" + 0.005*"highly" + 0.005*"portions"
+2024-08-20 12:59:21,522 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.005*"lots" + 0.005*"local" + 0.005*"new" + 0.005*"milkshake" + 0.005*"many" + 0.005*"places" + 0.005*"lot" + 0.005*"generous" + 0.005*"highly" + 0.005*"portions"
+2024-08-20 12:59:21,522 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.050*"burger" + 0.050*"meat" + 0.034*"patty" + 0.034*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.018*"onions" + 0.018*"without" + 0.018*"taste" + 0.018*"hungry"
+2024-08-20 12:59:21,522 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 12:59:21,522 - gensim.models.ldamodel - INFO - topic diff=0.000303, rho=0.229416
+2024-08-20 12:59:21,523 - gensim.models.ldamodel - INFO - -5.940 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,523 - gensim.models.ldamodel - INFO - PROGRESS: pass 18, at document #10/10
+2024-08-20 12:59:21,523 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"burger" + 0.055*"joint" + 0.037*"service" + 0.037*"much" + 0.020*"bob" + 0.020*"phat" + 0.020*"fries" + 0.020*"onion" + 0.020*"rings" + 0.020*"needed"
+2024-08-20 12:59:21,524 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"tables" + 0.021*"friendly" + 0.021*"vibe" + 0.021*"clean" + 0.021*"business" + 0.021*"pearls" + 0.021*"lease"
+2024-08-20 12:59:21,524 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"lots" + 0.005*"local" + 0.005*"new" + 0.005*"milkshake" + 0.005*"many" + 0.005*"places" + 0.005*"lot" + 0.005*"generous" + 0.005*"highly" + 0.005*"portions"
+2024-08-20 12:59:21,524 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"pearl" + 0.013*"fresh" + 0.013*"top"
+2024-08-20 12:59:21,524 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"home" + 0.020*"bbq" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 12:59:21,524 - gensim.models.ldamodel - INFO - topic diff=0.000228, rho=0.223607
+2024-08-20 12:59:21,526 - gensim.models.ldamodel - INFO - -5.940 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 12:59:21,526 - gensim.models.ldamodel - INFO - PROGRESS: pass 19, at document #10/10
+2024-08-20 12:59:21,526 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"online" + 0.024*"miss" + 0.024*"clear" + 0.024*"called" + 0.024*"nice" + 0.024*"notch" + 0.024*"question"
+2024-08-20 12:59:21,526 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"tables" + 0.021*"friendly" + 0.021*"vibe" + 0.021*"clean" + 0.021*"overall" + 0.021*"holy" + 0.021*"pearls"
+2024-08-20 12:59:21,527 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.032*"burger" + 0.022*"best" + 0.022*"milkshakes" + 0.022*"friendly" + 0.022*"bbq" + 0.022*"milkshake" + 0.022*"oreo" + 0.022*"fries" + 0.022*"garlic" + 0.011*"super"
+2024-08-20 12:59:21,527 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"lots" + 0.005*"local" + 0.005*"new" + 0.005*"milkshake" + 0.005*"many" + 0.005*"places" + 0.005*"lot" + 0.005*"generous" + 0.005*"highly" + 0.005*"portions"
+2024-08-20 12:59:21,527 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"fresh" + 0.013*"pearl" + 0.013*"top"
+2024-08-20 12:59:21,527 - gensim.models.ldamodel - INFO - topic diff=0.000173, rho=0.218218
+2024-08-20 12:59:21,527 - gensim.utils - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=213, num_topics=10, decay=0.5, chunksize=2000> in 0.06s', 'datetime': '2024-08-20T12:59:21.527355', 'gensim': '4.3.3', 'python': '3.11.4 (main, Jun 20 2023, 17:23:00) [Clang 14.0.3 (clang-1403.0.22.14.1)]', 'platform': 'macOS-14.0-arm64-arm-64bit', 'event': 'created'}
+2024-08-20 12:59:21,591 - root - INFO - Review analysis completed
+2024-08-20 12:59:21,600 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 12:59:21,816 - root - INFO - Analysis and saving to DynamoDB completed.
+2024-08-20 12:59:21,816 - root - INFO - Initial onboarding completed for YelpConnector
+2024-08-20 12:59:21,817 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 12:59:21] "[35m[1mPOST /reviews HTTP/1.1[0m" 202 -
+2024-08-20 13:00:42,904 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/models/models.py', reloading
+2024-08-20 13:00:43,331 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 13:00:45,626 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 13:00:45,649 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 13:02:00,847 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 13:02:01,014 - root - INFO - Fetching reviews with connector data: ["Yelp"]
+2024-08-20 13:02:01,022 - root - INFO - Starting initial onboarding for config MapAttribute(business_id='pearls-deluxe-burgers-san-francisco-3'), fetching 10 reviews
+2024-08-20 13:02:01,025 - root - INFO - No last sync date provided, fetching all reviews.
+2024-08-20 13:02:01,026 - root - INFO - Fetching reviews for business_id: pearls-deluxe-burgers-san-francisco-3, last_sync: None, n_reviews: 10, start_offset: 0
+2024-08-20 13:02:01,029 - root - INFO - Fetching page 1 (attempt 1/5)
+2024-08-20 13:02:05,103 - root - WARNING - response: <Response [200]>
+2024-08-20 13:02:05,104 - root - INFO - Fetched 4 new reviews, total fetched: 4
+2024-08-20 13:02:05,108 - root - INFO - Fetching page 2 (attempt 1/5)
+2024-08-20 13:02:09,641 - root - WARNING - response: <Response [200]>
+2024-08-20 13:02:09,644 - root - INFO - Fetched 4 new reviews, total fetched: 8
+2024-08-20 13:02:09,645 - root - INFO - Fetching page 3 (attempt 1/5)
+2024-08-20 13:02:13,746 - root - WARNING - response: <Response [200]>
+2024-08-20 13:02:13,748 - root - INFO - Fetched 4 new reviews, total fetched: 12
+2024-08-20 13:02:13,750 - root - INFO - Starting review analysis
+2024-08-20 13:02:14,038 - gensim.corpora.dictionary - INFO - adding document #0 to Dictionary<0 unique tokens: []>
+2024-08-20 13:02:14,038 - gensim.corpora.dictionary - INFO - built Dictionary<213 unique tokens: ['back', 'burgers', 'definitely', 'fries', 'options']...> from 10 documents (total 303 corpus positions)
+2024-08-20 13:02:14,065 - gensim.utils - INFO - Dictionary lifecycle event {'msg': "built Dictionary<213 unique tokens: ['back', 'burgers', 'definitely', 'fries', 'options']...> from 10 documents (total 303 corpus positions)", 'datetime': '2024-08-20T13:02:14.038878', 'gensim': '4.3.3', 'python': '3.11.4 (main, Jun 20 2023, 17:23:00) [Clang 14.0.3 (clang-1403.0.22.14.1)]', 'platform': 'macOS-14.0-arm64-arm-64bit', 'event': 'created'}
+2024-08-20 13:02:14,066 - gensim.models.ldamodel - INFO - using symmetric alpha at 0.1
+2024-08-20 13:02:14,066 - gensim.models.ldamodel - INFO - using symmetric eta at 0.1
+2024-08-20 13:02:14,066 - gensim.models.ldamodel - INFO - using serial LDA version on this node
+2024-08-20 13:02:14,067 - gensim.models.ldamodel - INFO - running online (multi-pass) LDA training, 10 topics, 20 passes over the supplied corpus of 10 documents, updating model once every 10 documents, evaluating perplexity every 10 documents, iterating 150x with a convergence threshold of 0.001000
+2024-08-20 13:02:14,071 - gensim.models.ldamodel - INFO - -13.852 per-word bound, 14782.6 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,071 - gensim.models.ldamodel - INFO - PROGRESS: pass 0, at document #10/10
+2024-08-20 13:02:14,076 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"burger" + 0.005*"options" + 0.005*"service" + 0.005*"phat" + 0.005*"home" + 0.005*"staff" + 0.005*"fries" + 0.005*"approved"
+2024-08-20 13:02:14,076 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.032*"burger" + 0.026*"best" + 0.026*"milkshakes" + 0.021*"friendly" + 0.019*"bbq" + 0.017*"milkshake" + 0.016*"oreo" + 0.015*"fries" + 0.015*"garlic" + 0.014*"pies"
+2024-08-20 13:02:14,076 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.058*"burger" + 0.026*"sauce" + 0.023*"usually" + 0.023*"meat" + 0.023*"flavor" + 0.014*"tables" + 0.014*"dining" + 0.012*"mayo" + 0.012*"sesame" + 0.012*"preferred"
+2024-08-20 13:02:14,076 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"called" + 0.024*"milkshakes" + 0.024*"staff" + 0.024*"online" + 0.024*"never" + 0.024*"phone" + 0.024*"miss" + 0.024*"ordered" + 0.024*"quick"
+2024-08-20 13:02:14,076 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"service" + 0.005*"bob" + 0.005*"rings" + 0.005*"definitely" + 0.005*"home" + 0.005*"fries" + 0.005*"specialty"
+2024-08-20 13:02:14,077 - gensim.models.ldamodel - INFO - topic diff=7.066205, rho=1.000000
+2024-08-20 13:02:14,078 - gensim.models.ldamodel - INFO - -6.134 per-word bound, 70.2 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,078 - gensim.models.ldamodel - INFO - PROGRESS: pass 1, at document #10/10
+2024-08-20 13:02:14,079 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"called" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"online" + 0.024*"never" + 0.024*"phone" + 0.024*"miss" + 0.024*"ordered" + 0.024*"quick"
+2024-08-20 13:02:14,079 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.032*"burger" + 0.023*"best" + 0.023*"milkshakes" + 0.021*"friendly" + 0.021*"bbq" + 0.020*"milkshake" + 0.020*"oreo" + 0.019*"fries" + 0.019*"garlic" + 0.012*"pies"
+2024-08-20 13:02:14,079 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"friendly" + 0.021*"lease" + 0.021*"overall" + 0.021*"vibe" + 0.021*"cooked" + 0.021*"mercy" + 0.021*"prices" + 0.021*"burgers" + 0.021*"come"
+2024-08-20 13:02:14,079 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"burger" + 0.005*"options" + 0.005*"service" + 0.005*"phat" + 0.005*"home" + 0.005*"staff" + 0.005*"fries" + 0.005*"approved"
+2024-08-20 13:02:14,079 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"service" + 0.005*"bob" + 0.005*"rings" + 0.005*"definitely" + 0.005*"home" + 0.005*"fries" + 0.005*"specialty"
+2024-08-20 13:02:14,079 - gensim.models.ldamodel - INFO - topic diff=0.128157, rho=0.577350
+2024-08-20 13:02:14,080 - gensim.models.ldamodel - INFO - -6.013 per-word bound, 64.6 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,080 - gensim.models.ldamodel - INFO - PROGRESS: pass 2, at document #10/10
+2024-08-20 13:02:14,081 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"called" + 0.024*"milkshakes" + 0.024*"online" + 0.024*"never" + 0.024*"phone" + 0.024*"miss" + 0.024*"ordered" + 0.024*"quick"
+2024-08-20 13:02:14,081 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"friendly" + 0.021*"lease" + 0.021*"vibe" + 0.021*"burgers" + 0.021*"overall" + 0.021*"cooked" + 0.021*"mercy" + 0.021*"prices" + 0.021*"come"
+2024-08-20 13:02:14,081 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"fries" + 0.005*"options" + 0.005*"home" + 0.005*"definitely" + 0.005*"service" + 0.005*"onion" + 0.005*"phat"
+2024-08-20 13:02:14,081 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.049*"burger" + 0.047*"meat" + 0.032*"patty" + 0.032*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.017*"onions" + 0.017*"without" + 0.017*"taste" + 0.017*"hungry"
+2024-08-20 13:02:14,081 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"service" + 0.005*"bob" + 0.005*"rings" + 0.005*"definitely" + 0.005*"home" + 0.005*"fries" + 0.005*"specialty"
+2024-08-20 13:02:14,082 - gensim.models.ldamodel - INFO - topic diff=0.081420, rho=0.500000
+2024-08-20 13:02:14,083 - gensim.models.ldamodel - INFO - -5.970 per-word bound, 62.7 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,083 - gensim.models.ldamodel - INFO - PROGRESS: pass 3, at document #10/10
+2024-08-20 13:02:14,084 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"called" + 0.024*"online" + 0.024*"never" + 0.024*"phone" + 0.024*"miss" + 0.024*"ordered" + 0.024*"quick"
+2024-08-20 13:02:14,084 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.049*"burger" + 0.048*"meat" + 0.033*"patty" + 0.032*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.017*"onions" + 0.017*"without" + 0.017*"taste" + 0.017*"hungry"
+2024-08-20 13:02:14,084 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"fries" + 0.005*"options" + 0.005*"home" + 0.005*"definitely" + 0.005*"service" + 0.005*"onion" + 0.005*"phat"
+2024-08-20 13:02:14,084 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"joint" + 0.055*"burger" + 0.037*"service" + 0.037*"much" + 0.020*"phat" + 0.020*"bob" + 0.020*"fries" + 0.020*"ppl" + 0.020*"mean" + 0.020*"got"
+2024-08-20 13:02:14,084 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"friendly" + 0.021*"burgers" + 0.021*"vibe" + 0.021*"home" + 0.021*"lease" + 0.021*"overall" + 0.021*"cooked" + 0.021*"mercy" + 0.021*"prices"
+2024-08-20 13:02:14,084 - gensim.models.ldamodel - INFO - topic diff=0.054047, rho=0.447214
+2024-08-20 13:02:14,085 - gensim.models.ldamodel - INFO - -5.953 per-word bound, 61.9 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,085 - gensim.models.ldamodel - INFO - PROGRESS: pass 4, at document #10/10
+2024-08-20 13:02:14,086 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"fries" + 0.005*"options" + 0.005*"home" + 0.005*"definitely" + 0.005*"service" + 0.005*"onion" + 0.005*"phat"
+2024-08-20 13:02:14,086 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"friendly" + 0.021*"vibe" + 0.021*"lease" + 0.021*"overall" + 0.021*"cooked" + 0.021*"mercy" + 0.021*"tables"
+2024-08-20 13:02:14,087 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 13:02:14,087 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.049*"burger" + 0.049*"meat" + 0.033*"patty" + 0.033*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.017*"onions" + 0.017*"without" + 0.017*"taste" + 0.017*"hungry"
+2024-08-20 13:02:14,087 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"burger" + 0.005*"options" + 0.005*"service" + 0.005*"phat" + 0.005*"home" + 0.005*"staff" + 0.005*"fries" + 0.005*"approved"
+2024-08-20 13:02:14,087 - gensim.models.ldamodel - INFO - topic diff=0.035468, rho=0.408248
+2024-08-20 13:02:14,088 - gensim.models.ldamodel - INFO - -5.946 per-word bound, 61.6 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,088 - gensim.models.ldamodel - INFO - PROGRESS: pass 5, at document #10/10
+2024-08-20 13:02:14,089 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"burger" + 0.005*"options" + 0.005*"service" + 0.005*"phat" + 0.005*"home" + 0.005*"staff" + 0.005*"fries" + 0.005*"approved"
+2024-08-20 13:02:14,089 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 13:02:14,089 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"called" + 0.024*"never" + 0.024*"online" + 0.024*"miss" + 0.024*"phone" + 0.024*"ordered" + 0.024*"clear"
+2024-08-20 13:02:14,089 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.050*"burger" + 0.049*"meat" + 0.033*"patty" + 0.033*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.017*"onions" + 0.017*"without" + 0.017*"taste" + 0.017*"hungry"
+2024-08-20 13:02:14,090 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"mayo" + 0.013*"add" + 0.013*"preferred"
+2024-08-20 13:02:14,090 - gensim.models.ldamodel - INFO - topic diff=0.023059, rho=0.377964
+2024-08-20 13:02:14,092 - gensim.models.ldamodel - INFO - -5.943 per-word bound, 61.5 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,092 - gensim.models.ldamodel - INFO - PROGRESS: pass 6, at document #10/10
+2024-08-20 13:02:14,092 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.050*"burger" + 0.049*"meat" + 0.033*"patty" + 0.033*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.018*"onions" + 0.018*"without" + 0.018*"taste" + 0.018*"hungry"
+2024-08-20 13:02:14,092 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"burger" + 0.055*"joint" + 0.037*"service" + 0.037*"much" + 0.020*"phat" + 0.020*"bob" + 0.020*"fries" + 0.020*"onion" + 0.020*"ppl" + 0.020*"mean"
+2024-08-20 13:02:14,093 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 13:02:14,093 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"friendly" + 0.021*"vibe" + 0.021*"tables" + 0.021*"lease" + 0.021*"cooked" + 0.021*"overall" + 0.021*"prices"
+2024-08-20 13:02:14,093 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"milkshakes" + 0.005*"burger" + 0.005*"burgers" + 0.005*"fries" + 0.005*"options" + 0.005*"home" + 0.005*"service" + 0.005*"definitely" + 0.005*"onion" + 0.005*"bob"
+2024-08-20 13:02:14,093 - gensim.models.ldamodel - INFO - topic diff=0.014994, rho=0.353553
+2024-08-20 13:02:14,094 - gensim.models.ldamodel - INFO - -5.942 per-word bound, 61.5 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,094 - gensim.models.ldamodel - INFO - PROGRESS: pass 7, at document #10/10
+2024-08-20 13:02:14,094 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"called" + 0.024*"online" + 0.024*"never" + 0.024*"phone" + 0.024*"miss" + 0.024*"ordered" + 0.024*"notch"
+2024-08-20 13:02:14,094 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"service" + 0.005*"bob" + 0.005*"home" + 0.005*"rings" + 0.005*"fries" + 0.005*"definitely" + 0.005*"back"
+2024-08-20 13:02:14,095 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"burger" + 0.055*"joint" + 0.037*"service" + 0.037*"much" + 0.020*"phat" + 0.020*"bob" + 0.020*"fries" + 0.020*"onion" + 0.020*"got" + 0.020*"ppl"
+2024-08-20 13:02:14,095 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"burger" + 0.005*"phat" + 0.005*"service" + 0.005*"options" + 0.005*"fries" + 0.005*"staff" + 0.005*"home" + 0.005*"rings"
+2024-08-20 13:02:14,095 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 13:02:14,095 - gensim.models.ldamodel - INFO - topic diff=0.009826, rho=0.333333
+2024-08-20 13:02:14,096 - gensim.models.ldamodel - INFO - -5.941 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,096 - gensim.models.ldamodel - INFO - PROGRESS: pass 8, at document #10/10
+2024-08-20 13:02:14,096 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"fresh" + 0.013*"mayo" + 0.013*"pearl"
+2024-08-20 13:02:14,096 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"fries" + 0.005*"options" + 0.005*"home" + 0.005*"definitely" + 0.005*"service" + 0.005*"onion" + 0.005*"staff"
+2024-08-20 13:02:14,096 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 13:02:14,096 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"called" + 0.024*"phone" + 0.024*"online" + 0.024*"never" + 0.024*"miss" + 0.024*"ordered" + 0.024*"notch"
+2024-08-20 13:02:14,096 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"phat" + 0.005*"options" + 0.005*"burger" + 0.005*"service" + 0.005*"approved" + 0.005*"staff" + 0.005*"home" + 0.005*"fries"
+2024-08-20 13:02:14,096 - gensim.models.ldamodel - INFO - topic diff=0.006519, rho=0.316228
+2024-08-20 13:02:14,098 - gensim.models.ldamodel - INFO - -5.941 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,098 - gensim.models.ldamodel - INFO - PROGRESS: pass 9, at document #10/10
+2024-08-20 13:02:14,099 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"burger" + 0.005*"milkshakes" + 0.005*"burgers" + 0.005*"fries" + 0.005*"home" + 0.005*"definitely" + 0.005*"phat" + 0.005*"service" + 0.005*"bob" + 0.005*"options"
+2024-08-20 13:02:14,099 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"burger" + 0.055*"joint" + 0.037*"service" + 0.037*"much" + 0.020*"phat" + 0.020*"bob" + 0.020*"fries" + 0.020*"onion" + 0.020*"rings" + 0.020*"need"
+2024-08-20 13:02:14,099 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.050*"burger" + 0.050*"meat" + 0.034*"patty" + 0.034*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.018*"onions" + 0.018*"without" + 0.018*"taste" + 0.018*"hungry"
+2024-08-20 13:02:14,099 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 13:02:14,099 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"burger" + 0.005*"options" + 0.005*"rings" + 0.005*"service" + 0.005*"home" + 0.005*"phat" + 0.005*"onion" + 0.005*"staff"
+2024-08-20 13:02:14,099 - gensim.models.ldamodel - INFO - topic diff=0.004389, rho=0.301511
+2024-08-20 13:02:14,100 - gensim.models.ldamodel - INFO - -5.941 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,100 - gensim.models.ldamodel - INFO - PROGRESS: pass 10, at document #10/10
+2024-08-20 13:02:14,101 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.032*"burger" + 0.022*"best" + 0.022*"milkshakes" + 0.022*"friendly" + 0.022*"bbq" + 0.022*"milkshake" + 0.022*"oreo" + 0.022*"fries" + 0.022*"garlic" + 0.011*"makes"
+2024-08-20 13:02:14,101 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"burger" + 0.055*"joint" + 0.037*"service" + 0.037*"much" + 0.020*"phat" + 0.020*"bob" + 0.020*"fries" + 0.020*"onion" + 0.020*"rings" + 0.020*"aight"
+2024-08-20 13:02:14,101 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"tables" + 0.021*"friendly" + 0.021*"vibe" + 0.021*"overall" + 0.021*"clean" + 0.021*"pearls" + 0.021*"mercy"
+2024-08-20 13:02:14,101 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 13:02:14,102 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"milkshakes" + 0.005*"burger" + 0.005*"burgers" + 0.005*"service" + 0.005*"onion" + 0.005*"home" + 0.005*"options" + 0.005*"definitely" + 0.005*"fries" + 0.005*"phat"
+2024-08-20 13:02:14,102 - gensim.models.ldamodel - INFO - topic diff=0.002999, rho=0.288675
+2024-08-20 13:02:14,104 - gensim.models.ldamodel - INFO - -5.941 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,104 - gensim.models.ldamodel - INFO - PROGRESS: pass 11, at document #10/10
+2024-08-20 13:02:14,105 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"fries" + 0.005*"home" + 0.005*"onion" + 0.005*"phat" + 0.005*"service" + 0.005*"options" + 0.005*"definitely"
+2024-08-20 13:02:14,105 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"burger" + 0.055*"joint" + 0.037*"service" + 0.037*"much" + 0.020*"bob" + 0.020*"phat" + 0.020*"fries" + 0.020*"onion" + 0.020*"rings" + 0.020*"need"
+2024-08-20 13:02:14,105 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"fresh" + 0.013*"pearl" + 0.013*"top"
+2024-08-20 13:02:14,105 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"tables" + 0.021*"friendly" + 0.021*"vibe" + 0.021*"overall" + 0.021*"clean" + 0.021*"mercy" + 0.021*"prices"
+2024-08-20 13:02:14,105 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.050*"burger" + 0.050*"meat" + 0.034*"patty" + 0.034*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.018*"onions" + 0.018*"without" + 0.018*"taste" + 0.018*"hungry"
+2024-08-20 13:02:14,105 - gensim.models.ldamodel - INFO - topic diff=0.002081, rho=0.277350
+2024-08-20 13:02:14,106 - gensim.models.ldamodel - INFO - -5.940 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,106 - gensim.models.ldamodel - INFO - PROGRESS: pass 12, at document #10/10
+2024-08-20 13:02:14,107 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"fries" + 0.005*"milkshakes" + 0.005*"phat" + 0.005*"onion" + 0.005*"friendly" + 0.005*"salted" + 0.005*"meat" + 0.005*"rings"
+2024-08-20 13:02:14,107 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.032*"burger" + 0.022*"best" + 0.022*"milkshakes" + 0.022*"friendly" + 0.022*"bbq" + 0.022*"milkshake" + 0.022*"oreo" + 0.022*"fries" + 0.022*"garlic" + 0.011*"also"
+2024-08-20 13:02:14,107 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"friendly" + 0.021*"tables" + 0.021*"vibe" + 0.021*"clean" + 0.021*"overall" + 0.021*"mercy" + 0.021*"started"
+2024-08-20 13:02:14,107 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"fresh" + 0.013*"pearl" + 0.013*"top"
+2024-08-20 13:02:14,107 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.050*"burger" + 0.050*"meat" + 0.034*"patty" + 0.034*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.018*"onions" + 0.018*"without" + 0.018*"taste" + 0.018*"hungry"
+2024-08-20 13:02:14,107 - gensim.models.ldamodel - INFO - topic diff=0.001464, rho=0.267261
+2024-08-20 13:02:14,108 - gensim.models.ldamodel - INFO - -5.940 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,108 - gensim.models.ldamodel - INFO - PROGRESS: pass 13, at document #10/10
+2024-08-20 13:02:14,109 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.032*"burger" + 0.022*"best" + 0.022*"milkshakes" + 0.022*"friendly" + 0.022*"bbq" + 0.022*"milkshake" + 0.022*"oreo" + 0.022*"fries" + 0.022*"garlic" + 0.011*"also"
+2024-08-20 13:02:14,109 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"burger" + 0.005*"staff" + 0.005*"approved" + 0.005*"home" + 0.005*"milkshakes" + 0.005*"phat" + 0.005*"service" + 0.005*"fries" + 0.005*"options"
+2024-08-20 13:02:14,109 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"pearl" + 0.013*"fresh" + 0.013*"top"
+2024-08-20 13:02:14,109 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"online" + 0.024*"miss" + 0.024*"clear" + 0.024*"called" + 0.024*"never" + 0.024*"notch" + 0.024*"phone"
+2024-08-20 13:02:14,110 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"burgers" + 0.005*"home" + 0.005*"burger" + 0.005*"service" + 0.005*"milkshakes" + 0.005*"definitely" + 0.005*"fries" + 0.005*"options" + 0.005*"oreo" + 0.005*"local"
+2024-08-20 13:02:14,110 - gensim.models.ldamodel - INFO - topic diff=0.001044, rho=0.258199
+2024-08-20 13:02:14,111 - gensim.models.ldamodel - INFO - -5.940 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,111 - gensim.models.ldamodel - INFO - PROGRESS: pass 14, at document #10/10
+2024-08-20 13:02:14,111 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"milkshakes" + 0.005*"many" + 0.005*"local" + 0.005*"new" + 0.005*"milkshake" + 0.005*"places" + 0.005*"lots" + 0.005*"generous"
+2024-08-20 13:02:14,112 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"friendly" + 0.021*"tables" + 0.021*"vibe" + 0.021*"clean" + 0.021*"th" + 0.021*"holy" + 0.021*"mercy"
+2024-08-20 13:02:14,112 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.032*"burger" + 0.022*"best" + 0.022*"milkshakes" + 0.022*"friendly" + 0.022*"bbq" + 0.022*"milkshake" + 0.022*"oreo" + 0.022*"fries" + 0.022*"garlic" + 0.011*"also"
+2024-08-20 13:02:14,112 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"fresh" + 0.013*"pearl" + 0.013*"top"
+2024-08-20 13:02:14,112 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"online" + 0.024*"miss" + 0.024*"clear" + 0.024*"called" + 0.024*"never" + 0.024*"notch" + 0.024*"phone"
+2024-08-20 13:02:14,112 - gensim.models.ldamodel - INFO - topic diff=0.000754, rho=0.250000
+2024-08-20 13:02:14,113 - gensim.models.ldamodel - INFO - -5.940 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,113 - gensim.models.ldamodel - INFO - PROGRESS: pass 15, at document #10/10
+2024-08-20 13:02:14,114 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"lots" + 0.005*"local" + 0.005*"new" + 0.005*"milkshake" + 0.005*"many" + 0.005*"places" + 0.005*"lot" + 0.005*"generous" + 0.005*"highly" + 0.005*"portions"
+2024-08-20 13:02:14,114 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 13:02:14,114 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"burger" + 0.055*"joint" + 0.037*"service" + 0.037*"much" + 0.020*"bob" + 0.020*"phat" + 0.020*"fries" + 0.020*"rings" + 0.020*"onion" + 0.020*"need"
+2024-08-20 13:02:14,114 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"friendly" + 0.021*"tables" + 0.021*"vibe" + 0.021*"clean" + 0.021*"overall" + 0.021*"prices" + 0.021*"pearls"
+2024-08-20 13:02:14,114 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.032*"burger" + 0.022*"best" + 0.022*"milkshakes" + 0.022*"friendly" + 0.022*"bbq" + 0.022*"milkshake" + 0.022*"oreo" + 0.022*"fries" + 0.022*"garlic" + 0.011*"also"
+2024-08-20 13:02:14,114 - gensim.models.ldamodel - INFO - topic diff=0.000551, rho=0.242536
+2024-08-20 13:02:14,115 - gensim.models.ldamodel - INFO - -5.940 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,116 - gensim.models.ldamodel - INFO - PROGRESS: pass 16, at document #10/10
+2024-08-20 13:02:14,116 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"lots" + 0.005*"local" + 0.005*"new" + 0.005*"milkshake" + 0.005*"many" + 0.005*"places" + 0.005*"lot" + 0.005*"generous" + 0.005*"highly" + 0.005*"portions"
+2024-08-20 13:02:14,116 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"question" + 0.024*"phone" + 0.024*"online" + 0.024*"notch" + 0.024*"nice" + 0.024*"never" + 0.024*"miss"
+2024-08-20 13:02:14,116 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"tables" + 0.021*"friendly" + 0.021*"vibe" + 0.021*"overall" + 0.021*"clean" + 0.021*"prices" + 0.021*"perfection"
+2024-08-20 13:02:14,116 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 13:02:14,116 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"burger" + 0.055*"joint" + 0.037*"service" + 0.037*"much" + 0.020*"bob" + 0.020*"phat" + 0.020*"fries" + 0.020*"rings" + 0.020*"onion" + 0.020*"need"
+2024-08-20 13:02:14,117 - gensim.models.ldamodel - INFO - topic diff=0.000406, rho=0.235702
+2024-08-20 13:02:14,118 - gensim.models.ldamodel - INFO - -5.940 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,118 - gensim.models.ldamodel - INFO - PROGRESS: pass 17, at document #10/10
+2024-08-20 13:02:14,118 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"pearl" + 0.013*"fresh" + 0.013*"top"
+2024-08-20 13:02:14,119 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"lots" + 0.005*"local" + 0.005*"new" + 0.005*"milkshake" + 0.005*"many" + 0.005*"places" + 0.005*"lot" + 0.005*"generous" + 0.005*"highly" + 0.005*"portions"
+2024-08-20 13:02:14,119 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.005*"lots" + 0.005*"local" + 0.005*"new" + 0.005*"milkshake" + 0.005*"many" + 0.005*"places" + 0.005*"lot" + 0.005*"generous" + 0.005*"highly" + 0.005*"portions"
+2024-08-20 13:02:14,119 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.050*"burger" + 0.050*"meat" + 0.034*"patty" + 0.034*"buffalo" + 0.018*"try" + 0.018*"sauce" + 0.018*"onions" + 0.018*"without" + 0.018*"taste" + 0.018*"hungry"
+2024-08-20 13:02:14,119 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"bbq" + 0.020*"home" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 13:02:14,119 - gensim.models.ldamodel - INFO - topic diff=0.000303, rho=0.229416
+2024-08-20 13:02:14,120 - gensim.models.ldamodel - INFO - -5.940 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,120 - gensim.models.ldamodel - INFO - PROGRESS: pass 18, at document #10/10
+2024-08-20 13:02:14,121 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.055*"burger" + 0.055*"joint" + 0.037*"service" + 0.037*"much" + 0.020*"bob" + 0.020*"phat" + 0.020*"fries" + 0.020*"onion" + 0.020*"rings" + 0.020*"needed"
+2024-08-20 13:02:14,121 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"tables" + 0.021*"friendly" + 0.021*"vibe" + 0.021*"clean" + 0.021*"business" + 0.021*"pearls" + 0.021*"lease"
+2024-08-20 13:02:14,121 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.005*"lots" + 0.005*"local" + 0.005*"new" + 0.005*"milkshake" + 0.005*"many" + 0.005*"places" + 0.005*"lot" + 0.005*"generous" + 0.005*"highly" + 0.005*"portions"
+2024-08-20 13:02:14,121 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"pearl" + 0.013*"fresh" + 0.013*"top"
+2024-08-20 13:02:14,121 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.020*"home" + 0.020*"bbq" + 0.020*"dining" + 0.020*"worth" + 0.020*"friendly" + 0.020*"food" + 0.020*"service" + 0.020*"used" + 0.020*"downside" + 0.020*"price"
+2024-08-20 13:02:14,121 - gensim.models.ldamodel - INFO - topic diff=0.000228, rho=0.223607
+2024-08-20 13:02:14,122 - gensim.models.ldamodel - INFO - -5.940 per-word bound, 61.4 perplexity estimate based on a held-out corpus of 10 documents with 303 words
+2024-08-20 13:02:14,122 - gensim.models.ldamodel - INFO - PROGRESS: pass 19, at document #10/10
+2024-08-20 13:02:14,123 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.045*"burgers" + 0.024*"staff" + 0.024*"milkshakes" + 0.024*"online" + 0.024*"miss" + 0.024*"clear" + 0.024*"called" + 0.024*"nice" + 0.024*"notch" + 0.024*"question"
+2024-08-20 13:02:14,123 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.059*"always" + 0.021*"home" + 0.021*"burgers" + 0.021*"tables" + 0.021*"friendly" + 0.021*"vibe" + 0.021*"clean" + 0.021*"overall" + 0.021*"holy" + 0.021*"pearls"
+2024-08-20 13:02:14,123 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.032*"burger" + 0.022*"best" + 0.022*"milkshakes" + 0.022*"friendly" + 0.022*"bbq" + 0.022*"milkshake" + 0.022*"oreo" + 0.022*"fries" + 0.022*"garlic" + 0.011*"super"
+2024-08-20 13:02:14,123 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"lots" + 0.005*"local" + 0.005*"new" + 0.005*"milkshake" + 0.005*"many" + 0.005*"places" + 0.005*"lot" + 0.005*"generous" + 0.005*"highly" + 0.005*"portions"
+2024-08-20 13:02:14,123 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.060*"burger" + 0.025*"sauce" + 0.025*"usually" + 0.025*"flavor" + 0.025*"meat" + 0.013*"tables" + 0.013*"dining" + 0.013*"fresh" + 0.013*"pearl" + 0.013*"top"
+2024-08-20 13:02:14,123 - gensim.models.ldamodel - INFO - topic diff=0.000173, rho=0.218218
+2024-08-20 13:02:14,123 - gensim.utils - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=213, num_topics=10, decay=0.5, chunksize=2000> in 0.06s', 'datetime': '2024-08-20T13:02:14.123682', 'gensim': '4.3.3', 'python': '3.11.4 (main, Jun 20 2023, 17:23:00) [Clang 14.0.3 (clang-1403.0.22.14.1)]', 'platform': 'macOS-14.0-arm64-arm-64bit', 'event': 'created'}
+2024-08-20 13:02:14,173 - root - INFO - Review analysis completed
+2024-08-20 13:02:14,181 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 13:02:14,563 - root - INFO - Analysis and saving to DynamoDB completed.
+2024-08-20 13:02:14,563 - root - INFO - Initial onboarding completed for YelpConnector
+2024-08-20 13:02:14,564 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 13:02:14] "[35m[1mPOST /reviews HTTP/1.1[0m" 202 -
+2024-08-20 13:04:33,762 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/yelp.py', reloading
+2024-08-20 13:04:34,130 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 13:04:36,472 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 13:04:36,484 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 13:05:07,749 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 13:05:07,880 - root - INFO - Fetching reviews with connector data: ["Yelp"]
+2024-08-20 13:05:07,881 - root - INFO - Resuming fetch for config MapAttribute(business_id='pearls-deluxe-burgers-san-francisco-3')
+2024-08-20 13:05:07,881 - root - INFO - No last sync date provided, fetching all reviews.
+2024-08-20 13:05:07,881 - root - INFO - Fetching reviews for business_id: pearls-deluxe-burgers-san-francisco-3, last_sync: None, n_reviews: 10, start_offset: 12
+2024-08-20 13:05:07,882 - root - INFO - Fetching page 4 (attempt 1/5)
+2024-08-20 13:05:11,131 - root - WARNING - response: <Response [200]>
+2024-08-20 13:05:11,171 - root - INFO - Fetched 4 new reviews, total fetched: 4
+2024-08-20 13:05:11,176 - root - INFO - Fetching page 5 (attempt 1/5)
+2024-08-20 13:05:17,810 - root - WARNING - response: <Response [200]>
+2024-08-20 13:05:17,813 - root - INFO - Fetched 4 new reviews, total fetched: 8
+2024-08-20 13:05:17,814 - root - INFO - Fetching page 6 (attempt 1/5)
+2024-08-20 13:05:21,463 - root - WARNING - response: <Response [200]>
+2024-08-20 13:05:21,465 - root - INFO - Fetched 4 new reviews, total fetched: 12
+2024-08-20 13:05:21,466 - root - INFO - Starting review analysis
+2024-08-20 13:05:21,851 - gensim.corpora.dictionary - INFO - adding document #0 to Dictionary<0 unique tokens: []>
+2024-08-20 13:05:21,852 - gensim.corpora.dictionary - INFO - built Dictionary<187 unique tokens: ['bomb', 'burger', 'chili', 'eat', 'every']...> from 10 documents (total 250 corpus positions)
+2024-08-20 13:05:21,882 - gensim.utils - INFO - Dictionary lifecycle event {'msg': "built Dictionary<187 unique tokens: ['bomb', 'burger', 'chili', 'eat', 'every']...> from 10 documents (total 250 corpus positions)", 'datetime': '2024-08-20T13:05:21.852177', 'gensim': '4.3.3', 'python': '3.11.4 (main, Jun 20 2023, 17:23:00) [Clang 14.0.3 (clang-1403.0.22.14.1)]', 'platform': 'macOS-14.0-arm64-arm-64bit', 'event': 'created'}
+2024-08-20 13:05:21,882 - gensim.models.ldamodel - INFO - using symmetric alpha at 0.1
+2024-08-20 13:05:21,883 - gensim.models.ldamodel - INFO - using symmetric eta at 0.1
+2024-08-20 13:05:21,883 - gensim.models.ldamodel - INFO - using serial LDA version on this node
+2024-08-20 13:05:21,883 - gensim.models.ldamodel - INFO - running online (multi-pass) LDA training, 10 topics, 20 passes over the supplied corpus of 10 documents, updating model once every 10 documents, evaluating perplexity every 10 documents, iterating 150x with a convergence threshold of 0.001000
+2024-08-20 13:05:21,889 - gensim.models.ldamodel - INFO - -14.260 per-word bound, 19623.5 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,889 - gensim.models.ldamodel - INFO - PROGRESS: pass 0, at document #10/10
+2024-08-20 13:05:21,894 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.048*"burger" + 0.032*"loved" + 0.032*"half" + 0.017*"said" + 0.017*"less" + 0.017*"detect" + 0.017*"pesto" + 0.017*"veggie" + 0.017*"sub" + 0.017*"onion"
+2024-08-20 13:05:21,894 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.040*"burger" + 0.040*"least" + 0.040*"eat" + 0.040*"every" + 0.040*"time" + 0.040*"town" + 0.040*"fantastic" + 0.040*"chili" + 0.040*"bomb" + 0.004*"burgers"
+2024-08-20 13:05:21,894 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.035*"burger" + 0.024*"got" + 0.024*"food" + 0.023*"least" + 0.023*"dripping" + 0.013*"jaw" + 0.013*"burgers" + 0.013*"might" + 0.013*"calories" + 0.013*"prepared"
+2024-08-20 13:05:21,895 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.005*"burger" + 0.005*"service" + 0.005*"burgers" + 0.005*"done" + 0.005*"order" + 0.005*"delicious" + 0.005*"well" + 0.005*"least" + 0.005*"finish" + 0.005*"bomb"
+2024-08-20 13:05:21,895 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.037*"burger" + 0.037*"undercooked" + 0.037*"well" + 0.037*"sure" + 0.037*"make" + 0.037*"done" + 0.037*"bun" + 0.037*"bloody" + 0.037*"toppings" + 0.037*"could"
+2024-08-20 13:05:21,895 - gensim.models.ldamodel - INFO - topic diff=7.247127, rho=1.000000
+2024-08-20 13:05:21,897 - gensim.models.ldamodel - INFO - -5.927 per-word bound, 60.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,897 - gensim.models.ldamodel - INFO - PROGRESS: pass 1, at document #10/10
+2024-08-20 13:05:21,898 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.029*"coming" + 0.029*"back" + 0.029*"fries" + 0.028*"delicious" + 0.028*"rings" + 0.028*"classic" + 0.028*"reason" + 0.028*"amount" + 0.028*"generous" + 0.028*"bun"
+2024-08-20 13:05:21,898 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"least" + 0.005*"service" + 0.005*"order" + 0.005*"done" + 0.005*"delicious" + 0.005*"got" + 0.005*"well" + 0.005*"fries"
+2024-08-20 13:05:21,898 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"service" + 0.005*"least" + 0.005*"done" + 0.005*"order" + 0.005*"time" + 0.005*"bun" + 0.005*"eat" + 0.005*"delicious"
+2024-08-20 13:05:21,898 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.037*"well" + 0.037*"undercooked" + 0.037*"sure" + 0.037*"done" + 0.037*"make" + 0.037*"bun" + 0.037*"burger" + 0.037*"bloody" + 0.037*"toppings" + 0.037*"could"
+2024-08-20 13:05:21,898 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.040*"least" + 0.040*"eat" + 0.040*"time" + 0.040*"every" + 0.040*"town" + 0.040*"burger" + 0.040*"fantastic" + 0.040*"chili" + 0.040*"bomb" + 0.004*"burgers"
+2024-08-20 13:05:21,898 - gensim.models.ldamodel - INFO - topic diff=0.052505, rho=0.577350
+2024-08-20 13:05:21,900 - gensim.models.ldamodel - INFO - -5.909 per-word bound, 60.1 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,900 - gensim.models.ldamodel - INFO - PROGRESS: pass 2, at document #10/10
+2024-08-20 13:05:21,901 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.048*"burger" + 0.032*"loved" + 0.032*"half" + 0.017*"said" + 0.017*"less" + 0.017*"excellent" + 0.017*"detect" + 0.017*"pesto" + 0.017*"veggie" + 0.017*"sub"
+2024-08-20 13:05:21,901 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"service" + 0.005*"least" + 0.005*"done" + 0.005*"order" + 0.005*"time" + 0.005*"bun" + 0.005*"eat" + 0.005*"delicious"
+2024-08-20 13:05:21,901 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.037*"well" + 0.037*"done" + 0.037*"undercooked" + 0.037*"sure" + 0.037*"make" + 0.037*"bun" + 0.037*"bloody" + 0.037*"toppings" + 0.037*"could" + 0.037*"burger"
+2024-08-20 13:05:21,902 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.065*"burgers" + 0.039*"order" + 0.039*"service" + 0.039*"burger" + 0.027*"fast" + 0.027*"always" + 0.027*"delicious" + 0.014*"seriously" + 0.014*"available" + 0.014*"vibe"
+2024-08-20 13:05:21,902 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.040*"time" + 0.040*"least" + 0.040*"eat" + 0.040*"every" + 0.040*"town" + 0.040*"fantastic" + 0.040*"chili" + 0.040*"bomb" + 0.040*"burger" + 0.004*"burgers"
+2024-08-20 13:05:21,902 - gensim.models.ldamodel - INFO - topic diff=0.027830, rho=0.500000
+2024-08-20 13:05:21,905 - gensim.models.ldamodel - INFO - -5.904 per-word bound, 59.9 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,905 - gensim.models.ldamodel - INFO - PROGRESS: pass 3, at document #10/10
+2024-08-20 13:05:21,908 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.040*"time" + 0.040*"least" + 0.040*"eat" + 0.040*"every" + 0.040*"town" + 0.040*"fantastic" + 0.040*"chili" + 0.040*"bomb" + 0.040*"burger" + 0.004*"burgers"
+2024-08-20 13:05:21,909 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"least" + 0.005*"service" + 0.005*"order" + 0.005*"done" + 0.005*"delicious" + 0.005*"got" + 0.005*"well" + 0.005*"fries"
+2024-08-20 13:05:21,909 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.065*"burgers" + 0.039*"order" + 0.039*"service" + 0.039*"burger" + 0.027*"fast" + 0.027*"always" + 0.027*"delicious" + 0.014*"seriously" + 0.014*"available" + 0.014*"much"
+2024-08-20 13:05:21,909 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.035*"burger" + 0.024*"got" + 0.023*"food" + 0.023*"least" + 0.023*"dripping" + 0.012*"jaw" + 0.012*"might" + 0.012*"calories" + 0.012*"prepared" + 0.012*"pearl"
+2024-08-20 13:05:21,909 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.029*"coming" + 0.029*"back" + 0.029*"fries" + 0.029*"delicious" + 0.029*"rings" + 0.029*"reason" + 0.029*"classic" + 0.029*"amount" + 0.029*"generous" + 0.029*"bun"
+2024-08-20 13:05:21,909 - gensim.models.ldamodel - INFO - topic diff=0.014901, rho=0.447214
+2024-08-20 13:05:21,911 - gensim.models.ldamodel - INFO - -5.903 per-word bound, 59.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,911 - gensim.models.ldamodel - INFO - PROGRESS: pass 4, at document #10/10
+2024-08-20 13:05:21,912 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"least" + 0.005*"service" + 0.005*"order" + 0.005*"done" + 0.005*"delicious" + 0.005*"well" + 0.005*"got" + 0.005*"fries"
+2024-08-20 13:05:21,913 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.035*"burger" + 0.023*"got" + 0.023*"food" + 0.023*"least" + 0.023*"dripping" + 0.012*"jaw" + 0.012*"might" + 0.012*"calories" + 0.012*"prepared" + 0.012*"pearl"
+2024-08-20 13:05:21,913 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.040*"burger" + 0.040*"soggy" + 0.040*"tasted" + 0.021*"coming" + 0.021*"reviews" + 0.021*"two" + 0.021*"super" + 0.021*"past" + 0.021*"completely" + 0.021*"would"
+2024-08-20 13:05:21,913 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.037*"well" + 0.037*"done" + 0.037*"undercooked" + 0.037*"sure" + 0.037*"make" + 0.037*"bun" + 0.037*"bloody" + 0.037*"toppings" + 0.037*"could" + 0.037*"finish"
+2024-08-20 13:05:21,913 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.040*"time" + 0.040*"least" + 0.040*"eat" + 0.040*"every" + 0.040*"town" + 0.040*"fantastic" + 0.040*"chili" + 0.040*"bomb" + 0.040*"burger" + 0.004*"burgers"
+2024-08-20 13:05:21,913 - gensim.models.ldamodel - INFO - topic diff=0.008253, rho=0.408248
+2024-08-20 13:05:21,915 - gensim.models.ldamodel - INFO - -5.902 per-word bound, 59.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,915 - gensim.models.ldamodel - INFO - PROGRESS: pass 5, at document #10/10
+2024-08-20 13:05:21,917 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.048*"burger" + 0.032*"loved" + 0.032*"half" + 0.017*"excellent" + 0.017*"veggie" + 0.017*"go" + 0.017*"got" + 0.017*"less" + 0.017*"said" + 0.017*"sub"
+2024-08-20 13:05:21,917 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.029*"coming" + 0.029*"back" + 0.029*"fries" + 0.029*"delicious" + 0.029*"rings" + 0.029*"classic" + 0.029*"bun" + 0.029*"reason" + 0.029*"generous" + 0.029*"amount"
+2024-08-20 13:05:21,918 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.065*"burgers" + 0.039*"order" + 0.039*"service" + 0.039*"burger" + 0.027*"fast" + 0.027*"always" + 0.027*"delicious" + 0.014*"seriously" + 0.014*"available" + 0.014*"thankfully"
+2024-08-20 13:05:21,918 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.005*"burger" + 0.005*"service" + 0.005*"burgers" + 0.005*"done" + 0.005*"order" + 0.005*"delicious" + 0.005*"well" + 0.005*"least" + 0.005*"finish" + 0.005*"bomb"
+2024-08-20 13:05:21,918 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"service" + 0.005*"least" + 0.005*"order" + 0.005*"done" + 0.005*"delicious" + 0.005*"got" + 0.005*"well" + 0.005*"fries"
+2024-08-20 13:05:21,918 - gensim.models.ldamodel - INFO - topic diff=0.004758, rho=0.377964
+2024-08-20 13:05:21,921 - gensim.models.ldamodel - INFO - -5.902 per-word bound, 59.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,921 - gensim.models.ldamodel - INFO - PROGRESS: pass 6, at document #10/10
+2024-08-20 13:05:21,923 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.040*"time" + 0.040*"least" + 0.040*"eat" + 0.040*"every" + 0.040*"town" + 0.040*"fantastic" + 0.040*"chili" + 0.040*"bomb" + 0.040*"burger" + 0.004*"burgers"
+2024-08-20 13:05:21,923 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.029*"coming" + 0.029*"back" + 0.029*"fries" + 0.029*"delicious" + 0.029*"rings" + 0.029*"bun" + 0.029*"generous" + 0.029*"classic" + 0.029*"cheese" + 0.029*"reason"
+2024-08-20 13:05:21,924 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"least" + 0.005*"service" + 0.005*"order" + 0.005*"done" + 0.005*"delicious" + 0.005*"got" + 0.005*"well" + 0.005*"could"
+2024-08-20 13:05:21,924 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.035*"burger" + 0.023*"got" + 0.023*"food" + 0.023*"least" + 0.023*"dripping" + 0.012*"jaw" + 0.012*"might" + 0.012*"calories" + 0.012*"prepared" + 0.012*"pearl"
+2024-08-20 13:05:21,925 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.037*"well" + 0.037*"done" + 0.037*"undercooked" + 0.037*"sure" + 0.037*"make" + 0.037*"bun" + 0.037*"could" + 0.037*"bloody" + 0.037*"toppings" + 0.037*"finish"
+2024-08-20 13:05:21,925 - gensim.models.ldamodel - INFO - topic diff=0.002851, rho=0.353553
+2024-08-20 13:05:21,927 - gensim.models.ldamodel - INFO - -5.902 per-word bound, 59.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,927 - gensim.models.ldamodel - INFO - PROGRESS: pass 7, at document #10/10
+2024-08-20 13:05:21,927 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.005*"burger" + 0.005*"service" + 0.005*"burgers" + 0.005*"done" + 0.005*"delicious" + 0.005*"order" + 0.005*"well" + 0.005*"finish" + 0.005*"every" + 0.005*"bomb"
+2024-08-20 13:05:21,928 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.065*"burgers" + 0.039*"order" + 0.039*"service" + 0.039*"burger" + 0.027*"fast" + 0.027*"always" + 0.027*"delicious" + 0.014*"fancy" + 0.014*"fool" + 0.014*"thankfully"
+2024-08-20 13:05:21,928 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.029*"coming" + 0.029*"back" + 0.029*"fries" + 0.029*"delicious" + 0.029*"rings" + 0.029*"bun" + 0.029*"generous" + 0.029*"classic" + 0.029*"cheese" + 0.029*"reason"
+2024-08-20 13:05:21,928 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.040*"time" + 0.040*"least" + 0.040*"eat" + 0.040*"every" + 0.040*"town" + 0.040*"fantastic" + 0.040*"chili" + 0.040*"bomb" + 0.040*"burger" + 0.004*"burgers"
+2024-08-20 13:05:21,928 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"service" + 0.005*"least" + 0.005*"order" + 0.005*"done" + 0.005*"got" + 0.005*"delicious" + 0.005*"could" + 0.005*"fries"
+2024-08-20 13:05:21,928 - gensim.models.ldamodel - INFO - topic diff=0.001769, rho=0.333333
+2024-08-20 13:05:21,930 - gensim.models.ldamodel - INFO - -5.902 per-word bound, 59.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,930 - gensim.models.ldamodel - INFO - PROGRESS: pass 8, at document #10/10
+2024-08-20 13:05:21,931 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.040*"burger" + 0.040*"tasted" + 0.040*"soggy" + 0.021*"two" + 0.021*"coming" + 0.021*"ordering" + 0.021*"patty" + 0.021*"fries" + 0.021*"completely" + 0.021*"would"
+2024-08-20 13:05:21,932 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.029*"coming" + 0.029*"back" + 0.029*"fries" + 0.029*"delicious" + 0.029*"bun" + 0.029*"rings" + 0.029*"generous" + 0.029*"classic" + 0.029*"cheese" + 0.029*"reason"
+2024-08-20 13:05:21,932 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.037*"well" + 0.037*"done" + 0.037*"undercooked" + 0.037*"make" + 0.037*"sure" + 0.037*"could" + 0.037*"bloody" + 0.037*"toppings" + 0.037*"bun" + 0.037*"finish"
+2024-08-20 13:05:21,932 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"least" + 0.005*"done" + 0.005*"order" + 0.005*"service" + 0.005*"got" + 0.005*"delicious" + 0.005*"well" + 0.005*"could"
+2024-08-20 13:05:21,932 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.005*"burger" + 0.005*"service" + 0.005*"burgers" + 0.005*"done" + 0.005*"delicious" + 0.005*"well" + 0.005*"order" + 0.005*"least" + 0.005*"time" + 0.005*"bomb"
+2024-08-20 13:05:21,932 - gensim.models.ldamodel - INFO - topic diff=0.001131, rho=0.316228
+2024-08-20 13:05:21,933 - gensim.models.ldamodel - INFO - -5.902 per-word bound, 59.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,933 - gensim.models.ldamodel - INFO - PROGRESS: pass 9, at document #10/10
+2024-08-20 13:05:21,934 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.037*"well" + 0.037*"done" + 0.037*"undercooked" + 0.037*"make" + 0.037*"sure" + 0.037*"could" + 0.037*"bloody" + 0.037*"toppings" + 0.037*"bun" + 0.037*"finish"
+2024-08-20 13:05:21,934 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.065*"burgers" + 0.039*"order" + 0.039*"service" + 0.039*"burger" + 0.027*"fast" + 0.027*"always" + 0.027*"delicious" + 0.014*"fool" + 0.014*"thankfully" + 0.014*"fancy"
+2024-08-20 13:05:21,934 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"service" + 0.005*"least" + 0.005*"order" + 0.005*"delicious" + 0.005*"done" + 0.005*"got" + 0.005*"well" + 0.005*"fries"
+2024-08-20 13:05:21,934 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.005*"burger" + 0.005*"service" + 0.005*"burgers" + 0.005*"done" + 0.005*"order" + 0.005*"delicious" + 0.005*"finish" + 0.005*"bomb" + 0.005*"least" + 0.005*"time"
+2024-08-20 13:05:21,934 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.040*"burger" + 0.040*"soggy" + 0.040*"tasted" + 0.021*"two" + 0.021*"patty" + 0.021*"coming" + 0.021*"ordering" + 0.021*"fries" + 0.021*"completely" + 0.021*"would"
+2024-08-20 13:05:21,934 - gensim.models.ldamodel - INFO - topic diff=0.000743, rho=0.301511
+2024-08-20 13:05:21,935 - gensim.models.ldamodel - INFO - -5.902 per-word bound, 59.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,935 - gensim.models.ldamodel - INFO - PROGRESS: pass 10, at document #10/10
+2024-08-20 13:05:21,936 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.005*"burger" + 0.005*"service" + 0.005*"burgers" + 0.005*"finish" + 0.005*"delicious" + 0.005*"order" + 0.005*"least" + 0.005*"well" + 0.005*"done" + 0.005*"always"
+2024-08-20 13:05:21,936 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.029*"coming" + 0.029*"back" + 0.029*"fries" + 0.029*"delicious" + 0.029*"bun" + 0.029*"rings" + 0.029*"cheese" + 0.029*"onion" + 0.029*"keep" + 0.029*"generous"
+2024-08-20 13:05:21,937 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.065*"burgers" + 0.039*"service" + 0.039*"order" + 0.039*"burger" + 0.027*"always" + 0.027*"fast" + 0.027*"delicious" + 0.014*"smash" + 0.014*"came" + 0.014*"amazing"
+2024-08-20 13:05:21,937 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"bun" + 0.005*"time" + 0.005*"order" + 0.005*"done" + 0.005*"least" + 0.005*"service" + 0.005*"bomb" + 0.005*"delicious"
+2024-08-20 13:05:21,937 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.035*"burger" + 0.023*"got" + 0.023*"food" + 0.023*"least" + 0.023*"dripping" + 0.012*"jaw" + 0.012*"seat" + 0.012*"unhinge" + 0.012*"e" + 0.012*"pearl"
+2024-08-20 13:05:21,937 - gensim.models.ldamodel - INFO - topic diff=0.000499, rho=0.288675
+2024-08-20 13:05:21,939 - gensim.models.ldamodel - INFO - -5.902 per-word bound, 59.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,939 - gensim.models.ldamodel - INFO - PROGRESS: pass 11, at document #10/10
+2024-08-20 13:05:21,940 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.035*"burger" + 0.023*"got" + 0.023*"food" + 0.023*"least" + 0.023*"dripping" + 0.012*"jaw" + 0.012*"yummy" + 0.012*"seat" + 0.012*"calories" + 0.012*"prized"
+2024-08-20 13:05:21,940 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.065*"burgers" + 0.039*"order" + 0.039*"service" + 0.039*"burger" + 0.027*"always" + 0.027*"fast" + 0.027*"delicious" + 0.014*"best" + 0.014*"came" + 0.014*"fool"
+2024-08-20 13:05:21,940 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.005*"burger" + 0.005*"done" + 0.005*"service" + 0.005*"burgers" + 0.005*"well" + 0.005*"order" + 0.005*"least" + 0.005*"delicious" + 0.005*"finish" + 0.005*"excellent"
+2024-08-20 13:05:21,940 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.037*"done" + 0.037*"well" + 0.037*"could" + 0.037*"undercooked" + 0.037*"bloody" + 0.037*"toppings" + 0.037*"sure" + 0.037*"make" + 0.037*"bun" + 0.037*"finish"
+2024-08-20 13:05:21,940 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.048*"burger" + 0.032*"loved" + 0.032*"half" + 0.017*"excellent" + 0.017*"go" + 0.017*"got" + 0.017*"sweet" + 0.017*"minutes" + 0.017*"veggie" + 0.017*"less"
+2024-08-20 13:05:21,940 - gensim.models.ldamodel - INFO - topic diff=0.000342, rho=0.277350
+2024-08-20 13:05:21,941 - gensim.models.ldamodel - INFO - -5.902 per-word bound, 59.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,942 - gensim.models.ldamodel - INFO - PROGRESS: pass 12, at document #10/10
+2024-08-20 13:05:21,943 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"done" + 0.005*"service" + 0.005*"coming" + 0.005*"well" + 0.005*"always" + 0.005*"order" + 0.005*"delicious" + 0.005*"bomb"
+2024-08-20 13:05:21,947 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"could" + 0.005*"bun" + 0.005*"order" + 0.005*"bomb" + 0.005*"fries" + 0.005*"delicious" + 0.005*"got" + 0.005*"service"
+2024-08-20 13:05:21,947 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.029*"coming" + 0.029*"back" + 0.029*"fries" + 0.029*"delicious" + 0.029*"bun" + 0.029*"cheese" + 0.029*"onion" + 0.029*"rings" + 0.029*"simple" + 0.029*"generous"
+2024-08-20 13:05:21,947 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.040*"burger" + 0.040*"tasted" + 0.040*"soggy" + 0.021*"two" + 0.021*"ordering" + 0.021*"fries" + 0.021*"coming" + 0.021*"patty" + 0.021*"terrible" + 0.021*"times"
+2024-08-20 13:05:21,947 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.040*"time" + 0.040*"every" + 0.040*"least" + 0.040*"bomb" + 0.040*"chili" + 0.040*"eat" + 0.040*"fantastic" + 0.040*"town" + 0.040*"burger" + 0.004*"burgers"
+2024-08-20 13:05:21,947 - gensim.models.ldamodel - INFO - topic diff=0.000239, rho=0.267261
+2024-08-20 13:05:21,950 - gensim.models.ldamodel - INFO - -5.902 per-word bound, 59.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,950 - gensim.models.ldamodel - INFO - PROGRESS: pass 13, at document #10/10
+2024-08-20 13:05:21,951 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.048*"burger" + 0.032*"loved" + 0.032*"half" + 0.017*"excellent" + 0.017*"got" + 0.017*"go" + 0.017*"veggie" + 0.017*"sweet" + 0.017*"minutes" + 0.017*"tasty"
+2024-08-20 13:05:21,951 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.029*"coming" + 0.029*"back" + 0.029*"fries" + 0.029*"delicious" + 0.029*"rings" + 0.029*"onion" + 0.029*"cheese" + 0.029*"bun" + 0.029*"decadent" + 0.029*"served"
+2024-08-20 13:05:21,951 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.040*"time" + 0.040*"every" + 0.040*"least" + 0.040*"town" + 0.040*"chili" + 0.040*"eat" + 0.040*"fantastic" + 0.040*"bomb" + 0.040*"burger" + 0.004*"burgers"
+2024-08-20 13:05:21,951 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.005*"burger" + 0.005*"least" + 0.005*"burgers" + 0.005*"done" + 0.005*"service" + 0.005*"order" + 0.005*"well" + 0.005*"delicious" + 0.005*"got" + 0.005*"burnt"
+2024-08-20 13:05:21,951 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.005*"burger" + 0.005*"order" + 0.005*"least" + 0.005*"burgers" + 0.005*"done" + 0.005*"service" + 0.005*"time" + 0.005*"always" + 0.005*"got" + 0.005*"burnt"
+2024-08-20 13:05:21,954 - gensim.models.ldamodel - INFO - topic diff=0.000169, rho=0.258199
+2024-08-20 13:05:21,960 - gensim.models.ldamodel - INFO - -5.902 per-word bound, 59.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,960 - gensim.models.ldamodel - INFO - PROGRESS: pass 14, at document #10/10
+2024-08-20 13:05:21,963 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.065*"burgers" + 0.039*"order" + 0.039*"service" + 0.039*"burger" + 0.027*"fast" + 0.027*"always" + 0.027*"delicious" + 0.014*"dive" + 0.014*"amazing" + 0.014*"came"
+2024-08-20 13:05:21,964 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.035*"burger" + 0.023*"got" + 0.023*"food" + 0.023*"least" + 0.023*"dripping" + 0.012*"jaw" + 0.012*"husband" + 0.012*"calories" + 0.012*"e" + 0.012*"huge"
+2024-08-20 13:05:21,965 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"undercooked" + 0.005*"got" + 0.005*"food" + 0.005*"excellent" + 0.005*"well" + 0.005*"always" + 0.005*"toppings" + 0.005*"could"
+2024-08-20 13:05:21,965 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.005*"burger" + 0.005*"service" + 0.005*"burgers" + 0.005*"done" + 0.005*"toppings" + 0.005*"excellent" + 0.005*"well" + 0.005*"undercooked" + 0.005*"finish" + 0.005*"sure"
+2024-08-20 13:05:21,965 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.040*"time" + 0.040*"every" + 0.040*"least" + 0.040*"town" + 0.040*"bomb" + 0.040*"fantastic" + 0.040*"eat" + 0.040*"chili" + 0.040*"burger" + 0.004*"burgers"
+2024-08-20 13:05:21,965 - gensim.models.ldamodel - INFO - topic diff=0.000122, rho=0.250000
+2024-08-20 13:05:21,967 - gensim.models.ldamodel - INFO - -5.902 per-word bound, 59.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,967 - gensim.models.ldamodel - INFO - PROGRESS: pass 15, at document #10/10
+2024-08-20 13:05:21,969 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.029*"coming" + 0.029*"back" + 0.029*"fries" + 0.029*"delicious" + 0.029*"cheese" + 0.029*"onion" + 0.029*"bun" + 0.029*"rings" + 0.029*"classic" + 0.029*"generous"
+2024-08-20 13:05:21,969 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.040*"time" + 0.040*"least" + 0.040*"every" + 0.040*"town" + 0.040*"chili" + 0.040*"eat" + 0.040*"fantastic" + 0.040*"bomb" + 0.040*"burger" + 0.004*"burgers"
+2024-08-20 13:05:21,969 - gensim.models.ldamodel - INFO - topic #3 (0.100): 0.048*"burger" + 0.032*"loved" + 0.032*"half" + 0.017*"excellent" + 0.017*"go" + 0.017*"got" + 0.017*"veggie" + 0.017*"sweet" + 0.017*"minutes" + 0.017*"tasty"
+2024-08-20 13:05:21,969 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burger" + 0.005*"excellent" + 0.005*"anything" + 0.005*"always" + 0.005*"finish" + 0.005*"done" + 0.005*"could" + 0.005*"delicious" + 0.005*"bloody" + 0.005*"fast"
+2024-08-20 13:05:21,969 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.040*"burger" + 0.040*"soggy" + 0.040*"tasted" + 0.021*"ordering" + 0.021*"two" + 0.021*"patty" + 0.021*"fries" + 0.021*"coming" + 0.021*"new" + 0.021*"completely"
+2024-08-20 13:05:21,969 - gensim.models.ldamodel - INFO - topic diff=0.000089, rho=0.242536
+2024-08-20 13:05:21,972 - gensim.models.ldamodel - INFO - -5.902 per-word bound, 59.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,972 - gensim.models.ldamodel - INFO - PROGRESS: pass 16, at document #10/10
+2024-08-20 13:05:21,974 - gensim.models.ldamodel - INFO - topic #4 (0.100): 0.005*"burger" + 0.005*"bomb" + 0.005*"always" + 0.005*"coming" + 0.005*"well" + 0.005*"burgers" + 0.005*"fast" + 0.005*"order" + 0.005*"delicious" + 0.005*"service"
+2024-08-20 13:05:21,974 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.005*"burger" + 0.005*"bun" + 0.005*"burgers" + 0.005*"order" + 0.005*"bomb" + 0.005*"fries" + 0.005*"delicious" + 0.005*"well" + 0.005*"got" + 0.005*"service"
+2024-08-20 13:05:21,974 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.040*"time" + 0.040*"every" + 0.040*"least" + 0.040*"bomb" + 0.040*"chili" + 0.040*"eat" + 0.040*"fantastic" + 0.040*"town" + 0.040*"burger" + 0.004*"fries"
+2024-08-20 13:05:21,974 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.029*"coming" + 0.029*"back" + 0.029*"fries" + 0.029*"delicious" + 0.029*"cheese" + 0.029*"onion" + 0.029*"bun" + 0.029*"rings" + 0.029*"generous" + 0.029*"classic"
+2024-08-20 13:05:21,974 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burger" + 0.005*"burgers" + 0.005*"delicious" + 0.005*"order" + 0.005*"service" + 0.005*"bomb" + 0.005*"fries" + 0.005*"well" + 0.005*"always" + 0.005*"ambience"
+2024-08-20 13:05:21,975 - gensim.models.ldamodel - INFO - topic diff=0.000065, rho=0.235702
+2024-08-20 13:05:21,976 - gensim.models.ldamodel - INFO - -5.902 per-word bound, 59.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,976 - gensim.models.ldamodel - INFO - PROGRESS: pass 17, at document #10/10
+2024-08-20 13:05:21,977 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.065*"burgers" + 0.039*"order" + 0.039*"service" + 0.039*"burger" + 0.027*"fast" + 0.027*"always" + 0.027*"delicious" + 0.014*"dive" + 0.014*"fancy" + 0.014*"came"
+2024-08-20 13:05:21,977 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.029*"coming" + 0.029*"back" + 0.029*"fries" + 0.029*"delicious" + 0.029*"bun" + 0.029*"cheese" + 0.029*"rings" + 0.029*"onion" + 0.029*"decadent" + 0.029*"served"
+2024-08-20 13:05:21,977 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.035*"burger" + 0.023*"got" + 0.023*"food" + 0.023*"least" + 0.023*"dripping" + 0.012*"jaw" + 0.012*"pearl" + 0.012*"prized" + 0.012*"might" + 0.012*"huge"
+2024-08-20 13:05:21,977 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burger" + 0.005*"service" + 0.005*"fries" + 0.005*"well" + 0.005*"burgers" + 0.005*"order" + 0.005*"delicious" + 0.005*"got" + 0.005*"done" + 0.005*"least"
+2024-08-20 13:05:21,977 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.040*"burger" + 0.040*"soggy" + 0.040*"tasted" + 0.021*"patty" + 0.021*"ordering" + 0.021*"two" + 0.021*"fries" + 0.021*"coming" + 0.021*"older" + 0.021*"crispy"
+2024-08-20 13:05:21,977 - gensim.models.ldamodel - INFO - topic diff=0.000049, rho=0.229416
+2024-08-20 13:05:21,979 - gensim.models.ldamodel - INFO - -5.902 per-word bound, 59.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,979 - gensim.models.ldamodel - INFO - PROGRESS: pass 18, at document #10/10
+2024-08-20 13:05:21,981 - gensim.models.ldamodel - INFO - topic #2 (0.100): 0.040*"burger" + 0.040*"soggy" + 0.040*"tasted" + 0.021*"patty" + 0.021*"ordering" + 0.021*"fries" + 0.021*"coming" + 0.021*"two" + 0.021*"crispy" + 0.021*"denny"
+2024-08-20 13:05:21,981 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.035*"burger" + 0.023*"got" + 0.023*"food" + 0.023*"least" + 0.023*"dripping" + 0.012*"jaw" + 0.012*"pearl" + 0.012*"prized" + 0.012*"might" + 0.012*"huge"
+2024-08-20 13:05:21,981 - gensim.models.ldamodel - INFO - topic #8 (0.100): 0.005*"least" + 0.005*"burger" + 0.005*"done" + 0.005*"burgers" + 0.005*"disgusting" + 0.005*"months" + 0.005*"ive" + 0.005*"older" + 0.005*"correct" + 0.005*"crispy"
+2024-08-20 13:05:21,981 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.037*"well" + 0.037*"done" + 0.037*"could" + 0.037*"undercooked" + 0.037*"bloody" + 0.037*"toppings" + 0.037*"make" + 0.037*"sure" + 0.037*"finish" + 0.037*"bun"
+2024-08-20 13:05:21,981 - gensim.models.ldamodel - INFO - topic #0 (0.100): 0.065*"burgers" + 0.039*"order" + 0.039*"service" + 0.039*"burger" + 0.027*"fast" + 0.027*"always" + 0.027*"delicious" + 0.014*"best" + 0.014*"came" + 0.014*"dive"
+2024-08-20 13:05:21,982 - gensim.models.ldamodel - INFO - topic diff=0.000036, rho=0.223607
+2024-08-20 13:05:21,983 - gensim.models.ldamodel - INFO - -5.902 per-word bound, 59.8 perplexity estimate based on a held-out corpus of 10 documents with 250 words
+2024-08-20 13:05:21,983 - gensim.models.ldamodel - INFO - PROGRESS: pass 19, at document #10/10
+2024-08-20 13:05:21,984 - gensim.models.ldamodel - INFO - topic #5 (0.100): 0.029*"coming" + 0.029*"back" + 0.029*"fries" + 0.029*"delicious" + 0.029*"rings" + 0.029*"onion" + 0.029*"cheese" + 0.029*"bun" + 0.029*"decadent" + 0.029*"classic"
+2024-08-20 13:05:21,984 - gensim.models.ldamodel - INFO - topic #6 (0.100): 0.040*"time" + 0.040*"every" + 0.040*"least" + 0.040*"town" + 0.040*"bomb" + 0.040*"fantastic" + 0.040*"eat" + 0.040*"chili" + 0.040*"burger" + 0.004*"burgers"
+2024-08-20 13:05:21,984 - gensim.models.ldamodel - INFO - topic #1 (0.100): 0.037*"well" + 0.037*"done" + 0.037*"could" + 0.037*"finish" + 0.037*"toppings" + 0.037*"sure" + 0.037*"undercooked" + 0.037*"make" + 0.037*"bloody" + 0.037*"bun"
+2024-08-20 13:05:21,984 - gensim.models.ldamodel - INFO - topic #7 (0.100): 0.035*"burger" + 0.023*"got" + 0.023*"food" + 0.023*"least" + 0.023*"dripping" + 0.012*"jaw" + 0.012*"pearl" + 0.012*"prized" + 0.012*"might" + 0.012*"huge"
+2024-08-20 13:05:21,984 - gensim.models.ldamodel - INFO - topic #9 (0.100): 0.005*"burgers" + 0.005*"burger" + 0.005*"different" + 0.005*"months" + 0.005*"ive" + 0.005*"disgusting" + 0.005*"crispy" + 0.005*"cheap" + 0.005*"completely" + 0.005*"denny"
+2024-08-20 13:05:21,984 - gensim.models.ldamodel - INFO - topic diff=0.000028, rho=0.218218
+2024-08-20 13:05:21,984 - gensim.utils - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=187, num_topics=10, decay=0.5, chunksize=2000> in 0.10s', 'datetime': '2024-08-20T13:05:21.984738', 'gensim': '4.3.3', 'python': '3.11.4 (main, Jun 20 2023, 17:23:00) [Clang 14.0.3 (clang-1403.0.22.14.1)]', 'platform': 'macOS-14.0-arm64-arm-64bit', 'event': 'created'}
+2024-08-20 13:05:22,038 - root - INFO - Review analysis completed
+2024-08-20 13:05:22,048 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 13:05:22,324 - root - INFO - Analysis and saving to DynamoDB completed.
+2024-08-20 13:05:22,324 - root - INFO - Resumed fetch for YelpConnector
+2024-08-20 13:05:22,325 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 13:05:22] "[35m[1mPOST /reviews HTTP/1.1[0m" 202 -
+2024-08-20 13:07:14,219 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/yelp.py', reloading
+2024-08-20 13:07:14,585 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 13:07:17,780 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 13:07:17,793 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 13:12:38,495 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/models/models.py', reloading
+2024-08-20 13:12:38,794 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 13:12:41,109 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 13:12:41,128 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 13:12:45,347 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/models/models.py', reloading
+2024-08-20 13:12:45,594 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 13:12:47,782 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 13:12:47,794 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 13:13:54,482 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/yelp.py', reloading
+2024-08-20 13:13:54,804 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 13:13:57,257 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 13:13:57,270 - werkzeug - INFO -  * Debugger PIN: 262-513-823
+2024-08-20 13:14:35,942 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/analyze.py', reloading
+2024-08-20 13:14:36,225 - werkzeug - INFO -  * Restarting with stat
+2024-08-20 13:14:38,488 - werkzeug - WARNING -  * Debugger is active!
+2024-08-20 13:14:38,501 - werkzeug - INFO -  * Debugger PIN: 262-513-823

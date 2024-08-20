@@ -175,6 +175,23 @@ class ReviewModel(Model):
     def fetch_all_reviews(cls):
         return cls.scan()  # Fetch all companies from the table
 
+    @classmethod
+    def wipe_reviews(cls):
+        """
+        Deletes all reviews from the Reviews table.
+        """
+        try:
+            for review in cls.scan():
+                review.delete()
+            return {
+                "status": "success",
+                "message": "All reviews have been wiped successfully.",
+            }
+        except Exception as e:
+            return {"status": "error", "message": f"Failed to wipe reviews: {e}"}
+
 
 if __name__ == "__main__":
-    print(list(ReviewModel.fetch_all_reviews()))
+    # print(len(list(ReviewModel.fetch_all_reviews())))
+    print(list(CompanyModel.fetch_all_companies()))
+    # print(ReviewModel.wipe_reviews())

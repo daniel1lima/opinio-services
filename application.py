@@ -4,7 +4,7 @@ import uuid
 from flask import Flask, jsonify, request
 import redis
 from rq import Queue
-from connectors.worker_tasks import start_fetch
+from connectors.worker_tasks import initial_onboarding, poll_new_reviews, resume_fetch
 
 from modules.fetch_reviews import fetch_and_analyze_yelp_reviews, fetch_reviews
 from connectors.factory import ConnectorFactory
@@ -105,21 +105,20 @@ def remove_connection():
 def sync_reviews_wrapper():
     logger = setup_logger("reviews.log")
     request_data = request.get_json()
-    user_connectors = request_data.get("connectors", None)  # Array of string
+    user_connectors = request_data.get("connectors", None)
     company_id = request_data.get("company_id", None)
+    action = request_data.get("action", "poll")  # New parameter to determine the action
 
     if not company_id:
         return (
             jsonify(
                 {
                     "status": status_constants.STATUS_FAILED,
-                    "message": "User ID Required in request",
+                    "message": "Company ID Required in request",
                 }
             ),
             400,
         )
-
-    connectors = []
 
     try:
         company = CompanyModel.get_company_by_id(company_id)
@@ -130,7 +129,7 @@ def sync_reviews_wrapper():
     try:
         if user_connectors:
             logger.info(
-                f"Fetching reviews with connector data:{json.dumps(user_connectors)}"
+                f"Fetching reviews with connector data: {json.dumps(user_connectors)}"
             )
             connectors = [c for c in company.connectors if c.type in user_connectors]
         else:
@@ -138,17 +137,22 @@ def sync_reviews_wrapper():
 
         jobs = []
 
-        job_id = uuid.uuid4()
-        jobs.append(job_id)
+        for connector in connectors:
+            job_id = str(uuid.uuid4())
+            print(f"Job ID: {job_id}")
+            if action == "initial":
+                job = initial_onboarding(connector)
+            elif action == "resume":
+                job = resume_fetch(connector)
+            else:  # Default to "poll"
+                job = poll_new_reviews(connector)
 
-        # q.enqueue(start_fetch(), job_id = job_id
+            jobs.append(job_id)
 
-        start_fetch(connectors)
-
-        return jsonify({"status": "Jobs are in progress", "data": str(jobs)}), 202
+        return jsonify({"status": "Jobs are in progress", "data": jobs}), 202
 
     except Exception as e:
-        logger.info("An error occurred while processing user data")
+        logger.error(f"An error occurred while processing user data: {str(e)}")
         return (
             jsonify({"status": status_constants.STATUS_FAILED, "message": str(e)}),
             400,
