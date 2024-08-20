@@ -1,3 +1,4 @@
+import datetime
 import pynamodb
 from pynamodb.models import Model
 from pynamodb.attributes import (
@@ -9,7 +10,79 @@ from pynamodb.attributes import (
 import os
 from dotenv import load_dotenv
 
+
 load_dotenv()
+
+from enum import Enum
+
+
+class JobStatus(Enum):
+    PENDING = "pending"
+    IN_PROGRESS = "in_progress"
+    COMPLETED = "completed"
+    FAILED = "failed"
+
+
+class JobModel(Model):
+    class Meta:
+        table_name = "Jobs"
+        region = "us-west-2"
+        host = "http://localhost:8000"
+
+    job_id = UnicodeAttribute(hash_key=True)
+    company_id = UnicodeAttribute()
+    connector_type = UnicodeAttribute()
+    status = UnicodeAttribute(default=JobStatus.PENDING.value)
+    total_reviews_fetched = NumberAttribute(default=0)
+    last_sync = UnicodeAttribute(null=True)
+    error_message = UnicodeAttribute(null=True)
+    created_at = UnicodeAttribute()
+    updated_at = UnicodeAttribute()
+
+    @classmethod
+    def create_job(cls, job_id, company_id, connector_type):
+        now = datetime.datetime.now().isoformat()
+        job = cls(
+            job_id=job_id,
+            company_id=company_id,
+            connector_type=connector_type,
+            created_at=now,
+            updated_at=now,
+        )
+        job.save()
+        return job
+
+    def update_status(
+        self, status, total_reviews_fetched=None, last_sync=None, error_message=None
+    ):
+        self.status = status
+        if total_reviews_fetched is not None:
+            self.total_reviews_fetched = total_reviews_fetched
+        if last_sync is not None:
+            self.last_sync = last_sync
+        if error_message is not None:
+            self.error_message = error_message
+        self.updated_at = datetime.datetime.now().isoformat()
+        self.save()
+
+    @classmethod
+    def fetch_all_jobs(cls):
+        return cls.scan()  # Fetch all companies from the table
+
+    @classmethod
+    def wipe_jobs(cls):
+        """
+        Deletes all jobs from the Jobs table.
+        """
+        try:
+            for job in cls.scan():
+                job.delete()
+            return {
+                "status": "success",
+                "message": "All jobs have been wiped successfully.",
+            }
+        except Exception as e:
+            return {"status": "error", "message": f"Failed to wipe jobs: {e}"}
 
 
 class ConnectorModel(MapAttribute):
@@ -193,5 +266,7 @@ class ReviewModel(Model):
 
 if __name__ == "__main__":
     # print(len(list(ReviewModel.fetch_all_reviews())))
-    print(list(CompanyModel.fetch_all_companies()))
+    # print(list(CompanyModel.fetch_all_companies()))
+    print(list(JobModel.fetch_all_jobs()))
+    # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
     # print(ReviewModel.wipe_reviews())

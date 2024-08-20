@@ -2,9 +2,11 @@ from connectors.yelp import YelpConnector
 
 
 class ConnectorFactory:
-    def __init__(self, connector):
+    def __init__(self, connector, company_id, job_id):
         self.connector = connector
         self.type = connector.type
+        self.company_id = company_id
+        self.job_id = job_id
 
         print(self.connector)
         print(self.type)
@@ -15,6 +17,11 @@ class ConnectorFactory:
     def create_connector_instance(self):
         # Assuming connectors are defined in a dictionary or module
         connector_classes = {"Yelp": YelpConnector}
-        return connector_classes.get(self.type)(self.connector.config)
+        config = {
+            "business_id": self.connector.config.business_id,
+            "company_id": self.company_id,
+            "job_id": self.job_id,
+        }
+        return connector_classes.get(self.type)(config)
 
     pass

@@ -8,7 +8,7 @@ from pydantic import BaseModel, Field, ValidationError
 from connectors.base_review import ReviewEntry
 from typing import List, Optional, Tuple
 from datetime import datetime, timezone
-from models.models import CompanyModel
+from models.models import CompanyModel, JobModel, JobStatus
 
 from dotenv import load_dotenv
 
@@ -16,14 +16,12 @@ load_dotenv()
 
 
 class YelpConnector:
-    class yelpConfig:
-        business_id: str
-        company_id: str
-
     def __init__(self, config) -> None:
-        self.business_id = config.business_id
-        self.company_id = config.company_id
+        self.business_id = config["business_id"]
+        self.company_id = config["company_id"]
+        self.job_id = config["job_id"]
         self.logger = setup_logger("yelp_connector.log")
+        self.job = JobModel.get(self.job_id)
 
     def fetch_historical_reviews(self, n_reviews: int = 500) -> List[ReviewEntry]:
         """
@@ -35,7 +33,7 @@ class YelpConnector:
         Returns:
             List[ReviewEntry]: A list of validated review entries.
         """
-        return self.fetch_reviews(self.business_id, last_sync=None, n_reviews=n_reviews)
+        return self.fetch_reviews(last_sync=None, n_reviews=n_reviews)
 
     def fetch_new_reviews(self, last_sync: Optional[str]) -> List[ReviewEntry]:
         """
@@ -48,16 +46,13 @@ class YelpConnector:
             List[ReviewEntry]: A list of validated new review entries.
         """
         try:
-            return self.fetch_reviews(
-                self.business_id, last_sync, n_reviews=float("inf")
-            )
+            return self.fetch_reviews(last_sync, n_reviews=float("inf"))
         except Exception as e:
             self.logger.error(f"Error fetching new reviews: {e}")
             return []
 
     def fetch_reviews(
         self,
-        business_id: str,
         last_sync: Optional[str],
         n_reviews: int = float("inf"),
         max_retries: int = 5,
@@ -68,7 +63,6 @@ class YelpConnector:
         Fetches reviews from the Yelp API for a given business.
 
         Args:
-            business_id (str): The ID of the business to fetch reviews for.
             last_sync (Optional[str]): The UTC datetime of the last sync. If None or empty, fetches all reviews.
             n_reviews (int, optional): The maximum number of reviews to fetch. Defaults to infinity.
             max_retries (int, optional): The maximum number of retry attempts for failed requests. Defaults to 5.
@@ -78,6 +72,8 @@ class YelpConnector:
         Returns:
             List[ReviewEntry]: A list of validated review entries.
         """
+        self.job.update_status(JobStatus.IN_PROGRESS.value)
+
         url = "https://red-flower-business-data.p.rapidapi.com/business-reviews"
         headers = {
             "x-rapidapi-key": os.environ["RAPIDAPI_KEY"],
@@ -91,48 +87,68 @@ class YelpConnector:
 
         last_sync_dt = self._parse_last_sync(last_sync)
         self.logger.info(
-            f"Fetching reviews for business_id: {business_id}, last_sync: {last_sync_dt}, n_reviews: {n_reviews}, start_offset: {start_offset}"
+            f"Fetching reviews for business_id: {self.business_id}, company_id: {self.company_id}, last_sync: {last_sync_dt}, n_reviews: {n_reviews}, start_offset: {start_offset}"
         )
 
-        while total_fetched < n_reviews:
-            params = self._build_request_params(business_id, page, page_size)
-            response = self._make_api_request(
-                url, headers, params, max_retries, initial_backoff
-            )
-
-            if not response:
-                self.logger.warning(
-                    f"Failed to fetch page {page}. Returning {len(reviews_list)} reviews processed so far."
+        try:
+            while total_fetched < n_reviews:
+                params = self._build_request_params(self.business_id, page, page_size)
+                response = self._make_api_request(
+                    url, headers, params, max_retries, initial_backoff
                 )
-                return reviews_list
 
-            new_reviews = self._process_response(response, business_id, last_sync_dt)
-            if not new_reviews:
+                if not response:
+                    self.logger.warning(
+                        f"Failed to fetch page {page}. Returning {len(reviews_list)} reviews processed so far."
+                    )
+                    break
+
+                new_reviews = self._process_response(
+                    response, self.company_id, last_sync_dt
+                )
+                if not new_reviews:
+                    self.logger.info(
+                        f"No new reviews found on page {page}. Stopping fetch."
+                    )
+                    break
+
+                reviews_list.extend(new_reviews)
+                total_fetched += len(new_reviews)
                 self.logger.info(
-                    f"No new reviews found on page {page}. Stopping fetch."
+                    f"Fetched {len(new_reviews)} new reviews, total fetched: {total_fetched}"
                 )
-                break
 
-            reviews_list.extend(new_reviews)
-            total_fetched += len(new_reviews)
-            self.logger.info(
-                f"Fetched {len(new_reviews)} new reviews, total fetched: {total_fetched}"
-            )
+                self._save_progress(
+                    self.business_id, total_fetched + start_offset, last_sync
+                )
+                self.job.update_status(
+                    JobStatus.IN_PROGRESS.value, total_reviews_fetched=total_fetched
+                )
 
-            self._save_progress(business_id, total_fetched + start_offset, last_sync)
+                if len(new_reviews) < page_size or total_fetched >= n_reviews:
+                    break
+                page += 1
 
-            if len(new_reviews) < page_size or total_fetched >= n_reviews:
-                break
-            page += 1
+            reviews_list = reviews_list[:n_reviews]
 
-        reviews_list = reviews_list[:n_reviews]
+            if reviews_list:
+                latest_review_date = max(review.review_date for review in reviews_list)
+                self._update_last_sync(latest_review_date)
+                self.job.update_status(
+                    JobStatus.COMPLETED.value,
+                    total_reviews_fetched=len(reviews_list),
+                    last_sync=latest_review_date,
+                )
+            else:
+                self.job.update_status(
+                    JobStatus.COMPLETED.value, total_reviews_fetched=0
+                )
 
-        # Update the last_sync for this connector in the company
-        if reviews_list:
-            latest_review_date = max(review.review_date for review in reviews_list)
-            self._update_last_sync(self.company_id, latest_review_date)
-
-        return reviews_list
+            return reviews_list
+        except Exception as e:
+            self.logger.error(f"Error fetching reviews: {str(e)}")
+            self.job.update_status(JobStatus.FAILED.value, error_message=str(e))
+            return []
 
     def _save_progress(
         self, business_id: str, total_fetched: int, last_sync: Optional[str]
@@ -171,9 +187,7 @@ class YelpConnector:
             last_sync = progress["last_sync"]
 
             # add n_reviews if only resuming by a certain amount not fetching all reviews
-            new_reviews = self.fetch_reviews(
-                business_id, last_sync, start_offset=start_offset
-            )
+            new_reviews = self.fetch_reviews(last_sync, start_offset=start_offset)
             total_fetched = start_offset + len(new_reviews)
 
             return new_reviews, total_fetched
@@ -243,7 +257,7 @@ class YelpConnector:
     def _process_response(
         self,
         response: requests.Response,
-        business_id: str,
+        company_id: str,
         last_sync_dt: Optional[datetime],
     ) -> List[ReviewEntry]:
         try:
@@ -262,8 +276,8 @@ class YelpConnector:
 
                 try:
                     review_entry = ReviewEntry(
-                        business_id=business_id,
-                        company_id=business_id,
+                        business_id=self.business_id,
+                        company_id=company_id,
                         review_id=review.get("review_id", "Unknown"),
                         review_date=review_dt.isoformat(),  # Convert datetime to ISO format string
                         review_text=review.get("review_text", ""),
@@ -283,19 +297,22 @@ class YelpConnector:
             self.logger.error(f"Error processing response: {e}")
             return []
 
-    def _update_last_sync(self, company_id: str, latest_review_date: str):
+    def _update_last_sync(self, latest_review_date: str):
         try:
-            company = CompanyModel.get_company_by_id(company_id)
+            company = CompanyModel.get_company_by_id(self.company_id)
             if company:
                 for connector in company.connectors:
-                    if connector.type == "Yelp":
+                    if (
+                        connector.type == "Yelp"
+                        and connector.config["business_id"] == self.business_id
+                    ):
                         connector.last_sync = latest_review_date
                         break
                 company.save()
                 self.logger.info(
-                    f"Updated last_sync for Yelp connector to {latest_review_date}"
+                    f"Updated last_sync for Yelp connector (business_id: {self.business_id}) to {latest_review_date}"
                 )
             else:
-                self.logger.warning(f"Company with id {company_id} not found")
+                self.logger.warning(f"Company with id {self.company_id} not found")
         except Exception as e:
             self.logger.error(f"Failed to update last_sync: {e}")

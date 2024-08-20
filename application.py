@@ -141,11 +141,11 @@ def sync_reviews_wrapper():
             job_id = str(uuid.uuid4())
             print(f"Job ID: {job_id}")
             if action == "initial":
-                job = initial_onboarding(connector)
+                job = initial_onboarding(connector, company_id)
             elif action == "resume":
-                job = resume_fetch(connector)
+                job = resume_fetch(connector, company_id)
             else:  # Default to "poll"
-                job = poll_new_reviews(connector)
+                job = poll_new_reviews(connector, company_id)
 
             jobs.append(job_id)
 
