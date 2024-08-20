@@ -166,7 +166,7 @@ class YelpConnector:
             "total_fetched": total_fetched,
             "last_sync": last_sync,
         }
-        with open(f"progress_{business_id}.json", "w") as f:
+        with open(f"progress/progress_{business_id}.json", "w") as f:
             json.dump(progress, f)
 
     def resume_fetch(self, business_id: str) -> Tuple[List[ReviewEntry], int]:
@@ -180,7 +180,7 @@ class YelpConnector:
             Tuple[List[ReviewEntry], int]: A tuple containing the list of fetched reviews and the total number of reviews fetched.
         """
         try:
-            with open(f"progress_{business_id}.json", "r") as f:
+            with open(f"progress/progress_{business_id}.json", "r") as f:
                 progress = json.load(f)
 
             start_offset = progress["total_fetched"]
