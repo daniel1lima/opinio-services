@@ -9,3 +9,192 @@
 2024-08-18 22:27:54,988 - werkzeug - INFO - 127.0.0.1 - - [18/Aug/2024 22:27:54] "POST /remove_connection HTTP/1.1" 200 -
 2024-08-18 22:28:26,494 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/analyze.py', reloading
 2024-08-18 22:28:26,494 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/connectors/analyze.py', reloading
+2024-08-19 09:43:20,920 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:20,952 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:20] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:23,123 - root - INFO - Adding connection:{"name": "Yelp", "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:43:23,150 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:23] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:43:23,818 - root - INFO - Adding connection:{"name": "Yelp", "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:43:23,844 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:23] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:43:24,598 - root - INFO - Adding connection:{"name": "Yelp", "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:43:24,621 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:24] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:43:25,492 - root - INFO - Adding connection:{"name": "Yelp", "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:43:25,528 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:25] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:43:43,489 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:43,489 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:43,530 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:43] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:43,530 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:43] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:44,077 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:44,077 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:44,077 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:44,107 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:44] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:44,107 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:44] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:44,107 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:44] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:44,630 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:44,630 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:44,630 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:44,630 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:44,665 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:44] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:44,665 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:44] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:44,665 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:44] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:44,665 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:44] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:45,191 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:45,191 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:45,191 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:45,191 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:45,191 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:45,217 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:45] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:45,217 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:45] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:45,217 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:45] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:45,217 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:45] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:45,217 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:45] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:46,650 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:46,650 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:46,650 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:46,650 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:46,650 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:46,650 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:46,677 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:46] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:46,677 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:46] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:46,677 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:46] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:46,677 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:46] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:46,677 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:46] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:46,677 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:46] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:48,550 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:48,550 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:48,550 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:48,550 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:48,550 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:48,550 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:48,550 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:43:48,558 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:48] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:48,558 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:48] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:48,558 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:48] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:48,558 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:48] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:48,558 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:48] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:48,558 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:48] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:48,558 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:48] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:43:54,632 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:43:54,632 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:43:54,632 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:43:54,632 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:43:54,632 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:43:54,632 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:43:54,632 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:43:54,670 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:54] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:43:54,670 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:54] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:43:54,670 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:54] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:43:54,670 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:54] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:43:54,670 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:54] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:43:54,670 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:54] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:43:54,670 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:43:54] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:44:35,782 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:44:35,782 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:44:35,782 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:44:35,782 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:44:35,782 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:44:35,782 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:44:35,782 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:44:35,826 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:44:35] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:44:35,826 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:44:35] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:44:35,826 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:44:35] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:44:35,826 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:44:35] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:44:35,826 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:44:35] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:44:35,826 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:44:35] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:44:35,826 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:44:35] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:45:13,078 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/models/models.py', reloading
+2024-08-19 09:45:13,078 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/models/models.py', reloading
+2024-08-19 09:45:13,078 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/models/models.py', reloading
+2024-08-19 09:45:13,078 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/models/models.py', reloading
+2024-08-19 09:45:13,078 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/models/models.py', reloading
+2024-08-19 09:45:13,078 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/models/models.py', reloading
+2024-08-19 09:45:13,078 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/models/models.py', reloading
+2024-08-19 09:45:17,009 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:45:17,016 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-19 09:45:17,178 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:45:17] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:45:18,182 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:45:18,182 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:45:18,212 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:45:18] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:45:18,212 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:45:18] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:45:24,557 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:45:24,557 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:45:24,580 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:45:24] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:45:24,580 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:45:24] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:45:27,894 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:45:27,894 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:45:27,901 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:45:27] "[31m[1mPOST /add_connection HTTP/1.1[0m" 400 -
+2024-08-19 09:45:27,901 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:45:27] "[31m[1mPOST /add_connection HTTP/1.1[0m" 400 -
+2024-08-19 09:45:50,482 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/models/models.py', reloading
+2024-08-19 09:45:50,482 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/models/models.py', reloading
+2024-08-19 09:50:03,340 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:50:03,413 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:03] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:50:04,081 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:50:04,081 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-19 09:50:04,107 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:04] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:50:04,107 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:04] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-19 09:50:11,257 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:50:11,257 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:50:11,283 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:11] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:50:11,283 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:11] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:50:16,334 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:50:16,334 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:50:16,348 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:16] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:50:16,348 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:16] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:50:17,538 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:50:17,538 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:50:17,554 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:17] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:50:17,554 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:17] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:50:18,361 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:50:18,361 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:50:18,371 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:18] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:50:18,371 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:18] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:50:18,951 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:50:18,951 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:50:18,960 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:18] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:50:18,960 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:18] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:50:19,957 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:50:19,957 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:50:19,973 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:19] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:50:19,973 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:19] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:50:20,620 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:50:20,620 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "asd"}], "company_id": "google"}
+2024-08-19 09:50:20,628 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:20] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:50:20,628 - werkzeug - INFO - 127.0.0.1 - - [19/Aug/2024 09:50:20] "POST /add_connection HTTP/1.1" 200 -
+2024-08-19 09:52:29,516 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-19 09:52:29,516 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-20 08:58:56,888 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-20 08:58:56,937 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 08:58:56] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-20 08:58:59,062 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "pearls-deluxe-burgers-san-francisco-3"}], "company_id": "google"}
+2024-08-20 08:58:59,106 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 08:58:59] "POST /add_connection HTTP/1.1" 200 -
+2024-08-20 08:59:23,766 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/models/models.py', reloading
+2024-08-20 09:23:33,969 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-20 09:23:33,989 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 09:23:34,253 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 09:23:34] "[35m[1mPOST /remove_connection HTTP/1.1[0m" 500 -
+2024-08-20 09:25:07,362 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/models/models.py', reloading
+2024-08-20 09:25:14,996 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-20 09:25:15,010 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 09:25:15,217 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 09:25:15] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-20 09:25:20,288 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "pearls-deluxe-burgers-san-francisco-3"}], "company_id": "google"}
+2024-08-20 09:25:20,351 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 09:25:20] "POST /add_connection HTTP/1.1" 200 -
+2024-08-20 09:27:19,084 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-20 09:27:19,084 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-20 09:27:19,172 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 09:27:19] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-20 09:27:19,172 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 09:27:19] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-20 09:27:22,016 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "pearls-deluxe-burgers-san-francisco-3"}], "company_id": "google", "last_sync": ""}
+2024-08-20 09:27:22,016 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "pearls-deluxe-burgers-san-francisco-3"}], "company_id": "google", "last_sync": ""}
+2024-08-20 09:27:22,051 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 09:27:22] "POST /add_connection HTTP/1.1" 200 -
+2024-08-20 09:27:22,051 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 09:27:22] "POST /add_connection HTTP/1.1" 200 -
+2024-08-20 09:28:37,368 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-20 09:28:37,368 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-20 09:30:26,758 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-20 09:30:26,773 - botocore.credentials - INFO - Found credentials in environment variables.
+2024-08-20 09:30:27,045 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 09:30:27] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-20 09:30:38,704 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-20 09:30:38,704 - root - INFO - Removing connection: {"type": "Yelp", "company_id": "google"}
+2024-08-20 09:30:38,729 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 09:30:38] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-20 09:30:38,729 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 09:30:38] "POST /remove_connection HTTP/1.1" 200 -
+2024-08-20 09:30:46,358 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "pearls-deluxe-burgers-san-francisco-3"}], "company_id": "google", "last_sync": ""}
+2024-08-20 09:30:46,358 - root - INFO - Adding connection:{"name": "Yelp", "description": "Customer reviews and ratings.", "icon": "/static/media/yelp-svgrepo-com.7c28bcae492547846ffebd6c2f865ae8.svg", "status": true, "fields": [{"label": "Business ID", "value": "pearls-deluxe-burgers-san-francisco-3"}], "company_id": "google", "last_sync": ""}
+2024-08-20 09:30:46,424 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 09:30:46] "POST /add_connection HTTP/1.1" 200 -
+2024-08-20 09:30:46,424 - werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 09:30:46] "POST /add_connection HTTP/1.1" 200 -
+2024-08-20 09:31:34,104 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading
+2024-08-20 09:31:34,104 - werkzeug - INFO -  * Detected change in '/Users/daniel/opinio-services/application.py', reloading

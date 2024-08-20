@@ -127,7 +127,7 @@ def _get_combined_categories(ldamodel, num_topics, num_keywords=5):
     return most_common_keywords
 
 
-def analyze_reviews(reviews: List[str]) -> Tuple[pd.DataFrame, pd.DataFrame]:
+def analyze_reviews(reviews: List[str]) -> Tuple[dict, dict]:
     """
     Analyze a list of reviews to extract topics, sentiments, and polarities.
 
@@ -135,9 +135,9 @@ def analyze_reviews(reviews: List[str]) -> Tuple[pd.DataFrame, pd.DataFrame]:
         reviews (List[str]): A list of review strings.
 
     Returns:
-        Tuple[pd.DataFrame, pd.DataFrame]: A tuple containing two DataFrames:
-            - The first DataFrame contains the processed reviews with assigned labels and sentiments.
-            - The second DataFrame contains summaries of average sentiments and polarities for each category.
+        Tuple[dict, dict]: A tuple containing two JSON objects:
+            - The first JSON object contains the processed reviews with assigned labels and sentiments.
+            - The second JSON object contains summaries of average sentiments and polarities for each category.
     """
     # Validate input
     ReviewInput(reviews=reviews)
@@ -216,6 +216,20 @@ def analyze_reviews(reviews: List[str]) -> Tuple[pd.DataFrame, pd.DataFrame]:
     polarities = [TextBlob(review).sentiment[1] * 2.5 + 2.5 for review in reviews]
     df["sentiment"] = sentiments
     df["polarity"] = polarities
+
+    # Convert all int64 and float64 to standard Python types
+    for col in ["sentiment", "polarity"]:
+        df[col] = (
+            df[col]
+            .astype(float)
+            .apply(lambda x: x.item() if isinstance(x, (np.int64, np.float64)) else x)
+        )
+
+    df.drop(
+        columns=["tfidf_embeddings", "processed_sentences", "Sentences", "Cluster"],
+        inplace=True,
+    )
+
     categories_summaries_sentiments = defaultdict(list)
     categories_summaries_polarities = defaultdict(list)
     for i, row in df.iterrows():
@@ -234,13 +248,24 @@ def analyze_reviews(reviews: List[str]) -> Tuple[pd.DataFrame, pd.DataFrame]:
         }
     )
 
-    # Drop the 'tfidf_embeddings', 'processed_sentences', and 'Sentences' columns before returning the DataFrame
-    df.drop(
-        columns=["tfidf_embeddings", "processed_sentences", "Sentences"], inplace=True
-    )
+    # Convert all int64 and float64 in summaries DataFrame
+    for col in ["Average Sentiment", "Average Polarity"]:
+        df_summaries[col] = (
+            df_summaries[col]
+            .astype(float)
+            .apply(lambda x: x.item() if isinstance(x, (np.int64, np.float64)) else x)
+        )
+
+    # Convert DataFrames to JSON
+    df_json = df.to_json(
+        orient="records"
+    )  # Convert processed reviews DataFrame to JSON
+    df_summaries_json = df_summaries.to_json(
+        orient="records"
+    )  # Convert summaries DataFrame to JSON
 
     logger.info("Review analysis completed")
-    return df, df_summaries
+    return json.loads(df_json), json.loads(df_summaries_json)  # Return JSON objects
 
 
 if __name__ == "__main__":

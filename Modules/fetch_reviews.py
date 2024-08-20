@@ -25,7 +25,7 @@ class BrokenReviewsApi(Exception):
 
 class Review(BaseModel):
     business_id: str
-    business_name: str
+    company_id: str
     review_id: str = uuid.uuid4
     review_date: str = datetime.now()
     review_text: str
@@ -78,7 +78,7 @@ def fetch_reviews(business_id, n_reviews, retries=3):
                     for review in reviews:
                         review_entry = {
                             "business_id": business_id,
-                            "business_name": business_id,
+                            "company_id": business_id,
                             "review_id": review.get("review_id", "Unknown"),
                             "review_date": review.get("review_datetime_utc", None),
                             "review_text": review.get("review_text", ""),

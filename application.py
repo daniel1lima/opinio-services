@@ -4,6 +4,7 @@ import uuid
 from flask import Flask, jsonify, request
 import redis
 from rq import Queue
+from connectors.worker_tasks import start_fetch
 
 from modules.fetch_reviews import fetch_and_analyze_yelp_reviews, fetch_reviews
 from connectors.factory import ConnectorFactory
@@ -62,6 +63,9 @@ def add_connection():
                     .lower()
                     for field in request_data["fields"]
                 },  # Convert to list
+                "last_sync": request_data.get(
+                    "last_sync", ""
+                ),  # Add last_sync attribute
             }
 
             company_id = request_data.get("company_id")
@@ -98,15 +102,13 @@ def remove_connection():
 
 
 @app.route("/reviews", methods=["POST"])
-def fetch_reviews_total_wrapper():
+def sync_reviews_wrapper():
     logger = setup_logger("reviews.log")
     request_data = request.get_json()
-    connectors = request_data.get("connectors", None)  # Array of string
-    user_id = request_data.get(
-        "user_id", None
-    )  # String adjacent to clerk ID in main DB
+    user_connectors = request_data.get("connectors", None)  # Array of string
+    company_id = request_data.get("company_id", None)
 
-    if not user_id:
+    if not company_id:
         return (
             jsonify(
                 {
@@ -117,49 +119,31 @@ def fetch_reviews_total_wrapper():
             400,
         )
 
+    connectors = []
+
     try:
-        if connectors:
+        company = CompanyModel.get_company_by_id(company_id)
+    except Exception as e:
+        logger.error(f"Failed to fetch company by ID: {e}")
+        return jsonify({"status": "error", "message": "Failed to fetch company"}), 500
+
+    try:
+        if user_connectors:
             logger.info(
-                f"Fetching reviews with connector data:{json.dumps(connectors)}"
+                f"Fetching reviews with connector data:{json.dumps(user_connectors)}"
             )
-            # Create the desired object structure
-            connectors = [
-                {
-                    "type": c,
-                    "config": {
-                        "business_id": next(
-                            (
-                                field["value"]
-                                for field in connector["fields"]
-                                if field["label"] == "Business ID"
-                            ),
-                            None,
-                        )
-                    },
-                }
-                for c in connectors
-            ]
+            connectors = [c for c in company.connectors if c.type in user_connectors]
         else:
-            user = Company.fetch_user(user_id)  # Corrected to use user_id
-            connectors = user.connections
+            connectors = company.connectors
 
         jobs = []
-        for c in connectors:
-            fetched_connector = ConnectionModel.fetch_connector(
-                user_id, c
-            )  # Corrected to use ConnectionModel
-            connector = ConnectorFactory(
-                fetched_connector, c
-            )  # Initialize connector with factory
 
-            job_id = uuid.uuid4()
-            jobs.append(job_id)  # Store job_id in jobs list
+        job_id = uuid.uuid4()
+        jobs.append(job_id)
 
-            q.enqueue(
-                connector.fetch_new_reviews, job_id=job_id
-            )  # Corrected to use q.enqueue
+        # q.enqueue(start_fetch(), job_id = job_id
 
-            logger.info(f"Enqueued {connector.__class__.__name__}")
+        start_fetch(connectors)
 
         return jsonify({"status": "Jobs are in progress", "data": str(jobs)}), 202
 
