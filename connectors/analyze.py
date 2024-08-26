@@ -6,7 +6,7 @@ from modules.create_embeddings import analyze_reviews
 from modules.logger_setup import setup_logger
 from typing import List, Optional
 
-logger = setup_logger()
+logger = setup_logger("analyzer.log")
 
 
 class Analyzer:
@@ -14,7 +14,7 @@ class Analyzer:
         self.connector = connector
         self.table_name = "Reviews"  # Replace with your DynamoDB table name
 
-    def initial_onboarding(self, config, n_reviews: int = 500):
+    def initial_onboarding(self, config, n_reviews: int = 300):
         """
         Perform initial onboarding by fetching and analyzing historical reviews.
 
@@ -121,7 +121,6 @@ class Analyzer:
         # Save analyzed reviews to DynamoDB
         self.save_to_dynamodb(reviews_list)
 
-        logger.info("Analysis and saving to DynamoDB completed.")
         return {"status": 200, "data": reviews_list}
 
     def save_to_dynamodb(self, reviews):
@@ -131,43 +130,18 @@ class Analyzer:
                 review_model = ReviewModel(
                     business_id=review_dict["business_id"],
                     company_id=review_dict["company_id"],
-                    review_id=review_dict["review_id"],
                     review_date=review_dict["review_date"],
+                    review_id=review_dict["review_id"],
                     review_text=review_dict["review_text"],
-                    review_url=review_dict["review_url"],
-                    rating=int(review_dict["rating"]),
-                    total_reviews=int(review_dict["total_reviews"]),
-                    platform_id=review_dict["platform_id"],
-                    assigned_label=review_dict.get("assigned_label"),
-                    named_labels=review_dict.get("named_labels"),
-                    sentiment=float(review_dict.get("sentiment", 0)),
-                    polarity=float(review_dict.get("polarity", 0)),
+                    review_url=review_dict.get("review_url", ""),
+                    rating=int(review_dict.get("rating", 0)),
+                    total_reviews=int(review_dict.get("total_reviews", 0)),
+                    platform_id=review_dict.get("platform_id", ""),
+                    assigned_label=review_dict.get("assigned_label", ""),
+                    named_labels=review_dict.get("named_labels", []),
+                    sentiment=float(review_dict.get("sentiment", 0.0)),
+                    polarity=float(review_dict.get("polarity", 0.0)),
                 )
                 review_model.save()
-                logger.debug(f"Saved review to DynamoDB: {review_dict}")
             except Exception as e:
                 logger.error(f"Error saving review number {i} to DynamoDB: {e}")
-
-
-if __name__ == "__main__":
-    from connectors.yelp import YelpConnector
-
-    config = YelpConnector.yelpConfig(
-        business_id="pearls-deluxe-burgers-san-francisco-3"
-    )
-    connector = YelpConnector(config)
-    analyzer = Analyzer(connector)
-
-    # Example usage:
-    # Initial onboarding
-    result = analyzer.initial_onboarding(config)
-    print("Initial onboarding result:", result)
-
-    # Poll for new reviews
-    last_sync = "2023-04-01T00:00:00Z"
-    result = analyzer.poll_new_reviews(config, last_sync)
-    print("Poll new reviews result:", result)
-
-    # Resume fetch
-    result = analyzer.resume_fetch(config)
-    print("Resume fetch result:", result)

@@ -9,11 +9,16 @@ from pynamodb.attributes import (
 )
 import os
 from dotenv import load_dotenv
-
-
-load_dotenv()
-
 from enum import Enum
+
+load_dotenv(override=True)
+
+
+DYNAMODB_URL = os.getenv("DYNAMODB_URL", "http://localhost:8000")
+AWS_REGION = os.getenv("AWS_REGION", "us-east-2")
+
+print(DYNAMODB_URL)
+print(AWS_REGION)
 
 
 class JobStatus(Enum):
@@ -26,8 +31,8 @@ class JobStatus(Enum):
 class JobModel(Model):
     class Meta:
         table_name = "Jobs"
-        region = "us-west-2"
-        host = "http://localhost:8000"
+        region = AWS_REGION
+        host = DYNAMODB_URL
 
     job_id = UnicodeAttribute()
     company_id = UnicodeAttribute(hash_key=True)
@@ -104,9 +109,9 @@ class ConnectorModel(MapAttribute):
 
 class UserModel(Model):
     class Meta:
-        table_name = "Users"  # Ensure this is set in your .env
-        region = "us-west-2"  # Change to your desired region
-        host = "http://localhost:8000"  # Point to local DynamoDB
+        table_name = "Users"
+        region = AWS_REGION
+        host = DYNAMODB_URL
 
     user_id = UnicodeAttribute(hash_key=True)
     first_name = UnicodeAttribute()
@@ -137,9 +142,9 @@ class UserModel(Model):
 
 class ConnectionModel(Model):
     class Meta:
-        table_name = "Connections"  # Ensure this is set in your .env
-        region = "us-west-2"  # Change to your desired region
-        host = "http://localhost:8000"  # Point to local DynamoDB
+        table_name = "Connections"
+        region = AWS_REGION
+        host = DYNAMODB_URL
 
     user_id = UnicodeAttribute(hash_key=True)
     connection_id = UnicodeAttribute(range_key=True)
@@ -149,9 +154,9 @@ class ConnectionModel(Model):
 
 class CompanyModel(Model):
     class Meta:
-        table_name = "Companies"  # Ensure this is set in your .env
-        region = "us-west-2"  # Change to your desired region
-        host = "http://localhost:8000"  # Point to local DynamoDB
+        table_name = "Companies"
+        region = AWS_REGION
+        host = DYNAMODB_URL
 
     company_id = UnicodeAttribute(hash_key=True)
     company_name = UnicodeAttribute()  # New field for company name
@@ -177,7 +182,6 @@ class CompanyModel(Model):
             self.connectors = []  # Initialize as an empty list if None
 
         # Check if the connector already exists based on business_id and type
-        # print(connector['type'])
         if not any(c.type == connector["type"] for c in self.connectors):
             self.connectors.append(connector)  # Add the new connector
             self.save()  # Save the updated company model
@@ -220,9 +224,11 @@ class CompanyModel(Model):
 
 class ReviewModel(Model):
     class Meta:
-        table_name = "Reviews"  # Ensure this is set in your .env
-        region = "us-west-2"  # Change to your desired region
-        host = "http://localhost:8000"  # Point to local DynamoDB
+        table_name = "Reviews"
+        region = AWS_REGION
+        host = DYNAMODB_URL
+        read_capacity_units = 10  # Increased read capacity
+        write_capacity_units = 10  # Increased write capacity
 
     review_id = UnicodeAttribute(range_key=True)
     business_id = UnicodeAttribute()
@@ -274,13 +280,29 @@ class ReviewModel(Model):
         except Exception as e:
             return {"status": "error", "message": f"Failed to wipe reviews: {e}"}
 
+    @classmethod
+    def recreate_table(cls):
+        if cls.exists():
+            cls.delete_table()
+        cls.create_table(read_capacity_units=10, write_capacity_units=10)
+
+    @classmethod
+    def fetch_reviews_by_company_id(cls, company_id):
+        try:
+            return cls.query(company_id)
+        except Exception as e:
+            return {"status": "error", "message": f"Failed to fetch reviews: {e}"}
+
 
 if __name__ == "__main__":
-    # print(len(list(ReviewModel.fetch_all_reviews())))
-    # print(list(CompanyModel.fetch_all_companies()))
-    print(list(JobModel.fetch_all_jobs()))
-    # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
-    # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
+    # Recreate the Reviews table with higher capacity
+    print(len(list(ReviewModel.fetch_reviews_by_company_id("google"))))
+    print(len(list(ReviewModel.fetch_all_reviews())))
     # print(ReviewModel.wipe_reviews())
+    # print(list(CompanyModel.fetch_all_companies()))
+    # print(list(JobModel.fetch_all_jobs()))
+    # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
+    # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
+
     # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
     # print("JobModel table created successfully.")

@@ -2,6 +2,7 @@ import json
 import os
 import time
 import requests
+from connectors.publish import publish_job_status
 from modules.fetch_reviews import Review
 from modules.logger_setup import setup_logger
 from pydantic import BaseModel, Field, ValidationError
@@ -12,7 +13,7 @@ from models.models import CompanyModel, JobModel, JobStatus
 
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 
 class YelpConnector:
@@ -81,7 +82,7 @@ class YelpConnector:
         }
 
         reviews_list = []
-        page_size = 4
+        page_size = 45
         total_fetched = 0
         page = (start_offset // page_size) + 1
 
@@ -309,6 +310,13 @@ class YelpConnector:
             data = reviews_data.get("data", {})
             reviews = data.get("reviews", [])
             total_reviews = data.get("total", 0)
+
+            # Debug logging to check the type and content of reviews
+            self.logger.debug(f"Type of reviews: {type(reviews)}, Content: {reviews}")
+
+            if not isinstance(reviews, list):
+                self.logger.error(f"Expected list of reviews, got {type(reviews)}")
+                return []
 
             new_reviews = []
             for review in reviews:

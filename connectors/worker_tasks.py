@@ -30,7 +30,7 @@ def initial_onboarding(connector_config, company_id):
         connector_config, company_id, job_id
     ).create_connector_instance()
     analyzer = Analyzer(connector)
-    result = analyzer.initial_onboarding(connector_config.config, n_reviews=10)
+    result = analyzer.initial_onboarding(connector_config.config, n_reviews=200)
     logger.info(f"Initial onboarding completed for {connector.__class__.__name__}")
     most_recent_job = JobModel.get_most_recent_job(company_id)
     job_data = {

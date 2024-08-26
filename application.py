@@ -16,6 +16,10 @@ from modules.logger_setup import setup_logger
 from models.status_constants import status_constants
 from flask_cors import CORS
 
+from dotenv import load_dotenv
+
+load_dotenv(override=True)
+
 
 app = Flask(__name__)
 CORS(app)
