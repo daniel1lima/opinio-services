@@ -9,3 +9,5 @@
 *.swo
 Modules/__pycache__/logger_setup.cpython-312.pyc
 .vscode
+
+/logs/

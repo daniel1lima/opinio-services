@@ -11,6 +11,11 @@ tasks:
     cmds:
       - "./run.sh"
 
+  stop:
+    desc: "Stop the Flask application"
+    cmds:
+    - "./stop.sh"
+
   test:
     desc: "Run tests"
     cmds:

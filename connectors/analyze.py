@@ -141,6 +141,8 @@ class Analyzer:
                     named_labels=review_dict.get("named_labels", []),
                     sentiment=float(review_dict.get("sentiment", 0.0)),
                     polarity=float(review_dict.get("polarity", 0.0)),
+                    author_name=review_dict.get("author_name", "Anonymous"),
+                    author_image_url=review_dict.get("author_image_url", ""),
                 )
                 review_model.save()
             except Exception as e:
