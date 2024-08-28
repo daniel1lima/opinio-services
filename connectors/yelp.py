@@ -93,9 +93,13 @@ class YelpConnector:
 
         fetch_completed = True  # Flag to track if fetch process completed successfully
 
+        num_pages = 5  # Number of pages to fetch at a time
+
         try:
             while total_fetched < n_reviews:
-                params = self._build_request_params(self.business_id, page, page_size)
+                params = self._build_request_params(
+                    self.business_id, page, page_size, num_pages
+                )
                 response = self._make_api_request(
                     url, headers, params, max_retries, initial_backoff
                 )
@@ -129,9 +133,12 @@ class YelpConnector:
                     JobStatus.IN_PROGRESS.value, total_reviews_fetched=total_fetched
                 )
 
-                if len(new_reviews) < page_size or total_fetched >= n_reviews:
+                if (
+                    len(new_reviews) < page_size * num_pages
+                    or total_fetched >= n_reviews
+                ):
                     break
-                page += 1
+                page += num_pages
 
             reviews_list = reviews_list[:n_reviews]
 
@@ -243,13 +250,13 @@ class YelpConnector:
             return None
 
     def _build_request_params(
-        self, business_id: str, page: int, page_size: int
+        self, business_id: str, page: int, page_size: int, num_pages: int
     ) -> dict:
         return {
             "business_id": business_id,
             "page": page,
             "page_size": page_size,
-            "num_pages": 1,
+            "num_pages": num_pages,
             "sort": "NEWEST",
             "language": "en",
         }
@@ -330,18 +337,21 @@ class YelpConnector:
                     review_entry = ReviewEntry(
                         business_id=self.business_id,
                         company_id=company_id,
-                        review_id=review.get("review_id", "Unknown"),
+                        review_id=review.get("review_id"),
                         review_date=review_dt.isoformat(),  # Convert datetime to ISO format string
                         review_text=review.get("review_text", ""),
-                        review_url=review.get("url", "No Url"),
+                        review_url=f"https://www.yelp.com/biz/{self.business_id}?hrid={review.get('review_id')}&utm_campaign=www_review_share_popup&utm_medium=copy_link&utm_source=(direct)",
                         rating=float(
                             review.get("review_rating", 0)
                         ),  # Ensure rating is a float
                         total_reviews=total_reviews,
                         platform_id="Yelp",
+                        author_name=review.get("author_name") or "Anonymous",
+                        author_image_url=review.get("author_image_url") or "No Url",
                     )
                     new_reviews.append(review_entry)
                 except ValidationError as ve:
+                    self.logger.warning(review)
                     self.logger.warning(f"Skipping invalid review: {ve}")
 
             return new_reviews

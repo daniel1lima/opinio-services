@@ -15,7 +15,11 @@ If you don't have Poetry installed, you can install it using the following comma
 curl -sSL https://install.python-poetry.org | python3 -
 ```
 
+### 2. Install go-task
+If you don't have go-task installed, you can install it using the following command:
+```sh
 brew install go-task/tap/go-task
+```
 
 ## Taskfile Commands
 The `Taskfile.yml` defines several tasks to help with development:

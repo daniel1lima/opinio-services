@@ -11,3 +11,5 @@ class ReviewEntry(BaseModel, extra="allow"):  # Allow extra fields
     rating: float
     total_reviews: int
     platform_id: str = "Yelp"
+    author_name: str = "Anonymous"
+    author_image_url: str = ""

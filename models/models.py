@@ -100,6 +100,13 @@ class JobModel(Model):
         except StopIteration:
             return None
 
+    @classmethod
+    def update_last_sync(cls, company_id, last_sync):
+        job = cls.get_most_recent_job(company_id)
+        if job:
+            job.last_sync = last_sync
+            job.save()
+
 
 class ConnectorModel(MapAttribute):
     type = UnicodeAttribute()
@@ -221,6 +228,17 @@ class CompanyModel(Model):
                 "message": "Connector not found.",
             }  # Return error status
 
+    @classmethod
+    def update_connector_last_sync(cls, company_id, connector_type, last_sync):
+        company = cls.get_company_by_id(company_id)
+        last_sync = last_sync.isoformat()
+        if company:
+            for connector in company.connectors:
+                if connector.type == connector_type:
+                    connector.last_sync = last_sync
+                    company.save()
+                    break
+
 
 class ReviewModel(Model):
     class Meta:
@@ -247,6 +265,8 @@ class ReviewModel(Model):
     )  # Assuming this is a list of strings
     sentiment = NumberAttribute(null=True)  # Allow null for no sentiment
     polarity = NumberAttribute(null=True)  # Allow null for no polarity
+    author_name = UnicodeAttribute(default="Anonymous")
+    author_image_url = UnicodeAttribute(default="No Url")
 
     @classmethod
     def fetch_review_by_id(cls, review_id):
@@ -293,11 +313,28 @@ class ReviewModel(Model):
         except Exception as e:
             return {"status": "error", "message": f"Failed to fetch reviews: {e}"}
 
+    @classmethod
+    def update_review_urls(cls):
+        reviews = cls.fetch_all_reviews()
+        for review in reviews:
+            new_url = f"https://www.yelp.com/biz/{review.business_id}?hrid={review.review_id}&utm_campaign=www_review_share_popup&utm_medium=copy_link&utm_source=(direct)"
+            review.update(actions=[ReviewModel.review_url.set(new_url)])
+        return {"status": "success", "message": "Review URLs updated successfully."}
+
+    @classmethod
+    def update_review_ids(cls):
+        reviews = cls.fetch_all_reviews()
+        for review in reviews:
+            if review.review_id.startswith("google_"):
+                new_review_id = review.review_id[len("google_") :]
+                review.update(actions=[ReviewModel.review_id.set(new_review_id)])
+        return {"status": "success", "message": "Review IDs updated successfully."}
+
 
 if __name__ == "__main__":
     # Recreate the Reviews table with higher capacity
-    print(len(list(ReviewModel.fetch_reviews_by_company_id("google"))))
-    print(len(list(ReviewModel.fetch_all_reviews())))
+    # print(len(list(ReviewModel.fetch_reviews_by_company_id("google"))))
+    # print(list(ReviewModel.fetch_all_reviews()))
     # print(ReviewModel.wipe_reviews())
     # print(list(CompanyModel.fetch_all_companies()))
     # print(list(JobModel.fetch_all_jobs()))
@@ -306,3 +343,7 @@ if __name__ == "__main__":
 
     # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
     # print("JobModel table created successfully.")
+
+    CompanyModel.update_connector_last_sync(
+        "google", "Yelp", datetime.datetime.utcnow()
+    )
