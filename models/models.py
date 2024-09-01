@@ -212,31 +212,38 @@ class CompanyModel(Model):
                 "message": "Connector already exists.",
             }  # Return error status
 
-    def remove_connector(self, connector_type):
-        # Ensure connectors is initialized
+    def remove_connector(self, connector_type, user_id):
         if self.connectors is None:
             return {
                 "status": "error",
                 "message": "No connectors to remove.",
-            }  # Return error if no connectors
+            }
 
-        # Find the connector to remove
         connector_to_remove = next(
             (c for c in self.connectors if c.type == connector_type), None
         )
 
         if connector_to_remove:
-            self.connectors.remove(connector_to_remove)  # Remove the connector
-            self.save()  # Save the updated company model
+            self.connectors.remove(connector_to_remove)
+            self.save()
+
+            # Remove associated reviews and inbox items
+            ReviewModel.remove_reviews_by_company_and_platform(
+                self.company_id, connector_type
+            )
+            InboxModel.remove_inbox_items_by_company_and_platform(
+                user_id, connector_type
+            )
+
             return {
                 "status": "success",
-                "message": "Connector removed successfully.",
-            }  # Return success status
+                "message": f"Connector, associated reviews, and inbox items for {connector_type} removed successfully.",
+            }
         else:
             return {
                 "status": "error",
                 "message": "Connector not found.",
-            }  # Return error status
+            }
 
     @classmethod
     def update_connector_last_sync(cls, company_id, connector_type, last_sync):
@@ -339,6 +346,27 @@ class ReviewModel(Model):
                 new_review_id = review.review_id[len("google_") :]
                 review.update(actions=[ReviewModel.review_id.set(new_review_id)])
         return {"status": "success", "message": "Review IDs updated successfully."}
+
+    @classmethod
+    def remove_reviews_by_company_and_platform(cls, company_id, platform_id):
+        try:
+            reviews_to_delete = cls.query(
+                hash_key=company_id,
+                filter_condition=ReviewModel.platform_id == platform_id,
+            )
+
+            for review in reviews_to_delete:
+                review.delete()
+
+            return {
+                "status": "success",
+                "message": f"All reviews for company {company_id} and platform {platform_id} have been removed.",
+            }
+        except Exception as e:
+            return {
+                "status": "error",
+                "message": f"Failed to remove reviews: {str(e)}",
+            }
 
 
 class InboxModel(Model):
@@ -449,6 +477,30 @@ class InboxModel(Model):
         except cls.DoesNotExist:
             return None  # Return None if the item does not exist
 
+    @classmethod
+    def remove_inbox_items_by_company_and_platform(cls, user_id, platform_id):
+        try:
+            # Query all inbox items for the given company_id
+            items_to_delete = cls.query(
+                user_id, filter_condition=(InboxModel.platform_id == platform_id)
+            )
+
+            # Delete each matching item
+            delete_count = 0
+            for item in items_to_delete:
+                item.delete()
+                delete_count += 1
+
+            return {
+                "status": "success",
+                "message": f"Removed {delete_count} inbox items for user {user_id} and platform {platform_id}.",
+            }
+        except Exception as e:
+            return {
+                "status": "error",
+                "message": f"Failed to remove inbox items: {str(e)}",
+            }
+
 
 if __name__ == "__main__":
     # Ensure the Inbox table exists
@@ -457,11 +509,11 @@ if __name__ == "__main__":
     # Recreate the Reviews table with higher capacity
     # print(len(list(ReviewModel.fetch_reviews_by_company_id("google"))))
     # print(list(ReviewModel.fetch_all_reviews()))
-    print(ReviewModel.wipe_reviews())
-    print(InboxModel.wipe_inbox_items())
-    JobModel.wipe_jobs()
+    # print(ReviewModel.wipe_reviews())
+    # print(InboxModel.wipe_inbox_items())
+    # JobModel.wipe_jobs()
     # print(list(CompanyModel.fetch_all_companies()))
-    print(list(JobModel.get_most_recent_job("google")))
+    # print(list(JobModel.get_most_recent_job("google")))
     # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
     # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
 
@@ -469,6 +521,15 @@ if __name__ == "__main__":
     # print("JobModel table created successfully.")
 
     # print(list(InboxModel.fetch_inbox_items_by_user_id("1")))
-    # print(list(InboxModel.fetch_inbox_items_by_user_id("user_2kqq2dWnU7NgVPjYazcZSCl0vUQ")))
+    print(
+        [
+            item.to_simple_dict()
+            for item in InboxModel.fetch_inbox_items_by_user_id(
+                "user_2gLr4nGmyzjlljjkBJ4aNKZU8Im"
+            )
+        ]
+    )
+    # InboxModel.remove_inbox_items_by_company_and_platform("user_2gLr4nGmyzjlljjkBJ4aNKZU8Im", "Yelp")
     # Wipe all inbox items
     # print(result)
+    # print(ReviewModel.remove_reviews_by_company_and_platform("google", "Yelp"))

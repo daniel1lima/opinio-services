@@ -6,7 +6,7 @@ from modules.create_embeddings import analyze_reviews
 from modules.logger_setup import setup_logger
 from typing import List, Optional
 
-logger = setup_logger("analyzer.log")
+logger = setup_logger(log_dir="logs/analyze")
 
 
 class Analyzer:

@@ -21,7 +21,7 @@ class YelpConnector:
         self.business_id = config["business_id"]
         self.company_id = config["company_id"]
         self.job_id = config["job_id"]
-        self.logger = setup_logger("yelp_connector.log")
+        self.logger = setup_logger(log_dir="logs/yelp_connector")
         self.job = JobModel.get(self.company_id)
 
     def fetch_historical_reviews(self, n_reviews: int = 500) -> List[ReviewEntry]:
