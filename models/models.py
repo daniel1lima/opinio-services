@@ -6,6 +6,7 @@ from pynamodb.attributes import (
     ListAttribute,
     MapAttribute,
     NumberAttribute,
+    BooleanAttribute,
 )
 import os
 from dotenv import load_dotenv
@@ -51,7 +52,7 @@ class JobModel(Model):
             job_id=job_id,
             company_id=company_id,
             connector_type=connector_type,
-            status=JobStatus.PENDING.value,
+            status=JobStatus.IN_PROGRESS.value,
             created_at=now,
             updated_at=now,
         )
@@ -104,7 +105,12 @@ class JobModel(Model):
     def update_last_sync(cls, company_id, last_sync):
         job = cls.get_most_recent_job(company_id)
         if job:
-            job.last_sync = last_sync
+            # Ensure last_sync is a string in ISO format
+            job.last_sync = (
+                last_sync.isoformat()
+                if isinstance(last_sync, datetime.datetime)
+                else last_sync
+            )
             job.save()
 
 
@@ -145,6 +151,10 @@ class UserModel(Model):
         )
         user.save()
         return user
+
+    @classmethod
+    def get_all_users(cls):
+        return cls.scan()  # Fetch all users from the table
 
 
 class ConnectionModel(Model):
@@ -331,19 +341,134 @@ class ReviewModel(Model):
         return {"status": "success", "message": "Review IDs updated successfully."}
 
 
+class InboxModel(Model):
+    class Meta:
+        table_name = "Inbox"
+        region = AWS_REGION
+        host = DYNAMODB_URL
+
+    user_id = UnicodeAttribute(hash_key=True)
+    review_id = UnicodeAttribute(range_key=True)
+    created_at = UnicodeAttribute()
+    is_read = BooleanAttribute(default=False)
+    is_starred = BooleanAttribute(default=False)
+    labels = ListAttribute(of=UnicodeAttribute)
+    folder_id = UnicodeAttribute(default="None")
+    company_id = UnicodeAttribute()
+    review_date = UnicodeAttribute()  # Store as string in ISO format
+    review_text = UnicodeAttribute()
+    review_url = UnicodeAttribute(default="No Url")
+    rating = UnicodeAttribute()  # Store as string to accommodate float
+    total_reviews = UnicodeAttribute()  # Store as string to accommodate int
+    platform_id = UnicodeAttribute(default="Yelp")
+    assigned_label = ListAttribute(
+        of=UnicodeAttribute
+    )  # Assuming this is a list of strings
+    named_labels = ListAttribute(
+        of=UnicodeAttribute
+    )  # Assuming this is a list of strings
+    author_name = UnicodeAttribute(default="Anonymous")
+    author_image_url = UnicodeAttribute(default="No Url")
+
+    @classmethod
+    def create_inbox_item(cls, user_id, review):
+        inbox_item = cls(
+            user_id=user_id,
+            review_id=review.review_id,
+            created_at=datetime.datetime.now().isoformat(),
+            is_read=False,
+            is_starred=False,
+            labels=review.labels if hasattr(review, "labels") else [],
+            company_id=review.company_id,
+            review_date=review.review_date,
+            review_text=review.review_text,
+            review_url=review.review_url if hasattr(review, "review_url") else "No Url",
+            rating=review.rating,
+            total_reviews=review.total_reviews,
+            platform_id=review.platform_id
+            if hasattr(review, "platform_id")
+            else "Yelp",
+            assigned_label=review.assigned_label
+            if hasattr(review, "assigned_label")
+            else [],
+            named_labels=review.named_labels if hasattr(review, "named_labels") else [],
+            author_name=review.author_name
+            if hasattr(review, "author_name")
+            else "Anonymous",
+            author_image_url=review.author_image_url
+            if hasattr(review, "author_image_url")
+            else "No Url",
+        )
+        inbox_item.save()
+        return inbox_item
+
+    @classmethod
+    def fetch_inbox_item_by_id(cls, inbox_id):
+        try:
+            return cls.get(inbox_id)
+        except cls.DoesNotExist:
+            return None
+
+    @classmethod
+    def delete_inbox_item(cls, inbox_id):
+        try:
+            inbox_item = cls.get(inbox_id)
+            inbox_item.delete()
+            return {"status": "success", "message": "Inbox item deleted successfully."}
+        except cls.DoesNotExist:
+            return {"status": "error", "message": "Inbox item not found."}
+
+    @classmethod
+    def fetch_inbox_items_by_user_id(cls, user_id):
+        try:
+            return cls.query(user_id)
+        except Exception as e:
+            return {"status": "error", "message": str(e)}
+
+    @classmethod
+    def wipe_inbox_items(cls):
+        try:
+            for item in cls.scan():
+                item.delete()
+            return {
+                "status": "success",
+                "message": "All inbox items wiped successfully.",
+            }
+        except Exception as e:
+            return {"status": "error", "message": str(e)}
+
+    @classmethod
+    def ensure_table_exists(cls):
+        if not cls.exists():
+            cls.create_table(read_capacity_units=10, write_capacity_units=10)
+
+    @classmethod
+    def fetch_inbox_item_by_user_id_and_review_id(cls, user_id, review_id):
+        try:
+            return cls.get(user_id, review_id)  # Fetch the inbox item using both keys
+        except cls.DoesNotExist:
+            return None  # Return None if the item does not exist
+
+
 if __name__ == "__main__":
+    # Ensure the Inbox table exists
+    InboxModel.ensure_table_exists()
+
     # Recreate the Reviews table with higher capacity
     # print(len(list(ReviewModel.fetch_reviews_by_company_id("google"))))
     # print(list(ReviewModel.fetch_all_reviews()))
-    # print(ReviewModel.wipe_reviews())
+    print(ReviewModel.wipe_reviews())
+    print(InboxModel.wipe_inbox_items())
+    JobModel.wipe_jobs()
     # print(list(CompanyModel.fetch_all_companies()))
-    # print(list(JobModel.fetch_all_jobs()))
+    print(list(JobModel.get_most_recent_job("google")))
     # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
     # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
 
     # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
     # print("JobModel table created successfully.")
 
-    CompanyModel.update_connector_last_sync(
-        "google", "Yelp", datetime.datetime.utcnow()
-    )
+    # print(list(InboxModel.fetch_inbox_items_by_user_id("1")))
+    # print(list(InboxModel.fetch_inbox_items_by_user_id("user_2kqq2dWnU7NgVPjYazcZSCl0vUQ")))
+    # Wipe all inbox items
+    # print(result)

@@ -1,7 +1,7 @@
 import json
 import pandas as pd
 from connectors.base_review import ReviewEntry
-from models.models import ReviewModel
+from models.models import InboxModel, ReviewModel
 from modules.create_embeddings import analyze_reviews
 from modules.logger_setup import setup_logger
 from typing import List, Optional
@@ -14,7 +14,7 @@ class Analyzer:
         self.connector = connector
         self.table_name = "Reviews"  # Replace with your DynamoDB table name
 
-    def initial_onboarding(self, config, n_reviews: int = 300):
+    def initial_onboarding(self, config, user_id, n_reviews: int = 300):
         """
         Perform initial onboarding by fetching and analyzing historical reviews.
 
@@ -26,7 +26,7 @@ class Analyzer:
             dict: A dictionary containing status and data or error message.
         """
         logger.info(
-            f"Starting initial onboarding for config {config}, fetching {n_reviews} reviews"
+            f"Starting initial onboarding for config {config}, fetching {n_reviews} reviews for user {user_id}"
         )
 
         try:
@@ -40,9 +40,9 @@ class Analyzer:
             logger.error("Failed to fetch historical reviews.", exc_info=True)
             return {"status": 400, "message": "Failed to fetch historical reviews."}
 
-        return self._process_reviews(reviews_list)
+        return self._process_reviews(reviews_list, user_id)
 
-    def poll_new_reviews(self, config, last_sync: Optional[str] = ""):
+    def poll_new_reviews(self, config, user_id, last_sync: Optional[str] = ""):
         """
         Poll for new reviews since the last sync.
 
@@ -66,9 +66,9 @@ class Analyzer:
             logger.error("Failed to fetch new reviews.", exc_info=True)
             return {"status": 400, "message": "Failed to fetch new reviews."}
 
-        return self._process_reviews(reviews_list)
+        return self._process_reviews(reviews_list, user_id)
 
-    def resume_fetch(self, config):
+    def resume_fetch(self, config, user_id):
         """
         Resume fetching reviews from the last saved progress.
 
@@ -93,17 +93,17 @@ class Analyzer:
             logger.error("Failed to resume fetching reviews.", exc_info=True)
             return {"status": 400, "message": "Failed to resume fetching reviews."}
 
-        result = self._process_reviews(reviews_list)
+        result = self._process_reviews(reviews_list, user_id)
         result["total_fetched"] = total_fetched
         return result
 
-    def _process_reviews(self, reviews_list: List[ReviewEntry]):
+    def _process_reviews(self, reviews_list: List[ReviewEntry], user_id: str):
         """
         Process the fetched reviews: analyze them and save to DynamoDB.
 
         Args:
             reviews_list (List[ReviewEntry]): List of reviews to process.
-
+            user_id (str): The user ID associated with the reviews.
         Returns:
             dict: A dictionary containing status and processed reviews.
         """
@@ -119,11 +119,11 @@ class Analyzer:
                     setattr(review, key, value)
 
         # Save analyzed reviews to DynamoDB
-        self.save_to_dynamodb(reviews_list)
+        self.save_to_dynamodb(reviews_list, user_id)
 
         return {"status": 200, "data": reviews_list}
 
-    def save_to_dynamodb(self, reviews):
+    def save_to_dynamodb(self, reviews, user_id):
         for i, review in enumerate(reviews):
             try:
                 review_dict = review.dict(exclude_unset=True)
@@ -145,5 +145,10 @@ class Analyzer:
                     author_image_url=review_dict.get("author_image_url", ""),
                 )
                 review_model.save()
+
+                # Save to inbox
+                InboxModel.create_inbox_item(
+                    user_id=user_id, review=review
+                )  # Create inbox review for each company review
             except Exception as e:
                 logger.error(f"Error saving review number {i} to DynamoDB: {e}")

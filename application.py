@@ -10,7 +10,14 @@ from connectors.worker_tasks import initial_onboarding, poll_new_reviews, resume
 
 from modules.fetch_reviews import fetch_and_analyze_yelp_reviews, fetch_reviews
 from connectors.factory import ConnectorFactory
-from models.models import UserModel, ConnectionModel, CompanyModel, JobModel
+from models.models import (
+    InboxModel,
+    ReviewModel,
+    UserModel,
+    ConnectionModel,
+    CompanyModel,
+    JobModel,
+)
 from modules.logger_setup import setup_logger
 
 from models.status_constants import status_constants
@@ -113,6 +120,7 @@ def sync_reviews_wrapper():
     logger = setup_logger("reviews.log")
     request_data = request.get_json()
     user_connectors = request_data.get("connectors", None)
+    user_id = request_data.get("user_id", None)
     company_id = request_data.get("company_id", None)
     action = request_data.get("action", "poll")  # New parameter to determine the action
 
@@ -158,11 +166,11 @@ def sync_reviews_wrapper():
             job_id = str(uuid.uuid4())
             print(f"Job ID: {job_id}")
             if action == "initial":
-                job = initial_onboarding(connector, company_id)
+                job = initial_onboarding(connector, company_id, user_id)
             elif action == "resume":
-                job = resume_fetch(connector, company_id)
+                job = resume_fetch(connector, company_id, user_id)
             else:  # Default to "poll"
-                job = poll_new_reviews(connector, company_id)
+                job = poll_new_reviews(connector, company_id, user_id)
 
             jobs.append(job_id)
 
@@ -251,25 +259,29 @@ def job_status_webhook():
         channel = f"job_status:{company_id}"
         pubsub.subscribe(channel)
 
-        # Send the initial job status
-        most_recent_job = JobModel.get_most_recent_job(company_id)
-        job_data = {
-            "job_id": most_recent_job.job_id,
-            "company_id": most_recent_job.company_id,
-            "connector_type": most_recent_job.connector_type,
-            "status": most_recent_job.status,
-            "total_reviews_fetched": most_recent_job.total_reviews_fetched,
-            "last_sync": most_recent_job.last_sync,
-            "error_message": most_recent_job.error_message,
-            "created_at": most_recent_job.created_at,
-            "updated_at": most_recent_job.updated_at,
-        }
-        publish_job_status(company_id, job_data)
-
         try:
+            # Send the initial job status if available
+            most_recent_job = JobModel.get_most_recent_job(company_id)
+            if most_recent_job:
+                job_data = {
+                    "job_id": most_recent_job.job_id,
+                    "company_id": most_recent_job.company_id,
+                    "connector_type": most_recent_job.connector_type,
+                    "status": most_recent_job.status,
+                    "total_reviews_fetched": most_recent_job.total_reviews_fetched,
+                    "last_sync": most_recent_job.last_sync,
+                    "error_message": most_recent_job.error_message,
+                    "created_at": most_recent_job.created_at,
+                    "updated_at": most_recent_job.updated_at,
+                }
+                yield f"data: {json.dumps(job_data)}\n\n"
+
             for message in pubsub.listen():
                 if message["type"] == "message":
+                    print(message["data"].decode("utf-8"))
                     yield f"data: {message['data'].decode('utf-8')}\n\n"
+        except Exception as e:
+            yield f"data: {json.dumps({'error': str(e)})}\n\n"
         finally:
             pubsub.unsubscribe(channel)
 
@@ -310,6 +322,101 @@ def get_most_recent_job():
         }
 
         return jsonify({"status": "success", "job": job_data}), 200
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
+@app.route("/get_inbox_reviews", methods=["GET"])
+def get_inbox_reviews():
+    company_id = request.args.get("company_id")
+    user_id = request.args.get("user_id")
+    page = int(request.args.get("page", 1))  # Get the page number, default to 1
+    per_page = int(
+        request.args.get("per_page", 10)
+    )  # Get the number of items per page, default to 10
+
+    reviews = list(InboxModel.fetch_inbox_items_by_user_id(user_id))
+
+    if not len(reviews):
+        # Fetch reviews belonging to the company if user's inbox is empty
+        company_reviews = list(
+            ReviewModel.fetch_reviews_by_company_id(company_id)
+        )  # Fetch company reviews
+        if company_reviews:
+            for review in company_reviews:
+                InboxModel.create_inbox_item(
+                    user_id, review
+                )  # Create inbox review for each company review
+            reviews = list(
+                InboxModel.fetch_inbox_items_by_user_id(user_id)
+            )  # Re-fetch inbox reviews after creation
+        else:
+            return (
+                jsonify(
+                    {"status": "error", "message": "No reviews found for the company"}
+                ),
+                404,
+            )
+
+    # Implement pagination
+    start = (page - 1) * per_page
+    end = start + per_page
+    paginated_reviews = reviews[start:end]  # Slice the reviews list for pagination
+
+    formatted_reviews = [review.to_simple_dict() for review in paginated_reviews]
+
+    response = {
+        "status": "success",
+        "reviews": formatted_reviews,
+        "total_reviews": len(reviews),
+        "page": page,
+        "per_page": per_page,
+    }
+
+    return jsonify(response), 200
+
+
+@app.route("/update_inbox_item", methods=["POST"])
+def update_inbox_item():
+    request_data = request.get_json()
+    user_id = request_data.get("user_id")
+    review_id = request_data.get("review_id")
+    is_starred = request_data.get("is_starred")
+    is_read = request_data.get("is_read")
+    labels = request_data.get("labels")
+
+    if not user_id or not review_id:
+        return (
+            jsonify(
+                {"status": "error", "message": "user_id and review_id are required"}
+            ),
+            400,
+        )
+
+    try:
+        inbox_item = InboxModel.fetch_inbox_item_by_user_id_and_review_id(
+            user_id, review_id
+        )
+        if not inbox_item:
+            return jsonify({"status": "error", "message": "Inbox item not found"}), 404
+
+        # Update fields if provided
+        if is_starred is not None:
+            inbox_item.is_starred = is_starred
+        if is_read is not None:
+            inbox_item.is_read = is_read
+        if labels is not None:
+            inbox_item.labels = labels
+
+        inbox_item.save()  # Assuming there's a save method to persist changes
+
+        return (
+            jsonify(
+                {"status": "success", "message": "Inbox item updated successfully"}
+            ),
+            200,
+        )
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
