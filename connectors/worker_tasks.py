@@ -8,7 +8,7 @@ import redis
 import json
 import datetime
 
-logger = setup_logger("worker_task.log")
+logger = setup_logger(log_dir="logs/worker_tasks")
 
 
 def initial_onboarding(connector_config, company_id, user_id):

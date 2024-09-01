@@ -11,7 +11,7 @@ from pydantic import BaseModel, Field, ValidationError
 from datetime import datetime
 from modules.create_embeddings import analyze_reviews
 
-logger = setup_logger()
+logger = setup_logger(log_dir="logs/fetch_reviews")
 
 
 class BrokenReviewsApi(Exception):

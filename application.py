@@ -27,6 +27,11 @@ from dotenv import load_dotenv
 
 load_dotenv(override=True)
 
+import logging
+
+# Add this near the top of your file, after the imports
+logging.getLogger("werkzeug").setLevel(logging.ERROR)
+
 
 app = Flask(__name__)
 CORS(app)
@@ -63,7 +68,7 @@ def add_connection():
     request_data = request.get_json()
     try:
         if request_data:
-            logger = setup_logger("add_connection.log")
+            logger = setup_logger(log_dir="logs/manage_connections")
             logger.info(f"Adding connection:{json.dumps(request_data)}")
             # Create the desired object structure
             connector = {
@@ -95,12 +100,12 @@ def add_connection():
 
 @app.route("/remove_connection", methods=["POST"])
 def remove_connection():
-    logger = setup_logger("remove_connector.log")
+    logger = setup_logger(log_dir="logs/manage_connections")
     request_data = request.get_json()
-    if request_data:
-        logger = setup_logger("remove_connection.log")
-        logger.info(f"Removing connection: {json.dumps(request_data)}")
 
+    if request_data:
+        logger.info(f"Removing connection: {json.dumps(request_data)}")
+        user_id = request_data.get("user_id")
         connector_type = request_data.get("type")
         if not connector_type:  # Check if 'type' is present
             return jsonify({"message": "'type' key is required"}), 400
@@ -109,7 +114,7 @@ def remove_connection():
 
         company = CompanyModel.get_company_by_id(company_id)
         result = company.remove_connector(
-            connector_type
+            connector_type, user_id
         )  # Call the remove_connector methodc
 
         return jsonify(result), 200
@@ -117,7 +122,7 @@ def remove_connection():
 
 @app.route("/reviews", methods=["POST"])
 def sync_reviews_wrapper():
-    logger = setup_logger("reviews.log")
+    logger = setup_logger(log_dir="logs/ingest_reviews")
     request_data = request.get_json()
     user_connectors = request_data.get("connectors", None)
     user_id = request_data.get("user_id", None)
@@ -260,7 +265,7 @@ def job_status_webhook():
         pubsub.subscribe(channel)
 
         try:
-            # Send the initial job status if available
+            # Send the initial job status or a "no job" message
             most_recent_job = JobModel.get_most_recent_job(company_id)
             if most_recent_job:
                 job_data = {
@@ -274,12 +279,37 @@ def job_status_webhook():
                     "created_at": most_recent_job.created_at,
                     "updated_at": most_recent_job.updated_at,
                 }
-                yield f"data: {json.dumps(job_data)}\n\n"
+            else:
+                job_data = {"status": "no_job", "message": "No recent jobs found"}
 
-            for message in pubsub.listen():
-                if message["type"] == "message":
-                    print(message["data"].decode("utf-8"))
-                    yield f"data: {message['data'].decode('utf-8')}\n\n"
+            yield f"data: {json.dumps(job_data)}\n\n"
+
+            while True:
+                message = pubsub.get_message(timeout=5.0)  # Increased timeout
+                if message:
+                    if message["type"] == "message":
+                        yield f"data: {message['data'].decode('utf-8')}\n\n"
+                    elif message["type"] == "unsubscribe":
+                        most_recent_job = JobModel.get_most_recent_job(company_id)
+                        pubsub.subscribe(channel)
+                        if most_recent_job:
+                            job_data = {
+                                "job_id": most_recent_job.job_id,
+                                "company_id": most_recent_job.company_id,
+                                "connector_type": most_recent_job.connector_type,
+                                "status": most_recent_job.status,
+                                "total_reviews_fetched": most_recent_job.total_reviews_fetched,
+                                "last_sync": most_recent_job.last_sync,
+                                "error_message": most_recent_job.error_message,
+                                "created_at": most_recent_job.created_at,
+                                "updated_at": most_recent_job.updated_at,
+                            }
+                            yield f"data: {json.dumps(job_data)}\n\n"
+
+                else:
+                    # Send a heartbeat every 30 seconds
+                    if time.time() % 30 < 1:
+                        yield f"data: {json.dumps({'status': 'heartbeat'})}\n\n"
         except Exception as e:
             yield f"data: {json.dumps({'error': str(e)})}\n\n"
         finally:
@@ -333,7 +363,7 @@ def get_inbox_reviews():
     user_id = request.args.get("user_id")
     page = int(request.args.get("page", 1))  # Get the page number, default to 1
     per_page = int(
-        request.args.get("per_page", 10)
+        request.args.get("page_size", 10)
     )  # Get the number of items per page, default to 10
 
     reviews = list(InboxModel.fetch_inbox_items_by_user_id(user_id))
@@ -422,7 +452,33 @@ def update_inbox_item():
         return jsonify({"status": "error", "message": str(e)}), 500
 
 
+@app.route("/inbox_breakdown", methods=["GET"])
+def inbox_breakdown():
+    user_id = request.args.get("user_id")
+
+    if not user_id:
+        return jsonify({"status": "error", "message": "User ID is required"}), 400
+
+    try:
+        inbox_items = list(InboxModel.fetch_inbox_items_by_user_id(user_id))
+
+        total_reviews = len(inbox_items)
+        starred_reviews = sum(1 for item in inbox_items if item.is_starred)
+        unread_reviews = sum(1 for item in inbox_items if not item.is_read)
+
+        breakdown = {
+            "total_reviews": total_reviews,
+            "starred_reviews": starred_reviews,
+            "unread_reviews": unread_reviews,
+        }
+
+        return jsonify({"status": "success", "data": breakdown}), 200
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
 if __name__ == "__main__":
     port = 5000
     print(f"Running on http://localhost:{port}")
-    app.run(debug=True, host="0.0.0.0", port=port)
+    app.run(debug=True, host="0.0.0.0", port=port, threaded=True)

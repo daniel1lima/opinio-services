@@ -6,7 +6,7 @@ import warnings
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Set up logger specifically for embeddings
-logger = setup_logger(log_file="embeddings.log")
+logger = setup_logger(log_dir="logs/create_embeddings")
 
 import nltk
 import pandas as pd
