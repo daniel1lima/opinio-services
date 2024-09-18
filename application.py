@@ -3,6 +3,7 @@ import os
 import time
 import uuid
 from flask import Flask, jsonify, request, Response
+from openai import OpenAI
 import redis
 from rq import Queue
 from connectors.publish import publish_job_status
@@ -476,6 +477,56 @@ def inbox_breakdown():
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
+
+
+@app.route("/generate_ai_response", methods=["POST"])
+def generate_ai_response():
+    data = request.json
+    review_text = data.get("review_text")
+
+    if not review_text:
+        return jsonify({"status": "error", "message": "Review text is required"}), 400
+
+    try:
+        ai_response = generate_response(review_text)
+
+        return jsonify({"status": "success", "data": {"ai_response": ai_response}}), 200
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
+def generate_response(review_text):
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+    prompt = f"""
+    You are a customer service representative responding to a review.
+    The review is: "{review_text}"
+
+    Please generate a polite, professional, and empathetic response to this review.
+    The response should:
+    1. Thank the customer for their feedback
+    2. Address any specific points mentioned in the review
+    3. Offer a solution or next steps if there were any issues
+    4. End on a positive note
+
+    Keep the response concise, around 2-3 sentences.
+    """
+
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",  # This is the model ID for GPT-4 Turbo Preview
+        messages=[
+            {
+                "role": "system",
+                "content": "You are a helpful customer service AI assistant.",
+            },
+            {"role": "user", "content": prompt},
+        ],
+        max_tokens=150,
+        temperature=0.5,
+    )
+
+    return response.choices[0].message.content.strip()
 
 
 if __name__ == "__main__":
