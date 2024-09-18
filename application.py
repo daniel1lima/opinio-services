@@ -3,12 +3,12 @@ import os
 import time
 import uuid
 from flask import Flask, jsonify, request, Response
-from openai import OpenAI
-import redis
+from openai import AzureOpenAI  # Change this import
+import requests
 from rq import Queue
 from connectors.publish import publish_job_status
 from connectors.worker_tasks import initial_onboarding, poll_new_reviews, resume_fetch
-
+import redis
 from modules.fetch_reviews import fetch_and_analyze_yelp_reviews, fetch_reviews
 from connectors.factory import ConnectorFactory
 from models.models import (
@@ -18,6 +18,7 @@ from models.models import (
     ConnectionModel,
     CompanyModel,
     JobModel,
+    InboxEditorModel,  # Make sure this import is added
 )
 from modules.logger_setup import setup_logger
 
@@ -482,7 +483,28 @@ def inbox_breakdown():
 @app.route("/generate_ai_response", methods=["POST"])
 def generate_ai_response():
     data = request.json
-    review_text = data.get("review_text")
+
+    review_id = data.get("review_id")
+    # company_id = data.get("company_id")
+    user_id = data.get("user_id")
+
+    if not review_id or not user_id:
+        return (
+            jsonify(
+                {"status": "error", "message": "Review ID and User ID are required"}
+            ),
+            400,
+        )
+
+    # review = ReviewModel.fetch_review_by_comp_id_review_id(company_id, review_id)
+    inbox_item = InboxModel.fetch_inbox_item_by_user_id_and_review_id(
+        user_id, review_id
+    )
+
+    if not inbox_item:
+        return jsonify({"status": "error", "message": "Review not found"}), 404
+
+    review_text = inbox_item.review_text
 
     if not review_text:
         return jsonify({"status": "error", "message": "Review text is required"}), 400
@@ -490,43 +512,175 @@ def generate_ai_response():
     try:
         ai_response = generate_response(review_text)
 
-        return jsonify({"status": "success", "data": {"ai_response": ai_response}}), 200
+        inbox_item.ai_response = ai_response
+        inbox_item.save()
+
+        return (
+            jsonify(
+                {
+                    "status": "success",
+                    "data": {
+                        "ai_response": ai_response,
+                        "review_id": review_id,
+                        "user_id": user_id,
+                    },
+                }
+            ),
+            200,
+        )
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
 
 def generate_response(review_text):
-    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    # Configuration
+    API_KEY = os.getenv("AZURE_OPENAI_API_KEY")
+    headers = {
+        "Content-Type": "application/json",
+        "api-key": API_KEY,
+    }
 
-    prompt = f"""
-    You are a customer service representative responding to a review.
-    The review is: "{review_text}"
-
-    Please generate a polite, professional, and empathetic response to this review.
-    The response should:
-    1. Thank the customer for their feedback
-    2. Address any specific points mentioned in the review
-    3. Offer a solution or next steps if there were any issues
-    4. End on a positive note
-
-    Keep the response concise, around 2-3 sentences.
-    """
-
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",  # This is the model ID for GPT-4 Turbo Preview
-        messages=[
+    # Payload for the request
+    payload = {
+        "messages": [
             {
                 "role": "system",
-                "content": "You are a helpful customer service AI assistant.",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": "You are a customer service representative responding to a review.",
+                    }
+                ],
             },
-            {"role": "user", "content": prompt},
+            {"role": "user", "content": review_text},
         ],
-        max_tokens=150,
-        temperature=0.5,
+        "temperature": 0.7,
+        "top_p": 0.95,
+        "max_tokens": 800,
+    }
+
+    ENDPOINT = "https://opinio.openai.azure.com/openai/deployments/4o-mini/chat/completions?api-version=2024-02-15-preview"
+
+    # Send request
+    try:
+        response = requests.post(ENDPOINT, headers=headers, json=payload)
+        response.raise_for_status()  # Will raise an HTTPError if the HTTP request returned an unsuccessful status code
+    except requests.RequestException as e:
+        raise SystemExit(f"Failed to make the request. Error: {e}")
+
+    # Handle the response
+    return (
+        response.json()
+        .get("choices", [{}])[0]
+        .get("message", {})
+        .get("content", "")
+        .strip()
     )
 
-    return response.choices[0].message.content.strip()
+
+@app.route("/save_response", methods=["POST"])
+def save_response():
+    data = request.json
+
+    user_id = data.get("user_id")
+    review_id = data.get("review_id")
+    response_data = data.get("response_data")
+
+    if not user_id or not review_id or not response_data:
+        return (
+            jsonify(
+                {
+                    "status": "error",
+                    "message": "user_id, review_id, and response_data are required",
+                }
+            ),
+            400,
+        )
+
+    try:
+        # Save the response using InboxEditorModel
+        editor_item = InboxEditorModel.save_editor_content(
+            user_id=user_id, review_id=review_id, content=response_data
+        )
+
+        return (
+            jsonify(
+                {
+                    "status": "success",
+                    "message": "Response saved successfully",
+                    "data": {
+                        "user_id": editor_item.user_id,
+                        "review_id": editor_item.review_id,
+                        "updated_at": editor_item.updated_at,
+                    },
+                }
+            ),
+            200,
+        )
+
+    except Exception as e:
+        return (
+            jsonify(
+                {"status": "error", "message": f"Failed to save response: {str(e)}"}
+            ),
+            500,
+        )
+
+
+@app.route("/fetch_response", methods=["POST"])
+def fetch_response():
+    data = request.json
+    user_id = data.get("user_id")
+    review_id = data.get("review_id")
+
+    if not user_id or not review_id:
+        return (
+            jsonify(
+                {"status": "error", "message": "user_id and review_id are required"}
+            ),
+            400,
+        )
+
+    try:
+        # Fetch the response using InboxEditorModel
+        editor_item = InboxEditorModel.get_editor_content(
+            user_id=user_id, review_id=review_id
+        )
+
+        if editor_item is None:
+            return (
+                jsonify(
+                    {
+                        "status": "error",
+                        "message": "No saved response found for the given user_id and review_id",
+                    }
+                ),
+                404,
+            )
+
+        return (
+            jsonify(
+                {
+                    "status": "success",
+                    "data": {
+                        "user_id": editor_item.user_id,
+                        "review_id": editor_item.review_id,
+                        "content": editor_item.content,
+                        "updated_at": editor_item.updated_at,
+                    },
+                }
+            ),
+            200,
+        )
+
+    except Exception as e:
+        return (
+            jsonify(
+                {"status": "error", "message": f"Failed to fetch response: {str(e)}"}
+            ),
+            500,
+        )
 
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
 import datetime
+import json
 import pynamodb
 from pynamodb.models import Model
 from pynamodb.attributes import (
@@ -284,11 +285,12 @@ class ReviewModel(Model):
     polarity = NumberAttribute(null=True)  # Allow null for no polarity
     author_name = UnicodeAttribute(default="Anonymous")
     author_image_url = UnicodeAttribute(default="No Url")
+    ai_response = UnicodeAttribute(null=True)
 
     @classmethod
-    def fetch_review_by_id(cls, review_id):
+    def fetch_review_by_comp_id_review_id(cls, company_id, review_id):
         try:
-            return cls.get(review_id)
+            return cls.get(company_id, review_id)
         except cls.DoesNotExist:
             return None
 
@@ -397,6 +399,7 @@ class InboxModel(Model):
     )  # Assuming this is a list of strings
     author_name = UnicodeAttribute(default="Anonymous")
     author_image_url = UnicodeAttribute(default="No Url")
+    ai_response = UnicodeAttribute(null=True)
 
     @classmethod
     def create_inbox_item(cls, user_id, review):
@@ -426,6 +429,7 @@ class InboxModel(Model):
             author_image_url=review.author_image_url
             if hasattr(review, "author_image_url")
             else "No Url",
+            ai_response=review.ai_response if hasattr(review, "ai_response") else None,
         )
         inbox_item.save()
         return inbox_item
@@ -502,6 +506,63 @@ class InboxModel(Model):
             }
 
 
+class InboxEditorModel(Model):
+    class Meta:
+        table_name = "InboxEditor"
+        region = AWS_REGION
+        host = DYNAMODB_URL
+
+    user_id = UnicodeAttribute(hash_key=True)
+    review_id = UnicodeAttribute(range_key=True)
+    content = UnicodeAttribute()
+    updated_at = UnicodeAttribute()
+
+    @classmethod
+    def save_editor_content(cls, user_id, review_id, content):
+        now = datetime.datetime.now().isoformat()
+        editor_item = cls(
+            user_id=user_id,
+            review_id=review_id,
+            content=json.dumps(content),
+            updated_at=now,
+        )
+        editor_item.save()
+        return editor_item
+
+    @classmethod
+    def get_editor_content(cls, user_id, review_id):
+        try:
+            item = cls.get(user_id, review_id)
+            item.content = json.loads(item.content)
+            return item
+        except cls.DoesNotExist:
+            return None
+
+    @classmethod
+    def update_editor_content(cls, user_id, review_id, content):
+        try:
+            item = cls.get(user_id, review_id)
+            item.content = json.dumps(content)
+            item.updated_at = datetime.datetime.now().isoformat()
+            item.save()
+            return item
+        except cls.DoesNotExist:
+            return None
+
+    @classmethod
+    def delete_editor_content(cls, user_id, review_id):
+        try:
+            item = cls.get(user_id, review_id)
+            item.delete()
+            return True
+        except cls.DoesNotExist:
+            return False
+
+    @classmethod
+    def get_all_editor_content_for_user(cls, user_id):
+        return cls.query(user_id)
+
+
 if __name__ == "__main__":
     # Ensure the Inbox table exists
     InboxModel.ensure_table_exists()
@@ -521,14 +582,17 @@ if __name__ == "__main__":
     # print("JobModel table created successfully.")
 
     # print(list(InboxModel.fetch_inbox_items_by_user_id("1")))
-    print(
-        [
-            item.to_simple_dict()
-            for item in InboxModel.fetch_inbox_items_by_user_id(
-                "user_2gLr4nGmyzjlljjkBJ4aNKZU8Im"
-            )
-        ]
-    )
+    # print(
+    #     [
+    #         item.to_simple_dict()
+    #         for item in InboxModel.fetch_inbox_items_by_user_id(
+    #             "user_2gLr4nGmyzjlljjkBJ4aNKZU8Im"
+    #         )
+    #     ]
+    # )
+    # print(ReviewModel.fetch_review_by_comp_id_review_id("google", "yYP5lEiWgerolktqfLurfQ"))
+    # print(InboxModel.fetch_inbox_item_by_user_id_and_review_id("user_2gLr4nGmyzjlljjkBJ4aNKZU8Im", "yYP5lEiWgerolktqfLurfQ"))
+    InboxEditorModel.create_table(read_capacity_units=1, write_capacity_units=1)
     # InboxModel.remove_inbox_items_by_company_and_platform("user_2gLr4nGmyzjlljjkBJ4aNKZU8Im", "Yelp")
     # Wipe all inbox items
     # print(result)
