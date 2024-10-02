@@ -8,6 +8,7 @@ from pynamodb.attributes import (
     MapAttribute,
     NumberAttribute,
     BooleanAttribute,
+    JSONAttribute,
 )
 import os
 from dotenv import load_dotenv
@@ -182,6 +183,7 @@ class CompanyModel(Model):
     country = UnicodeAttribute()  # New field for country
     city = UnicodeAttribute()  # New field for city
     connectors = ListAttribute(of=ConnectorModel)  # New field for connectors
+    insights = JSONAttribute(null=True)  # Changed to JSONAttribute
 
     @classmethod
     def fetch_all_companies(cls):
@@ -247,6 +249,30 @@ class CompanyModel(Model):
             }
 
     @classmethod
+    def update_insights(cls, company_id, insights):
+        company = cls.get_company_by_id(company_id)
+        if company:
+            company.insights = insights
+            company.save()
+            return {
+                "status": "success",
+                "message": "Insights updated successfully.",
+            }
+        else:
+            return {
+                "status": "error",
+                "message": "Company not found.",
+            }
+
+    @classmethod
+    def get_insights(cls, company_id):
+        company = cls.get_company_by_id(company_id)
+        if company:
+            return company.insights
+        else:
+            return None
+
+    @classmethod
     def update_connector_last_sync(cls, company_id, connector_type, last_sync):
         company = cls.get_company_by_id(company_id)
         last_sync = last_sync.isoformat()
@@ -256,6 +282,40 @@ class CompanyModel(Model):
                     connector.last_sync = last_sync
                     company.save()
                     break
+
+    @classmethod
+    def migrate_insights_to_json(cls):
+        """
+        Migrate existing insights to JSONAttribute format.
+        """
+        for company in cls.scan():
+            try:
+                # If insights is already a dict or list, it's likely already in the correct format
+                if isinstance(company.insights, (dict, list)):
+                    continue
+
+                # If insights is a string, try to parse it as JSON
+                if isinstance(company.insights, str):
+                    try:
+                        parsed_insights = json.loads(company.insights)
+                    except json.JSONDecodeError:
+                        # If it's not valid JSON, wrap it in a list
+                        parsed_insights = [company.insights]
+                else:
+                    # For any other type, wrap it in a list
+                    parsed_insights = (
+                        [company.insights] if company.insights is not None else []
+                    )
+
+                # Update the insights attribute
+                company.insights = {"insights": parsed_insights}
+                company.save()
+            except Exception as e:
+                print(
+                    f"Error migrating insights for company {company.company_id}: {str(e)}"
+                )
+
+        return {"status": "success", "message": "Insights migration completed."}
 
 
 class ReviewModel(Model):
@@ -563,37 +623,47 @@ class InboxEditorModel(Model):
         return cls.query(user_id)
 
 
+def export_reviews():
+    """
+    Export all reviews from the ReviewModel table.
+    """
+    all_reviews = []
+    for review in ReviewModel.scan():
+        review_data = {
+            "review_id": review.review_id,
+            "business_id": review.business_id,
+            "company_id": review.company_id,
+            "review_date": review.review_date,
+            "review_text": review.review_text,
+            "review_url": review.review_url,
+            "rating": review.rating,
+            "total_reviews": review.total_reviews,
+            "platform_id": review.platform_id,
+            "assigned_label": review.assigned_label,
+            "named_labels": review.named_labels,
+            "sentiment": review.sentiment,
+            "polarity": review.polarity,
+            "author_name": review.author_name,
+            "author_image_url": review.author_image_url,
+            "ai_response": review.ai_response,
+        }
+        all_reviews.append(review_data)
+
+    return all_reviews
+
+
+def save_reviews_to_file(reviews, filename="exported_reviews.json"):
+    """
+    Save the exported reviews to a JSON file.
+    """
+    with open(filename, "w") as f:
+        json.dump(reviews, f, indent=2)
+    print(f"Reviews exported to {filename}")
+
+
 if __name__ == "__main__":
-    # Ensure the Inbox table exists
-    InboxModel.ensure_table_exists()
+    # Migrate insights to JSON format
+    # Delete the Companies table and recreate it
 
-    # Recreate the Reviews table with higher capacity
-    # print(len(list(ReviewModel.fetch_reviews_by_company_id("google"))))
-    # print(list(ReviewModel.fetch_all_reviews()))
-    # print(ReviewModel.wipe_reviews())
-    # print(InboxModel.wipe_inbox_items())
-    # JobModel.wipe_jobs()
-    # print(list(CompanyModel.fetch_all_companies()))
-    # print(list(JobModel.get_most_recent_job("google")))
-    # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
-    # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
-
-    # JobModel.create_table(read_capacity_units=1, write_capacity_units=1)
-    # print("JobModel table created successfully.")
-
-    # print(list(InboxModel.fetch_inbox_items_by_user_id("1")))
-    # print(
-    #     [
-    #         item.to_simple_dict()
-    #         for item in InboxModel.fetch_inbox_items_by_user_id(
-    #             "user_2gLr4nGmyzjlljjkBJ4aNKZU8Im"
-    #         )
-    #     ]
-    # )
-    # print(ReviewModel.fetch_review_by_comp_id_review_id("google", "yYP5lEiWgerolktqfLurfQ"))
-    # print(InboxModel.fetch_inbox_item_by_user_id_and_review_id("user_2gLr4nGmyzjlljjkBJ4aNKZU8Im", "yYP5lEiWgerolktqfLurfQ"))
-    InboxEditorModel.create_table(read_capacity_units=1, write_capacity_units=1)
-    # InboxModel.remove_inbox_items_by_company_and_platform("user_2gLr4nGmyzjlljjkBJ4aNKZU8Im", "Yelp")
-    # Wipe all inbox items
-    # print(result)
-    # print(ReviewModel.remove_reviews_by_company_and_platform("google", "Yelp"))
+    exported_reviews = export_reviews()
+    save_reviews_to_file(exported_reviews)

@@ -20,6 +20,7 @@ from models.models import (
     JobModel,
     InboxEditorModel,  # Make sure this import is added
 )
+from modules.generate_insights import generate_insights_for_company
 from modules.logger_setup import setup_logger
 
 from models.status_constants import status_constants
@@ -678,6 +679,73 @@ def fetch_response():
         return (
             jsonify(
                 {"status": "error", "message": f"Failed to fetch response: {str(e)}"}
+            ),
+            500,
+        )
+
+
+@app.route("/generate_insights", methods=["POST"])
+def generate_insights():
+    data = request.json
+    company_id = data.get("company_id")
+
+    if not company_id:
+        return (
+            jsonify({"status": "error", "message": "Company ID is required"}),
+            400,
+        )
+
+    try:
+        insights = generate_insights_for_company(company_id)
+
+        return (
+            jsonify(
+                {
+                    "status": "success",
+                    "data": insights,
+                }
+            ),
+            200,
+        )
+
+    except Exception as e:
+        return (
+            jsonify(
+                {"status": "error", "message": f"Failed to generate insights: {str(e)}"}
+            ),
+            500,
+        )
+
+
+@app.route("/fetch_insights", methods=["GET"])
+def fetch_insights():
+    company_id = request.args.get("company_id")
+
+    if not company_id:
+        return jsonify({"status": "error", "message": "Company ID is required"}), 400
+
+    try:
+        company = CompanyModel.get_company_by_id(company_id)
+
+        if company is None:
+            return (
+                jsonify(
+                    {
+                        "status": "error",
+                        "message": f"Company with ID {company_id} not found",
+                    }
+                ),
+                404,
+            )
+
+        insights = company.insights if company.insights else {}
+
+        return jsonify({"status": "success", "data": insights}), 200
+
+    except Exception as e:
+        return (
+            jsonify(
+                {"status": "error", "message": f"Failed to fetch insights: {str(e)}"}
             ),
             500,
         )
